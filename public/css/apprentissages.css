@@ -1,0 +1,268 @@
+/* ============================================================
+   PAGE "CENTRE D'APPRENTISSAGE" — CREAI-VBG
+   Le socle (hero, cartes, encadrés, CTA) est dans contenu.css
+   ============================================================ */
+
+@import url('contenu.css');
+
+/* 5 formats : 3 colonnes sur grand écran (3 + 2) */
+@media (min-width: 1000px) {
+    .cards-grid--3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ============================================================
+   LIENS D'APPRENTISSAGE (créés dans l'admin)
+   Toutes les cartes ont EXACTEMENT la même taille : titre limité à
+   2 lignes, description à 3 lignes, source sur 1 ligne. Le reste est
+   masqué (le texte complet reste disponible au survol).
+   ============================================================ */
+
+.learn-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 0 28px;
+}
+
+.learn-filter {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 16px;
+    background: var(--surface-alt);
+    color: var(--text-secondary);
+    border: 1.5px solid transparent;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+}
+
+.learn-filter:hover {
+    background: var(--teal-50);
+    color: var(--teal-700);
+}
+
+.learn-filter.is-active {
+    background: var(--teal-500);
+    color: #ffffff;
+}
+
+.learn-filter span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 6px;
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: 999px;
+    font-size: 11.5px;
+    font-weight: 700;
+}
+
+.learn-filter.is-active span {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.learn-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+.learn-card {
+    --accent: var(--teal-500);
+    --accent-soft: var(--teal-50);
+    --accent-text: var(--teal-700);
+
+    display: flex;
+    flex-direction: column;
+    height: 330px;              /* taille fixe */
+    padding: 22px 22px 20px;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--accent);
+    border-radius: var(--radius);
+    scroll-margin-top: 110px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.learn-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.07);
+}
+
+.learn-card--webinaire { --accent: var(--purple-600); --accent-soft: var(--purple-50); --accent-text: var(--purple-800); }
+.learn-card--cours     { --accent: var(--coral-500);  --accent-soft: var(--coral-50);  --accent-text: var(--coral-700); }
+.learn-card--pairs     { --accent: var(--gray-600);   --accent-soft: var(--gray-100);  --accent-text: var(--gray-900); }
+
+/* Carte ciblée par un lien partagé (#formation-ID) */
+.learn-card:target {
+    box-shadow: 0 0 0 3px var(--accent), 0 12px 28px rgba(0, 0, 0, 0.1);
+}
+
+.learn-card-top {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.learn-type {
+    padding: 4px 12px;
+    background: var(--accent-soft);
+    color: var(--accent-text);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+}
+
+/* Une ou deux langues : FR, EN, ou FR + EN */
+.learn-langs {
+    display: inline-flex;
+    gap: 5px;
+}
+
+.learn-lang {
+    padding: 3px 9px;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+/* Titre : 2 lignes maximum (la place de 2 lignes est toujours réservée) */
+.learn-card h3 {
+    flex: none;
+    margin: 0 0 10px;
+    height: 2.7em;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--text-primary);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+/* Description : 3 lignes maximum */
+.learn-desc {
+    flex: none;
+    margin: 0 0 12px;
+    height: 5.1em;
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+/* Source · date : une seule ligne, coupée par « … » si trop longue */
+.learn-meta {
+    flex: none;
+    margin: 0;
+    height: 1.5em;
+    font-size: 13px;
+    line-height: 1.5;
+    font-weight: 600;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.learn-meta span + span::before {
+    content: " · ";
+}
+
+/* Actions : toujours en bas de la carte */
+.learn-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.btn-cta--sm {
+    flex: 1 1 auto;
+    min-width: 0;
+    gap: 8px;
+    min-height: 42px;
+    padding: 10px 16px;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.learn-share {
+    position: relative;
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.learn-share:hover {
+    background: var(--teal-50);
+    color: var(--teal-700);
+    border-color: var(--teal-500);
+}
+
+/* Confirmation « Lien copié ! » au-dessus du bouton */
+.learn-share.is-copied {
+    background: var(--teal-500);
+    color: #ffffff;
+    border-color: var(--teal-500);
+}
+
+.learn-share.is-copied::after {
+    content: "Lien copié !";
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + 8px);
+    padding: 6px 10px;
+    background: #2c2c2a;
+    color: #ffffff;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.info-card-link + .info-card-link {
+    margin-top: 8px;
+}
+
+@media (max-width: 600px) {
+    .learn-grid { grid-template-columns: 1fr; gap: 16px; }
+    .learn-card { padding: 20px 18px 18px; }
+}
+
+/* Très petits écrans : le bouton peut passer à la ligne, même taille pour toutes les cartes */
+@media (max-width: 360px) {
+    .learn-card { height: 380px; }
+    .learn-actions { flex-wrap: wrap; }
+    .btn-cta--sm { flex: 1 1 100%; justify-content: center; }
+}

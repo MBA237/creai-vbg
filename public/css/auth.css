@@ -1,0 +1,446 @@
+/* ============================================================
+   AUTH — LOGIN + REGISTER
+   Design split-screen avec courbe
+   ============================================================ */
+
+/* ============================================================
+   RESET LOCAL
+   ============================================================ */
+
+.auth-page *,
+.auth-page *::before,
+.auth-page *::after {
+    box-sizing: border-box;
+}
+
+/* ============================================================
+   WRAPPER POUR CENTRER
+   ============================================================ */
+
+.auth-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+/* ============================================================
+   CONTENEUR PRINCIPAL
+   ============================================================ */
+
+.auth-container {
+    display: flex;
+    width: 120%;
+    max-width: 120%;
+    min-height: 560px;
+    background: #fff;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(107, 140, 232, 0.15);
+    position: relative;
+}
+
+/* ============================================================
+   PANNEAU FORMULAIRE
+   ============================================================ */
+
+.auth-form {
+    flex: 1;
+    padding: 48px 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 2;
+}
+
+.auth-form h1 {
+    font-size: 2rem;
+    margin-bottom: 32px;
+    color: #1a202c;
+    text-align: center;
+    font-weight: 800;
+}
+
+/* --- Champs --- */
+
+.auth-form .field {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.auth-form .field input {
+    width: 100%;
+    padding: 14px 44px 14px 18px;
+    border: none;
+    border-radius: 10px;
+    background: #f1f3f6;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: #2d3748;
+    transition: background 0.15s, box-shadow 0.15s;
+}
+
+.auth-form .field input::placeholder {
+    color: #a0aec0;
+}
+
+.auth-form .field input:focus {
+    outline: none;
+    background: #fff;
+    box-shadow: 0 0 0 2px #6b8ce8;
+}
+
+/* ============================================================
+   ICÔNES DANS LES CHAMPS
+   ============================================================ */
+
+.auth-form .field-icon {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #4a5568;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 3;
+    width: 26px;
+    height: 26px;
+}
+
+/* --- Bouton œil (interactif) --- */
+
+.auth-form .field-icon.toggle {
+    pointer-events: auto;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+    color: #718096;
+    transition: color 0.15s;
+}
+
+.auth-form .field-icon.toggle:hover {
+    color: #6b8ce8;
+}
+
+/* --- SVG à l'intérieur --- */
+
+.auth-form .field-icon svg {
+    display: block;
+    pointer-events: none;
+}
+
+/* --- Bascule œil ouvert / œil barré ---
+   Un seul SVG dans le HTML (icon-eye).
+   Quand .is-visible → on cache icon-eye et on affiche l'œil barré via ::after. */
+
+.auth-form .field-icon.toggle .icon-eye {
+    display: block;
+}
+
+.auth-form .field-icon.toggle.is-visible .icon-eye {
+    display: none;
+}
+
+.auth-form .field-icon.toggle.is-visible::after {
+    content: "";
+    display: block;
+    width: 18px;
+    height: 18px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23718096' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24'/><line x1='1' y1='1' x2='23' y2='23'/></svg>");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* ============================================================
+   LIEN "MOT DE PASSE OUBLIÉ"
+   ============================================================ */
+
+.auth-form .forgot-link {
+    display: block;
+    text-align: right;
+    font-size: 0.85rem;
+    color: #4a5568;
+    text-decoration: none;
+    margin: -4px 0 20px;
+}
+
+.auth-form .forgot-link:hover {
+    color: #6b8ce8;
+    text-decoration: underline;
+}
+
+/* ============================================================
+   BOUTON PRINCIPAL
+   ============================================================ */
+
+.auth-form .btn-primary {
+    width: 100%;
+    padding: 14px 24px;
+    background: #6b8ce8;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.05s;
+    margin-top: 8px;
+}
+
+.auth-form .btn-primary:hover {
+    background: #5a7ad6;
+}
+
+.auth-form .btn-primary:active {
+    transform: scale(0.99);
+}
+
+/* ============================================================
+   SÉPARATEUR + SOCIALS
+   ============================================================ */
+
+.auth-form .divider {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #718096;
+    margin: 24px 0 16px;
+}
+
+.auth-form .socials {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.auth-form .social-btn {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #2d3748;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: border-color 0.15s, background 0.15s;
+}
+
+.auth-form .social-btn:hover {
+    border-color: #6b8ce8;
+    background: #f7f9ff;
+}
+
+/* ============================================================
+   CASE À COCHER CGU
+   ============================================================ */
+
+.auth-form .checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 12px 0 8px;
+    cursor: pointer;
+    font-size: 0.82rem;
+    line-height: 1.4;
+    color: #4a5568;
+}
+
+.auth-form .checkbox-label input[type="checkbox"] {
+    flex-shrink: 0;
+    margin: 2px 0 0 0;
+    width: 16px;
+    height: 16px;
+    accent-color: #6b8ce8;
+    cursor: pointer;
+}
+
+.auth-form .checkbox-label a {
+    color: #6b8ce8;
+    text-decoration: underline;
+}
+
+/* ============================================================
+   PANNEAU BLEU (Welcome)
+   ============================================================ */
+
+.auth-welcome {
+    flex: 1;
+    background: #92509b;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 40px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.auth-welcome h2 {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+    font-weight: 800;
+}
+
+.auth-welcome p {
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+    opacity: 0.9;
+}
+
+.auth-welcome .btn-outline {
+    display: inline-block;
+    padding: 10px 32px;
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+
+.auth-welcome .btn-outline:hover {
+    background: #fff;
+    color: #6b8ce8;
+}
+
+/* ============================================================
+   COURBE ORGANIQUE
+   ============================================================ */
+
+.auth-container.layout-login .auth-welcome {
+    border-top-right-radius: 50% 100%;
+    border-bottom-right-radius: 50% 100%;
+}
+
+.auth-container.layout-register .auth-welcome {
+    border-top-left-radius: 50% 100%;
+    border-bottom-left-radius: 50% 100%;
+}
+
+/* ============================================================
+   MESSAGES D'ALERTE
+   ============================================================ */
+
+.auth-form .alert {
+    padding: 12px 16px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+.auth-form .alert-success {
+    background: #c6f6d5;
+    color: #22543d;
+    border-left: 4px solid #38a169;
+}
+
+.auth-form .alert-error {
+    background: #fed7d7;
+    color: #742a2a;
+    border-left: 4px solid #e53e3e;
+}
+
+.auth-form .alert-error ul {
+    margin: 4px 0 0 18px;
+    padding: 0;
+}
+
+.auth-form .alert a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+/* ============================================================
+   TEXTES D'INFO
+   ============================================================ */
+
+.auth-form .auth-hint {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #718096;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+/* ============================================================
+   LIEN RETOUR
+   ============================================================ */
+
+.auth-form .auth-back-link {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 0.9rem;
+}
+
+.auth-form .auth-back-link a {
+    color: #6b8ce8;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-form .auth-back-link a:hover {
+    text-decoration: underline;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 768px) {
+    .auth-page {
+        padding: 20px 12px;
+    }
+
+    .auth-container {
+        flex-direction: column;
+        min-height: auto;
+        border-radius: 16px;
+    }
+
+    .auth-welcome {
+        display: none;
+    }
+
+    .auth-form {
+        padding: 32px 24px;
+    }
+
+    .auth-form h1 {
+        font-size: 1.6rem;
+        margin-bottom: 24px;
+    }
+}
+
+@media (max-width: 400px) {
+    .auth-form {
+        padding: 24px 18px;
+    }
+
+    .auth-form h1 {
+        font-size: 1.4rem;
+    }
+
+    .auth-form .field input {
+        padding: 12px 42px 12px 14px;
+        font-size: 0.9rem;
+    }
+
+    .auth-form .social-btn {
+        width: 40px;
+        height: 40px;
+    }
+}

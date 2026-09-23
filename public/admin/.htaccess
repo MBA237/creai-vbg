@@ -1,0 +1,14 @@
+# Protection supplémentaire pour le dossier admin
+# Empêche l'accès aux fichiers non-PHP
+<FilesMatch "\.(php|html|css|js)$">
+    Require all granted
+</FilesMatch>
+
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+# Force HTTPS en production (décommente quand tu auras un certificat SSL)
+# RewriteEngine On
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

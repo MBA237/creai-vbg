@@ -1,0 +1,30 @@
+/* ============================================================
+   PAGE "CENTRE DE CONNAISSANCES" — CREAI-VBG
+   Le socle (hero, cartes, encadrés, CTA) est dans contenu.css
+   ============================================================ */
+
+@import url('contenu.css');
+
+/* Encadré « prendre soin de vous » : bande fine sous le hero */
+.kc-notice-section {
+    padding: 40px 0;
+}
+
+/* Pastilles de langue */
+.lang-tag {
+    display: inline-block;
+    padding: 1px 10px;
+    background: var(--teal-50);
+    color: var(--teal-700);
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.6;
+}
+
+/* 4 types de ressources : 4 colonnes sur grand écran */
+@media (min-width: 1000px) {
+    .cards-grid--4 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

@@ -1,0 +1,143 @@
+<?php
+declare(strict_types=1);
+session_start();
+
+require_once __DIR__ . '/../src/Pole.php';
+require_once __DIR__ . '/../src/Membre.php';
+
+$poles         = [];
+$membresByPole = [];
+
+try {
+    $poles         = (new Pole())->getAll();
+    $membresByPole = (new Membre())->getAllGroupedByPole();
+} catch (Throwable $e) {
+    error_log('[notre-equipe.php] ' . $e->getMessage());
+}
+
+/** Initiales (2 max) affichées quand un membre n'a pas de photo. */
+function initiales(string $nom): string
+{
+    $mots = preg_split('/\s+/', trim($nom), -1, PREG_SPLIT_NO_EMPTY) ?: [];
+    $init = '';
+    foreach (array_slice($mots, 0, 2) as $mot) {
+        $init .= mb_strtoupper(mb_substr($mot, 0, 1));
+    }
+    return $init !== '' ? $init : '?';
+}
+
+$pageTitle = 'Notre équipe — CREAI-VBG';
+$pageCss   = 'notre-equipe.css';
+$widePage  = true;
+
+require __DIR__ . '/partials/header.php';
+?>
+
+<main class="apropos-page">
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="apropos-hero">
+    <div class="apropos-hero-content">
+        <span class="apropos-badge">Notre équipe</span>
+        <h1>Celles et ceux qui font vivre le CREAI-VBG</h1>
+        <p class="apropos-lead">
+            Sept pôles organisent notre action au quotidien, du Bureau à l'innovation
+            numérique. Découvrez les personnes qui les composent.
+        </p>
+    </div>
+</section>
+
+<?php if (empty($poles)): ?>
+
+<section class="apropos-section">
+    <div class="apropos-container">
+        <p class="equipe-empty">L'équipe sera bientôt présentée.</p>
+    </div>
+</section>
+
+<?php else: ?>
+
+<!-- ============================================================
+     NAVIGATION PAR PÔLE
+     ============================================================ -->
+<nav class="team-nav" aria-label="Pôles de l'équipe">
+    <ul class="team-nav-list">
+        <?php foreach ($poles as $pole): ?>
+            <li>
+                <a class="team-nav-link" href="#pole-<?= htmlspecialchars($pole['slug']) ?>">
+                    <?= htmlspecialchars($pole['nom']) ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</nav>
+
+<!-- ============================================================
+     UNE SECTION PAR PÔLE
+     ============================================================ -->
+<?php foreach ($poles as $i => $pole):
+    $slug    = $pole['slug'];
+    $membres = $membresByPole[$slug] ?? [];
+?>
+<section class="apropos-section pole-section <?= $i % 2 === 1 ? 'apropos-section--alt' : '' ?>"
+         id="pole-<?= htmlspecialchars($slug) ?>">
+    <div class="apropos-container">
+        <h2 class="pole-title"><?= htmlspecialchars($pole['nom']) ?></h2>
+
+        <?php if (empty($membres)): ?>
+            <p class="equipe-empty">Les membres de ce pôle seront bientôt présentés.</p>
+        <?php else: ?>
+            <div class="membres-grid">
+                <?php foreach ($membres as $m): ?>
+                    <article class="membre-card">
+                        <div class="membre-photo <?= empty($m['photo']) ? 'membre-photo--initials' : '' ?>">
+                            <?php if (!empty($m['photo'])): ?>
+                                <img src="<?= htmlspecialchars($m['photo']) ?>"
+                                     alt="<?= htmlspecialchars($m['nom']) ?>"
+                                     loading="lazy">
+                            <?php else: ?>
+                                <span aria-hidden="true"><?= htmlspecialchars(initiales($m['nom'])) ?></span>
+                            <?php endif; ?>
+                        </div>
+                        <div class="membre-body">
+                            <h3 class="membre-nom"><?= htmlspecialchars($m['nom']) ?></h3>
+                            <?php if (!empty($m['poste'])): ?>
+                                <p class="membre-poste"><?= htmlspecialchars($m['poste']) ?></p>
+                            <?php endif; ?>
+                            <?php if (!empty($m['profession'])): ?>
+                                <p class="membre-profession"><?= htmlspecialchars($m['profession']) ?></p>
+                            <?php endif; ?>
+                        </div>
+                    </article>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+    </div>
+</section>
+<?php endforeach; ?>
+
+<?php endif; ?>
+
+<!-- ============================================================
+     CTA FINAL
+     ============================================================ -->
+<section class="apropos-cta">
+    <div class="apropos-container">
+        <h2>Il y a une place pour vous</h2>
+        <p>
+            Chercheur(e), professionnel(le) de santé, juriste, éducateur(rice),
+            ou simplement convaincu(e) que la lutte contre les VBG est l'affaire
+            de tous : rejoignez le CREAI-VBG.
+        </p>
+        <div class="cta-buttons">
+            <a href="/rejoindre.php" class="btn-cta btn-cta--primary">Devenir membre</a>
+            <a href="/apropos.php" class="btn-cta btn-cta--outline">Qui sommes-nous</a>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<?php require __DIR__ . '/partials/footer.php'; ?>

@@ -1,0 +1,1263 @@
+/* ============================================================
+   PAGE PILIERS — CREAI-VBG
+   Charte : teal dominant, violet accent, corail urgence
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --teal-50:  #e9f5f0;
+    --teal-100: #cdead9;
+    --teal-200: #7cc2a4;
+    --teal-500: #157a5c;
+    --teal-600: #106649;
+    --teal-700: #0c5540;
+    --teal-800: #0a4534;
+    --teal-900: #073328;
+
+    --purple-50:  #efeef9;
+    --purple-200: #b3aade;
+    --purple-600: #4c4494;
+    --purple-700: #3c366f;
+    --purple-800: #322d5c;
+
+    --coral-50:  #faece7;
+    --coral-500: #c04f2b;
+    --coral-700: #8f3a20;
+
+    --gray-50:  #f6f5f1;
+    --gray-100: #efeee8;
+    --gray-300: #d8d6cd;
+    --gray-400: #a3a196;
+    --gray-600: #5c5b55;
+    --gray-900: #262622;
+
+    --surface:        #ffffff;
+    --surface-alt:    var(--gray-50);
+    --border:         var(--gray-300);
+
+    --text-primary:   var(--gray-900);
+    --text-secondary: var(--gray-600);
+    --text-muted:     var(--gray-400);
+
+    --space-1: 8px;
+    --space-2: 16px;
+    --space-3: 24px;
+    --space-4: 32px;
+    --space-5: 48px;
+    --space-6: 64px;
+    --space-7: 96px;
+
+    --radius:    10px;
+    --radius-sm: 6px;
+
+    --shadow-sm: 0 1px 2px rgba(7, 51, 40, 0.06), 0 1px 1px rgba(7, 51, 40, 0.04);
+    --shadow-md: 0 8px 24px rgba(7, 51, 40, 0.10);
+}
+
+/* ============================================================
+   BASE LOCALE
+   ============================================================ */
+
+.piliers-page {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--text-primary);
+    line-height: 1.6;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.piliers-page :focus-visible {
+    outline: 2px solid var(--teal-500);
+    outline-offset: 3px;
+}
+
+.piliers-container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 4vw, 40px);
+}
+
+.piliers-container--narrow {
+    max-width: 760px;
+}
+
+/* ============================================================
+   HERO — page piliers
+   Alignement à gauche, hauteur augmentée
+   ============================================================ */
+
+.piliers-hero {
+    width: 100%;
+    background: linear-gradient(155deg, var(--teal-900) 0%, var(--teal-700) 55%, var(--teal-600) 100%);
+    color: #ffffff;
+
+    /* Hauteur augmentée + padding généreux */
+    min-height: 520px;
+    padding: clamp(120px, 14vw, 200px) 0 clamp(100px, 12vw, 160px);
+
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+
+.piliers-hero::before {
+    content: "";
+    position: absolute;
+    top: -160px;
+    right: -140px;
+    width: 460px;
+    height: 460px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.piliers-hero::after {
+    content: "";
+    position: absolute;
+    bottom: -140px;
+    left: -110px;
+    width: 340px;
+    height: 340px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.piliers-hero-content {
+    max-width: 780px;
+    margin: 0;                       /* ← plus de centrage horizontal */
+    padding: 0 clamp(20px, 4vw, 40px);
+    position: relative;
+    z-index: 2;
+    text-align: left;
+}
+
+.piliers-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.14);
+    color: #ffffff;
+    padding: 8px 18px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 0 0 var(--space-3);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+.piliers-hero h1 {
+    font-size: clamp(34px, 4.5vw, 52px);
+    font-weight: 700;
+    line-height: 1.12;
+    color: #ffffff;
+    margin: 0 0 var(--space-3);
+    letter-spacing: -0.015em;
+    max-width: 760px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.piliers-lead {
+    font-size: 18px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.92);
+    max-width: 640px;
+    margin: 0;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+/* --- Responsive --- */
+
+@media (max-width: 900px) {
+    .piliers-hero {
+        min-height: 420px;
+        padding: 100px 0 90px;
+    }
+
+    .piliers-hero h1 {
+        font-size: clamp(28px, 5vw, 38px);
+    }
+
+    .piliers-lead {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    .piliers-hero {
+        min-height: 360px;
+        padding: 80px 0 70px;
+    }
+
+    .piliers-hero h1 {
+        font-size: 26px;
+    }
+
+    .piliers-badge {
+        font-size: 12px;
+        padding: 7px 14px;
+    }
+
+    .piliers-lead {
+        font-size: 15px;
+        line-height: 1.65;
+    }
+}
+/* ============================================================
+   SECTIONS
+   ============================================================ */
+
+.piliers-section {
+    width: 100%;
+    padding: var(--space-6) 0;
+    background: var(--surface);
+}
+
+.piliers-section--alt {
+    background: var(--surface-alt);
+}
+
+.piliers-text {
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    margin: 0 0 var(--space-2);
+    max-width: 68ch;
+}
+
+.piliers-text:last-child {
+    margin-bottom: 0;
+}
+
+/* ============================================================
+   EYEBROWS
+   ============================================================ */
+
+.eyebrow {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--teal-600);
+    margin: 0 0 var(--space-1);
+}
+
+.eyebrow--purple { color: var(--purple-600); }
+
+/* ============================================================
+   TITRES DE PILIER
+   ============================================================ */
+
+.pilier-title {
+    margin: 0 0 var(--space-5);
+}
+
+.pilier-title-num {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--teal-600);
+    margin-bottom: 8px;
+}
+
+#pilier-accompagnement .pilier-title-num,
+#pilier-plaidoyer .pilier-title-num {
+    color: var(--purple-600);
+}
+
+.pilier-title-text {
+    display: block;
+    font-size: clamp(26px, 3.4vw, 38px);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--text-primary);
+    letter-spacing: -0.015em;
+}
+
+.pilier-content > h3 {
+    position: relative;
+    padding-bottom: var(--space-2);
+}
+
+.pilier-content > h3::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 48px;
+    height: 3px;
+    background: var(--teal-500);
+    border-radius: 2px;
+}
+
+.pilier-layout--reverse .pilier-content > h3::after,
+#pilier-accompagnement .pilier-content > h3::after,
+#pilier-plaidoyer .pilier-content > h3::after {
+    background: var(--purple-600);
+}
+
+/* ============================================================
+   SECTION VBG — mise en évidence
+   ============================================================ */
+
+.vbg-section {
+    width: 100%;
+    padding: var(--space-7) 0 var(--space-6);
+    background: var(--surface-alt);
+}
+
+/* --- En-tête de section --- */
+
+.vbg-header {
+    max-width: 760px;
+    margin: 0 0 var(--space-5);
+    text-align: left;
+}
+
+.vbg-header .eyebrow {
+    display: block;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--teal-800, #0a4534);
+    margin: 0 0 28px;
+    padding-bottom: 14px;
+    position: relative;
+    text-transform: none;
+}
+
+.vbg-header .eyebrow::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 60px;
+    height: 4px;
+    background: var(--teal-500);
+    border-radius: 2px;
+}
+
+.vbg-intro {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin: 0;
+    max-width: 68ch;
+}
+
+/* ============================================================
+   CARROUSEL VBG — scroll horizontal invisible + flèches au survol
+   ============================================================ */
+
+.vbg-carousel {
+    position: relative;
+    width: 100%;
+    padding: 0 64px; /* espace pour les flèches */
+}
+
+/* --- Conteneur scrollable --- */
+
+.vbg-scroll {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scroll-snap-type: x proximity; /* proximity plus souple que mandatory */
+    -webkit-overflow-scrolling: touch;
+
+    /* Cache la barre de scroll (cross-browser) */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.vbg-scroll::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+/* --- Piste horizontale --- */
+
+.vbg-track {
+    display: flex;
+    gap: var(--space-3);
+    padding: 4px 0 var(--space-3);
+    width: max-content;
+    min-width: 100%;
+}
+
+/* --- Carte VBG --- */
+
+.vbg-card {
+    flex: 0 0 320px;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.vbg-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.vbg-card-image {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    background: var(--gray-100);
+    border-bottom: 3px solid var(--teal-500);
+}
+
+.vbg-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.vbg-card-body {
+    padding: 20px 22px 24px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.vbg-card h3 {
+    font-size: 15.5px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 8px;
+    line-height: 1.35;
+}
+
+.vbg-card p {
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* ============================================================
+   FLÈCHES DU CARROUSEL VBG — visibles au survol uniquement
+   ============================================================ */
+
+.vbg-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) scale(0.9);
+
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--surface);
+    color: var(--teal-600);
+    border: 2px solid var(--teal-200);
+    border-radius: 50%;
+
+    cursor: pointer;
+    z-index: 5;
+
+    /* Invisible par défaut */
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease,
+        transform 0.25s ease,
+        background 0.15s ease,
+        color 0.15s ease,
+        border-color 0.15s ease;
+
+    box-shadow: 0 6px 20px rgba(7, 51, 40, 0.12);
+}
+
+.vbg-nav svg {
+    display: block;
+    pointer-events: none;
+}
+
+/* Apparition au survol du carrousel */
+.vbg-carousel:hover .vbg-nav {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) scale(1);
+}
+
+.vbg-nav:hover:not(:disabled) {
+    background: var(--teal-500);
+    color: #ffffff;
+    border-color: var(--teal-500);
+    transform: translateY(-50%) scale(1.08);
+}
+
+.vbg-nav:disabled {
+    opacity: 0;
+    cursor: not-allowed;
+}
+
+.vbg-carousel:hover .vbg-nav:disabled {
+    opacity: 0.25;
+    visibility: visible;
+}
+
+.vbg-nav--prev { left: 8px; }
+.vbg-nav--next { right: 8px; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 900px) {
+    .vbg-header .eyebrow {
+        font-size: 22px;
+        margin-bottom: 22px;
+    }
+
+    .vbg-intro {
+        font-size: 16px;
+    }
+
+    .vbg-carousel {
+        padding: 0 56px;
+    }
+
+    .vbg-card {
+        flex: 0 0 280px;
+    }
+}
+
+@media (max-width: 600px) {
+    .vbg-header .eyebrow {
+        font-size: 20px;
+        margin-bottom: 18px;
+    }
+
+    .vbg-header .eyebrow::after {
+        width: 48px;
+        height: 3px;
+    }
+
+    .vbg-intro {
+        font-size: 15px;
+    }
+
+    .vbg-carousel {
+        padding: 0 20px;
+    }
+
+    .vbg-card {
+        flex: 0 0 260px;
+    }
+
+    .vbg-track {
+        gap: var(--space-2);
+    }
+
+    /* Sur mobile : flèches toujours visibles (pas de survol tactile) */
+    .vbg-nav {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(-50%) scale(1);
+        width: 42px;
+        height: 42px;
+        background: rgba(255, 255, 255, 0.95);
+    }
+
+    .vbg-nav--prev { left: 4px; }
+    .vbg-nav--next { right: 4px; }
+}
+/* ============================================================
+   BLOC PILIER
+   ============================================================ */
+
+.pilier-block {
+    width: 100%;
+    padding: var(--space-7) 0;
+    background: var(--surface);
+}
+
+.pilier-block--alt {
+    background: var(--surface-alt);
+}
+
+.pilier-layout {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: var(--space-5);
+    align-items: center;
+}
+
+.pilier-layout--reverse {
+    grid-template-columns: 1fr 360px;
+}
+
+.pilier-layout--reverse .pilier-visual {
+    order: 2;
+}
+
+.pilier-layout--reverse .pilier-content {
+    order: 1;
+}
+
+.pilier-visual {
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--gray-100);
+    box-shadow: var(--shadow-md);
+    align-self: center;
+}
+
+.pilier-visual img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    display: block;
+}
+
+.pilier-number {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 48px;
+    height: 40px;
+    padding: 0 14px;
+    background: var(--teal-900);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    border-radius: 0 0 var(--radius-sm) 0;
+}
+
+#pilier-accompagnement .pilier-number,
+#pilier-plaidoyer .pilier-number {
+    background: var(--purple-800);
+}
+
+.pilier-content > h3 {
+    font-size: clamp(19px, 2.2vw, 23px);
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.3;
+    margin: 0 0 var(--space-3);
+    letter-spacing: -0.005em;
+    max-width: 30ch;
+}
+
+/* --- Sous-sections --- */
+
+.pilier-subsections {
+    margin: var(--space-4) 0;
+    display: grid;
+    gap: 14px;
+}
+
+.pilier-subsection {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--teal-500);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 20px 24px;
+}
+
+.pilier-subsection--auteurs {
+    border-left-color: var(--purple-600);
+}
+
+.pilier-subsection h3 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15.5px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 8px;
+    line-height: 1.35;
+}
+
+.pilier-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--teal-50);
+    color: var(--teal-600);
+}
+
+.pilier-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+.pilier-subsection--auteurs .pilier-icon {
+    background: var(--purple-50);
+    color: var(--purple-600);
+}
+
+.pilier-subsection p {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* --- Sous-sections en grille (une ligne) --- */
+
+.pilier-subsections--grid {
+    display: flex;
+    gap: var(--space-3);
+    align-items: stretch;
+}
+
+.pilier-subsections--grid .pilier-subsection {
+    flex: 1 1 0;
+    min-width: 0;
+    border-left: none;
+    border-top: 3px solid var(--teal-500);
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    padding: 26px 24px 28px;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.pilier-subsections--grid .pilier-subsection:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+}
+
+.pilier-subsections--grid .pilier-subsection--auteurs {
+    border-top-color: var(--purple-600);
+}
+
+.pilier-subsections--grid .pilier-subsection h3 {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.pilier-subsections--grid .pilier-icon {
+    width: 42px;
+    height: 42px;
+}
+
+.pilier-subsections--grid .pilier-icon svg {
+    width: 21px;
+    height: 21px;
+}
+
+@media (max-width: 700px) {
+    .pilier-subsections--grid {
+        overflow-x: auto;
+        padding-bottom: var(--space-2);
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .pilier-subsections--grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .pilier-subsections--grid .pilier-subsection {
+        flex: 0 0 78%;
+        scroll-snap-align: start;
+    }
+}
+
+/* --- Liste dans les sous-sections --- */
+
+.piliers-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 10px;
+}
+
+.piliers-list li {
+    position: relative;
+    padding-left: 20px;
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+.piliers-list li::before {
+    content: "–";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--teal-500);
+    font-weight: 700;
+}
+
+.pilier-subsection--auteurs .piliers-list li::before {
+    color: var(--purple-600);
+}
+
+.piliers-list li strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* ============================================================
+   BOUTONS "DÉCOUVRIR" — CENTRALISÉS
+   ============================================================ */
+
+.pilier-cta-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--space-5);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--border);
+}
+
+.piliers-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    background: transparent;
+    color: var(--teal-600);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    border: 1.5px solid var(--teal-500);
+    border-radius: var(--radius-sm);
+    transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
+}
+
+.piliers-cta:hover {
+    background: var(--teal-500);
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+#pilier-accompagnement .piliers-cta,
+#pilier-plaidoyer .piliers-cta {
+    color: var(--purple-600);
+    border-color: var(--purple-600);
+}
+
+#pilier-accompagnement .piliers-cta:hover,
+#pilier-plaidoyer .piliers-cta:hover {
+    background: var(--purple-600);
+    color: #ffffff;
+}
+
+/* ============================================================
+   CTA FINAL
+   ============================================================ */
+
+.piliers-cta-final {
+    width: 100%;
+    background: var(--teal-900);
+    padding: var(--space-7) 0;
+    text-align: center;
+}
+
+.piliers-cta-final h2 {
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 var(--space-2);
+    letter-spacing: -0.01em;
+}
+
+.piliers-cta-final p {
+    max-width: 640px;
+    margin: 0 auto var(--space-4);
+    font-size: 16.5px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.piliers-cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 14px 32px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 14.5px;
+    font-weight: 600;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    cursor: pointer;
+    border: 1.5px solid transparent;
+}
+
+.btn--primary {
+    background: #ffffff;
+    color: var(--teal-800);
+    border-color: #ffffff;
+}
+.btn--primary:hover {
+    background: var(--teal-50);
+}
+
+.btn--outline {
+    background: transparent;
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.55);
+}
+.btn--outline:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #ffffff;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 1000px) {
+    .pilier-layout,
+    .pilier-layout--reverse {
+        grid-template-columns: 1fr;
+        gap: var(--space-3);
+    }
+
+    .pilier-layout--reverse .pilier-visual {
+        order: 1;
+    }
+
+    .pilier-layout--reverse .pilier-content {
+        order: 2;
+    }
+
+    .pilier-visual {
+        max-width: 420px;
+    }
+
+    .pilier-visual img {
+        aspect-ratio: 16 / 9;
+    }
+}
+
+@media (max-width: 600px) {
+    .pilier-block,
+    .piliers-section,
+    .piliers-cta-final {
+        padding: var(--space-5) 0;
+    }
+
+    .pilier-visual {
+        max-width: 100%;
+    }
+
+    /* Carte VBG plus compacte sur mobile */
+    .vbg-card {
+        flex: 0 0 260px;
+    }
+
+    .vbg-track {
+        gap: var(--space-2);
+    }
+
+    .pilier-cta-wrapper {
+        margin-top: var(--space-4);
+        padding-top: var(--space-3);
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 340px;
+    }
+
+    .piliers-cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .piliers-cta {
+        width: 100%;
+        justify-content: center;
+    }
+}
+/* ============================================================
+   RESPONSIVE — CARTES SUR UNE LIGNE, SCROLL INVISIBLE
+   Toutes les cartes restent visibles en scrollant horizontalement
+   ============================================================ */
+
+/* ============================================================
+   TABLETTE — 600px à 900px
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+    /* --- Cartes VBG : un peu plus petites --- */
+    .vbg-card {
+        flex: 0 0 280px;
+    }
+
+    /* --- Sous-sections de pilier (Prévention, Innovation, Accompagnement) : 
+           passage en scroll horizontal invisible --- */
+    .pilier-subsections--grid {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        gap: var(--space-3);
+        padding-bottom: var(--space-3);
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+
+        /* Cache la barre de scroll */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .pilier-subsections--grid::-webkit-scrollbar {
+        display: none;
+        height: 0;
+    }
+
+    .pilier-subsections--grid .pilier-subsection {
+        flex: 0 0 320px;
+        scroll-snap-align: start;
+    }
+}
+
+/* ============================================================
+   MOBILE — moins de 600px
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+    /* --- Cartes VBG : plus compactes + scroll invisible actif --- */
+    .vbg-card {
+        flex: 0 0 260px;
+    }
+
+    /* --- Sous-sections de pilier : cartes plus étroites --- */
+    .pilier-subsections--grid .pilier-subsection {
+        flex: 0 0 260px;
+    }
+
+    /* --- Grilles qui passent en scroll horizontal --- */
+    .pillars-grid,
+    .approach-grid {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        gap: var(--space-3);
+        padding-bottom: var(--space-3);
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .pillars-grid::-webkit-scrollbar,
+    .approach-grid::-webkit-scrollbar {
+        display: none;
+        height: 0;
+    }
+
+    .pillars-grid > *,
+    .approach-grid > * {
+        flex: 0 0 260px;
+        scroll-snap-align: start;
+    }
+
+    /* --- Indice visuel de scroll (dégradé sur les bords) --- */
+    .vbg-carousel::before,
+    .pilier-subsections--grid::before,
+    .vbg-scroll::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 40px;
+        height: 100%;
+        background: linear-gradient(to left, var(--surface-alt) 0%, transparent 100%);
+        pointer-events: none;
+        z-index: 1;
+        opacity: 0.9;
+    }
+}
+
+/* ============================================================
+   TRÈS PETIT — moins de 400px
+   ============================================================ */
+
+@media (max-width: 400px) {
+
+    .vbg-card {
+        flex: 0 0 240px;
+    }
+
+    .pilier-subsections--grid .pilier-subsection {
+        flex: 0 0 240px;
+    }
+
+    .pillars-grid > *,
+    .approach-grid > * {
+        flex: 0 0 240px;
+    }
+}
+
+/* ============================================================
+   SERVICE ITEMS — listes stylées (victimes / auteur(e)s)
+   ============================================================ */
+
+.service-items {
+    list-style: none;
+    padding: 0;
+    margin: 18px 0 0;
+    display: grid;
+    gap: 4px;
+}
+
+.service-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 4px;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s ease;
+}
+
+.service-item:last-child {
+    border-bottom: none;
+}
+
+.service-item:hover {
+    background: rgba(21, 122, 92, 0.03);
+}
+
+.pilier-subsection--auteurs .service-item:hover {
+    background: rgba(76, 68, 148, 0.03);
+}
+
+/* --- Icône de l'item --- */
+
+.service-item-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: var(--teal-50);
+    color: var(--teal-600);
+    transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.pilier-subsection--auteurs .service-item-icon {
+    background: var(--purple-50);
+    color: var(--purple-600);
+}
+
+.service-item:hover .service-item-icon {
+    background: var(--teal-500);
+    color: #ffffff;
+    transform: scale(1.05);
+}
+
+.pilier-subsection--auteurs .service-item:hover .service-item-icon {
+    background: var(--purple-600);
+    color: #ffffff;
+}
+
+.service-item-icon svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+
+/* --- Contenu texte --- */
+
+.service-item-body {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+    flex: 1;
+}
+
+.service-item-body strong {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.35;
+    letter-spacing: -0.005em;
+}
+
+.service-item-body span {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-secondary);
+}
+
+/* ============================================================
+   RESPONSIVE — services items sur mobile
+   ============================================================ */
+
+@media (max-width: 600px) {
+    .service-item {
+        gap: 12px;
+        padding: 12px 2px;
+    }
+
+    .service-item-icon {
+        width: 34px;
+        height: 34px;
+        border-radius: 8px;
+    }
+
+    .service-item-icon svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .service-item-body strong {
+        font-size: 14px;
+    }
+
+    .service-item-body span {
+        font-size: 13px;
+    }
+}

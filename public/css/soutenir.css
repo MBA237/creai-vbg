@@ -1,0 +1,13 @@
+/* ============================================================
+   PAGE "NOUS SOUTENIR" — CREAI-VBG
+   Le socle (hero, cartes, encadrés, CTA) est dans contenu.css
+   ============================================================ */
+
+@import url('contenu.css');
+
+/* 4 modes de soutien : grille 2 x 2 sur grand écran */
+@media (min-width: 901px) {
+    .cards-grid--2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

@@ -1,0 +1,589 @@
+/* ============================================================
+   PAGE "NOUS REJOINDRE" — CREAI-VBG
+   Charte : teal dominant, violet accent, corail urgence
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ============================================================
+   VARIABLES
+   ============================================================ */
+
+:root {
+    --teal-50:  #e1f5ee;
+    --teal-200: #5dcaa5;
+    --teal-500: #1d9e75;
+    --teal-700: #0f6e56;
+    --teal-900: #085041;
+
+    --purple-50:  #eeedfe;
+    --purple-200: #afa9ec;
+    --purple-600: #534ab7;
+    --purple-800: #3c3489;
+
+    --coral-50:  #faece7;
+    --coral-500: #d85a30;
+    --coral-700: #993c1d;
+    --coral-900: #712b13;
+
+    --gray-50:  #f1efe8;
+    --gray-200: #b4b2a9;
+    --gray-400: #888780;
+    --gray-600: #5f5e5a;
+    --gray-900: #2c2c2a;
+
+    --surface:        #ffffff;
+    --surface-alt:    var(--gray-50);
+    --border:         #e5e7eb;
+
+    --text-primary:   var(--gray-900);
+    --text-secondary: var(--gray-600);
+    --text-muted:     var(--gray-400);
+
+    --radius: 12px;
+    --radius-sm: 8px;
+}
+
+/* ============================================================
+   BASE LOCALE
+   ============================================================ */
+
+.rejoindre-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+
+.rejoindre-hero {
+    width: 100%;
+    background: linear-gradient(135deg, var(--teal-900) 0%, var(--teal-700) 50%, var(--teal-500) 100%);
+    color: #ffffff;
+    padding: 110px 0 100px;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+}
+
+.rejoindre-hero::before {
+    content: "";
+    position: absolute;
+    top: -150px;
+    right: -150px;
+    width: 500px;
+    height: 500px;
+    background: rgba(255, 255, 255, 0.07);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.rejoindre-hero::after {
+    content: "";
+    position: absolute;
+    bottom: -120px;
+    left: -120px;
+    width: 380px;
+    height: 380px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.rejoindre-hero-content {
+    max-width: 900px;
+    margin: 0;
+    padding: 0 40px;
+    position: relative;
+    z-index: 2;
+}
+
+.rejoindre-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.22);
+    color: #ffffff;
+    padding: 10px 22px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.rejoindre-hero h1 {
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: #ffffff;
+    margin: 0 0 24px;
+    letter-spacing: -0.01em;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    max-width: 800px;
+}
+
+.rejoindre-lead {
+    font-size: 18px;
+    line-height: 1.65;
+    color: #ffffff;
+    max-width: 720px;
+    margin: 0;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    opacity: 0.98;
+}
+
+/* ============================================================
+   SECTIONS
+   ============================================================ */
+
+.rejoindre-section {
+    width: 100%;
+    padding: 80px 0;
+    background: var(--surface);
+}
+
+.rejoindre-section--alt {
+    background: var(--surface-alt);
+}
+
+/* ============================================================
+   CATÉGORIES DE MEMBRES
+   ============================================================ */
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+}
+
+.categorie-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--teal-500);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.categorie-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+}
+
+.categorie-card h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 12px;
+    line-height: 1.35;
+}
+
+.categorie-card p {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* Variantes de couleur (charte) */
+.categorie-card--teal   { border-top-color: var(--teal-500); }
+.categorie-card--purple { border-top-color: var(--purple-600); }
+.categorie-card--coral  { border-top-color: var(--coral-500); }
+.categorie-card--gray   { border-top-color: var(--gray-600); }
+
+/* ============================================================
+   GRILLE ADHÉSION (étapes + formulaire)
+   ============================================================ */
+
+.adhesion-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+/* --- Étapes --- */
+
+.adhesion-steps h2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 32px;
+    padding-bottom: 14px;
+    position: relative;
+}
+
+.adhesion-steps h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 60px;
+    height: 4px;
+    background: var(--teal-500);
+    border-radius: 2px;
+}
+
+.steps-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 24px;
+}
+
+.steps-list li {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+}
+
+.step-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--teal-50);
+    color: var(--teal-700);
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.steps-list li span:last-child {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    padding-top: 8px;
+}
+
+/* ============================================================
+   FORMULAIRE D'ADHÉSION
+   ============================================================ */
+
+.form-card {
+    background: var(--surface);
+    padding: 40px 36px;
+    border-radius: var(--radius);
+    box-shadow: 0 8px 28px rgba(29, 158, 117, 0.08);
+    border: 1px solid var(--border);
+}
+
+.form-card h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 28px;
+    padding-bottom: 14px;
+    position: relative;
+}
+
+.form-card h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 60px;
+    height: 4px;
+    background: var(--teal-500);
+    border-radius: 2px;
+}
+
+/* --- Alerts --- */
+
+.form-card .alert {
+    padding: 14px 18px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 24px;
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+.form-card .alert-success {
+    background: #c6f6d5;
+    color: #22543d;
+    border-left: 4px solid #38a169;
+}
+
+.form-card .alert-error {
+    background: #fed7d7;
+    color: #742a2a;
+    border-left: 4px solid #e53e3e;
+}
+
+.form-card .alert-error ul {
+    margin: 6px 0 0 20px;
+    padding: 0;
+}
+
+/* --- Champs --- */
+
+.form-card label {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-primary);
+}
+
+.form-card label:first-of-type {
+    margin-top: 0;
+}
+
+.form-card input[type="text"],
+.form-card input[type="email"],
+.form-card select,
+.form-card textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--text-primary);
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.form-card input:focus,
+.form-card select:focus,
+.form-card textarea:focus {
+    outline: none;
+    border-color: var(--teal-500);
+    box-shadow: 0 0 0 3px rgba(29, 158, 117, 0.15);
+}
+
+.form-card select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235f5e5a' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 44px;
+}
+
+.form-card textarea {
+    resize: vertical;
+    min-height: 110px;
+}
+
+/* --- Bouton --- */
+
+.form-card button[type="submit"] {
+    margin-top: 28px;
+    width: 100%;
+    padding: 16px 24px;
+    min-height: 54px;
+    background: var(--teal-500);
+    color: #ffffff;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+}
+
+.form-card button[type="submit"]:hover {
+    background: var(--teal-700);
+    transform: translateY(-2px);
+}
+
+.form-card button[type="submit"]:disabled {
+    background: var(--gray-400);
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ============================================================
+   CTA FINAL
+   ============================================================ */
+
+.rejoindre-cta {
+    width: 100%;
+    background: linear-gradient(135deg, var(--purple-50) 0%, var(--surface) 50%, var(--teal-50) 100%);
+    padding: 90px 0 100px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+}
+
+.rejoindre-cta h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 18px;
+    letter-spacing: -0.01em;
+}
+
+.rejoindre-cta p {
+    max-width: 720px;
+    margin: 0 auto 36px;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+}
+
+.rejoindre-cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+/* --- Boutons génériques --- */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    padding: 16px 36px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    transition: background 0.15s, transform 0.1s, color 0.15s, border-color 0.15s;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn--primary {
+    background: var(--teal-500);
+    color: #fff;
+    border-color: var(--teal-500);
+}
+.btn--primary:hover {
+    background: var(--teal-700);
+    border-color: var(--teal-700);
+}
+
+.btn--outline {
+    background: transparent;
+    color: var(--purple-600);
+    border-color: var(--purple-600);
+}
+.btn--outline:hover {
+    background: var(--purple-600);
+    color: #fff;
+}
+
+@media (max-width: 600px) {
+    .rejoindre-cta {
+        padding: 60px 0 70px;
+    }
+
+    .rejoindre-cta h2 {
+        font-size: 22px;
+    }
+
+    .rejoindre-cta p {
+        font-size: 16px;
+    }
+
+    .rejoindre-cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 340px;
+    }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 900px) {
+    .rejoindre-container {
+        padding: 0 32px;
+    }
+
+    .rejoindre-hero-content {
+        padding: 0 32px;
+    }
+
+    .rejoindre-hero h1 {
+        font-size: 34px;
+    }
+
+    .adhesion-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+
+    .categories-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .rejoindre-container,
+    .rejoindre-hero-content {
+        padding: 0 20px;
+    }
+
+    .rejoindre-hero {
+        padding: 70px 0 60px;
+    }
+
+    .rejoindre-hero h1 {
+        font-size: 26px;
+    }
+
+    .rejoindre-badge {
+        font-size: 13px;
+        padding: 8px 16px;
+    }
+
+    .rejoindre-lead {
+        font-size: 16px;
+    }
+
+    .rejoindre-section {
+        padding: 50px 0;
+    }
+
+    .categorie-card {
+        padding: 24px 20px;
+    }
+
+    .form-card {
+        padding: 28px 22px;
+    }
+
+    .form-card h2 {
+        font-size: 20px;
+    }
+
+    .adhesion-steps h2 {
+        font-size: 22px;
+    }
+
+    .step-num {
+        width: 34px;
+        height: 34px;
+        font-size: 14px;
+    }
+
+    .steps-list li span:last-child {
+        font-size: 14px;
+        padding-top: 6px;
+    }
+}

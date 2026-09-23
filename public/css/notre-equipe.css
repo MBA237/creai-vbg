@@ -1,0 +1,138 @@
+/* ============================================================
+   PAGE "NOTRE ÉQUIPE" — CREAI-VBG
+   Sous-page de « Qui sommes-nous » : elle réutilise le style
+   d'apropos.css (hero, cartes membres, CTA) et ajoute la
+   navigation par pôle.
+   ============================================================ */
+
+@import url('apropos.css');
+
+/* --- Navigation par pôle (ancres) --- */
+
+.team-nav {
+    position: sticky;
+    top: 64px;
+    z-index: 40;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 24px;
+}
+
+.team-nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    max-width: 1100px;
+}
+
+.team-nav-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 18px;
+    background: var(--surface);
+    color: var(--purple-800);
+    border: 1.5px solid var(--purple-200);
+    border-radius: 999px;
+    font-size: 13.5px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.team-nav-link:hover {
+    background: var(--purple-600);
+    color: #ffffff;
+    border-color: var(--purple-600);
+}
+
+.team-nav-link:focus-visible {
+    outline: 2px solid var(--purple-600);
+    outline-offset: 2px;
+}
+
+/* --- Sections de pôle --- */
+
+.pole-section {
+    scroll-margin-top: 140px;
+    padding: 60px 0;
+}
+
+.apropos-page .pole-title {
+    position: relative;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--purple-800);
+    margin: 0 0 36px;
+    padding-bottom: 14px;
+}
+
+.apropos-page .pole-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 60px;
+    height: 4px;
+    background: var(--purple-600);
+    border-radius: 2px;
+}
+
+/* --- Avatar à initiales (membre sans photo) --- */
+
+.membre-photo--initials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--purple-50);
+}
+
+.membre-photo--initials span {
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--purple-600);
+}
+
+/* --- Mobile --- */
+
+@media (max-width: 600px) {
+    .team-nav {
+        position: static;
+        padding: 12px 20px;
+    }
+
+    .team-nav-list {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 4px;
+        scrollbar-width: none;
+    }
+
+    .team-nav-list::-webkit-scrollbar {
+        display: none;
+    }
+
+    .pole-section {
+        padding: 44px 0;
+        scroll-margin-top: 20px;
+    }
+
+    .apropos-page .pole-title {
+        font-size: 22px;
+        margin-bottom: 28px;
+    }
+}
+
+/* Message « bientôt présentés » lisible aussi sur fond gris */
+.apropos-section--alt .equipe-empty {
+    background: var(--surface);
+}

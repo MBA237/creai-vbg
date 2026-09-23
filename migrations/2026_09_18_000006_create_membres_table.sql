@@ -1,0 +1,13 @@
+CREATE TABLE IF NOT EXISTS membres (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    pole_id INT UNSIGNED NOT NULL,
+    nom VARCHAR(100) NOT NULL,
+    profession VARCHAR(150) NOT NULL,
+    poste VARCHAR(150) NOT NULL,
+    photo VARCHAR(255) DEFAULT NULL,
+    ordre INT UNSIGNED DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (pole_id) REFERENCES poles(id) ON DELETE CASCADE,
+    INDEX idx_pole (pole_id),
+    INDEX idx_ordre (ordre)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
