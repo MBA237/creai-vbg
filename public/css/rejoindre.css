@@ -152,6 +152,154 @@
     background: var(--surface-alt);
 }
 
+.rejoindre-section--tight-bottom {
+    padding-bottom: 24px;
+}
+
+.rejoindre-section--tight-top {
+    padding-top: 24px;
+}
+
+/* ============================================================
+   ENCADRÉS
+   ============================================================ */
+
+.callout {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 24px 26px;
+    background: var(--teal-50);
+    border: 1px solid var(--teal-200);
+    border-left: 5px solid var(--teal-500);
+    border-radius: var(--radius);
+}
+
+.callout--care {
+    background: var(--purple-50);
+    border-color: var(--purple-200);
+    border-left-color: var(--purple-600);
+}
+
+.callout-icon {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #ffffff;
+    color: var(--teal-700);
+}
+
+.callout--care .callout-icon {
+    color: var(--purple-600);
+}
+
+.callout-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.callout h3 {
+    font-size: 16.5px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 6px;
+}
+
+.callout p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.callout p + p {
+    margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+    .callout {
+        flex-direction: column;
+        padding: 20px;
+    }
+}
+
+/* ============================================================
+   « À QUOI SERT MON ADHÉSION ? » — une carte par plan
+   ============================================================ */
+
+.plans-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 24px;
+}
+
+.plans-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 24px;
+}
+
+.plan-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--teal-500);
+    border-radius: var(--radius);
+    padding: 26px 24px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.plan-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+}
+
+.plan-card--teal   { border-top-color: var(--teal-500); }
+.plan-card--purple { border-top-color: var(--purple-600); }
+.plan-card--coral  { border-top-color: var(--coral-500); }
+
+.plan-card-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    background: var(--teal-50);
+    color: var(--teal-700);
+}
+
+.plan-card--purple .plan-card-icon { background: var(--purple-50); color: var(--purple-600); }
+.plan-card--coral  .plan-card-icon { background: var(--coral-50);  color: var(--coral-700); }
+
+.plan-card-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.plan-card h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 10px;
+}
+
+.plan-card p {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.plan-card p em {
+    font-style: italic;
+}
+
 /* ============================================================
    CATÉGORIES DE MEMBRES
    ============================================================ */
@@ -341,6 +489,8 @@
 
 .form-card input[type="text"],
 .form-card input[type="email"],
+.form-card input[type="tel"],
+.form-card input[type="date"],
 .form-card select,
 .form-card textarea {
     width: 100%;
@@ -403,6 +553,93 @@
     background: var(--gray-400);
     cursor: not-allowed;
     transform: none;
+}
+
+/* ============================================================
+   FORMULAIRE EN PLUSIEURS ÉTAPES (wizard)
+   ============================================================ */
+
+.wizard-progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.wizard-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--gray-200);
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.wizard-dot.is-active {
+    background: var(--teal-500);
+    transform: scale(1.2);
+}
+
+.wizard-step-label {
+    text-align: center;
+    font-size: 12.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    margin: 0 0 22px;
+}
+
+.wizard-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.wizard-actions .wizard-next,
+.wizard-actions button[type="submit"] {
+    flex: 1;
+    width: auto;
+    margin-top: 0;
+}
+
+.wizard-next {
+    padding: 16px 24px;
+    min-height: 54px;
+    background: var(--teal-500);
+    color: #ffffff;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+}
+
+.wizard-next:hover {
+    background: var(--teal-700);
+    transform: translateY(-2px);
+}
+
+.wizard-prev {
+    flex: 0 0 auto;
+    min-height: 54px;
+    padding: 0 22px;
+    background: transparent;
+    border: 1.5px solid var(--border);
+    color: var(--text-primary);
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+}
+
+.wizard-prev:hover {
+    background: var(--surface-alt);
+    border-color: var(--gray-400);
 }
 
 /* ============================================================

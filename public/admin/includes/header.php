@@ -105,6 +105,25 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
                 <?php endif; ?>
             </a>
 
+            <a href="/admin/benevoles.php"
+               class="admin-nav-link <?= $currentPage === 'benevoles' ? 'is-active' : '' ?>">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                Bénévoles
+                <?php
+                // Compteur de candidatures non lues
+                require_once __DIR__ . '/../../../src/Benevole.php';
+                $unreadBenevoles = (new Benevole())->countUnread();
+                if ($unreadBenevoles > 0):
+                ?>
+                    <span class="admin-nav-badge"><?= (int) $unreadBenevoles ?></span>
+                <?php endif; ?>
+            </a>
+
             <?php
             // Signalements : données très sensibles, réservées aux administrateurs
             if (AdminAuth::hasRole('super_admin', 'admin')):

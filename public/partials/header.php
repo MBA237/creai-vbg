@@ -32,6 +32,8 @@ $widePage  = $widePage  ?? false;
     <script src="/js/pillars-carousel.js" defer></script>
     <script src="/js/event-modal.js" defer></script>
     <script src="/js/equipe-tabs.js" defer></script>
+    <script src="/js/don.js" defer></script>
+    <script src="/js/wizard.js" defer></script>
     <?php if ($pageCss): ?>
         <link rel="stylesheet" href="/css/<?= htmlspecialchars($pageCss) ?>">
     <?php endif; ?>
@@ -82,7 +84,7 @@ $widePage  = $widePage  ?? false;
         </div>
 
         <a href="/rejoindre.php">Nous rejoindre</a>
-        <a href="/soutenir.php">Nous soutenir</a>
+        <a href="/soutenir.php#don">Nous soutenir</a>
         <a href="/contact.php">Contact</a>
         <a href="/besoin-aide.php" class="nav-help">Besoin d'aide ?</a>
     </div>

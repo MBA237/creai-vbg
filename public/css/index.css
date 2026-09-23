@@ -162,6 +162,79 @@
 }
 
 /* ============================================================
+   BANDE DE CONFIANCE — chiffres clés (dans le hero)
+   ============================================================ */
+
+.home-stats-card {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    width: fit-content;
+    max-width: 100%;
+    margin: 28px 0 0 auto;
+    padding: 12px 24px;
+    background: #ffffff;
+    border-radius: 999px;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
+    white-space: nowrap;
+}
+
+.home-stat {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.home-stat-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--teal-50);
+    color: var(--teal-700);
+}
+
+.home-stat-icon svg {
+    width: 15px;
+    height: 15px;
+}
+
+.home-stat-text {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-600);
+    white-space: nowrap;
+}
+
+.home-stat-text strong {
+    font-weight: 800;
+    color: var(--teal-800, #0b5340);
+    margin-right: 3px;
+}
+
+.home-stat-divider {
+    width: 1px;
+    height: 22px;
+    background: var(--border);
+    flex-shrink: 0;
+}
+
+@media (max-width: 700px) {
+    .home-stats-card {
+        margin: 24px auto 0;
+        max-width: 100%;
+        overflow-x: auto;
+        gap: 14px;
+        padding: 10px 18px;
+    }
+}
+
+/* ============================================================
    BOUTONS
    ============================================================ */
 
@@ -418,10 +491,34 @@
     z-index: 1;
 }
 
-.feature-slider--purple .feature-slide-overlay {
+.feature-slide--evenement .feature-slide-overlay {
     background:
         linear-gradient(180deg, rgba(50, 45, 92, 0.3) 0%, rgba(50, 45, 92, 0.55) 60%, rgba(50, 45, 92, 0.9) 100%),
         linear-gradient(90deg, rgba(50, 45, 92, 0.7) 0%, transparent 60%);
+}
+
+/* ============================================================
+   SLIDE HERO — dans le carrousel unique
+   ============================================================ */
+
+.feature-slide--hero .home-hero {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.feature-slide--hero .home-hero-content {
+    transform: translateY(20px);
+    opacity: 0;
+    transition: transform 0.8s ease 0.2s, opacity 0.8s ease 0.2s;
+}
+
+.feature-slide--hero.is-active .home-hero-content {
+    transform: translateY(0);
+    opacity: 1;
 }
 
 .feature-slide-content {
@@ -561,7 +658,7 @@
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
 }
 
-.feature-slider--purple .feature-slide-btn:hover {
+.feature-slide--evenement .feature-slide-btn:hover {
     background: var(--purple-600);
 }
 
@@ -1376,175 +1473,5 @@
 
     .approach-grid > * {
         flex: 0 0 240px;
-    }
-}
-/* ============================================================
-   SLIDER AVEC ONGLETS — Actualités & Événements fusionnés
-   ============================================================ */
-
-.feature-slider--tabbed {
-    position: relative;
-    height: 90vh;
-    min-height: 600px;
-    max-height: 820px;
-}
-
-/* --- Onglets en haut à gauche --- */
-
-.feature-tabs {
-    position: absolute;
-    top: 32px;
-    left: 32px;
-    z-index: 20;
-    display: flex;
-    gap: 8px;
-    padding: 6px;
-    background: rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 999px;
-}
-
-.feature-tab {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 20px;
-    background: transparent;
-    color: rgba(255, 255, 255, 0.8);
-    border: none;
-    border-radius: 999px;
-    font-family: inherit;
-    font-size: 13.5px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-    white-space: nowrap;
-}
-
-.feature-tab:hover {
-    color: #ffffff;
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.feature-tab.is-active {
-    background: #ffffff;
-    color: var(--gray-900);
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
-}
-
-.feature-tab-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-}
-
-.feature-tab-dot--teal {
-    background: var(--teal-500);
-}
-
-.feature-tab-dot--purple {
-    background: var(--purple-600);
-}
-
-.feature-tab.is-active .feature-tab-dot {
-    box-shadow: 0 0 0 3px rgba(29, 158, 117, 0.2);
-}
-
-/* --- Panneaux --- */
-
-.feature-panel {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
-    z-index: 1;
-}
-
-.feature-panel.is-active {
-    opacity: 1;
-    visibility: visible;
-    z-index: 2;
-}
-
-.feature-panel[hidden] {
-    display: none;
-}
-
-/* --- Variante violette pour le panneau événements --- */
-
-.feature-panel--purple .feature-slide-overlay {
-    background:
-        linear-gradient(180deg, rgba(50, 45, 92, 0.3) 0%, rgba(50, 45, 92, 0.55) 60%, rgba(50, 45, 92, 0.9) 100%),
-        linear-gradient(90deg, rgba(50, 45, 92, 0.7) 0%, transparent 60%);
-}
-
-.feature-panel--purple .feature-slide-btn:hover {
-    background: var(--purple-600);
-    color: #ffffff;
-}
-
-/* --- Bouton "Voir tout" spécifique --- */
-
-.feature-panel .feature-slider-label {
-    top: 32px;
-    right: 32px;
-}
-
-/* --- Responsive --- */
-
-@media (max-width: 900px) {
-    .feature-tabs {
-        top: 20px;
-        left: 20px;
-        padding: 5px;
-    }
-
-    .feature-tab {
-        padding: 8px 16px;
-        font-size: 12.5px;
-    }
-
-    .feature-panel .feature-slider-label {
-        top: 20px;
-        right: 20px;
-    }
-}
-
-@media (max-width: 600px) {
-    .feature-slider--tabbed {
-        height: 78vh;
-        min-height: 480px;
-        max-height: 640px;
-    }
-
-    .feature-tabs {
-        top: 14px;
-        left: 14px;
-        padding: 4px;
-        gap: 4px;
-    }
-
-    .feature-tab {
-        padding: 7px 12px;
-        font-size: 11.5px;
-        gap: 6px;
-    }
-
-    .feature-tab-dot {
-        width: 6px;
-        height: 6px;
-    }
-
-    .feature-panel .feature-slider-label {
-        top: 14px;
-        right: 14px;
-    }
-
-    .feature-slider-more {
-        font-size: 11.5px;
     }
 }

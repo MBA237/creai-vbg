@@ -7,9 +7,10 @@ require __DIR__ . '/../src/Membership.php';
 
 $errors  = [];
 $success = false;
-$old     = ['nom' => '', 'email' => '', 'categorie' => '', 'message' => ''];
+$old     = ['nom' => '', 'email' => '', 'categorie' => '', 'message' => '', 'don' => ''];
 
-$categories = Membership::CATEGORIES;
+$categories  = Membership::CATEGORIES;
+$donMontants = ['5' => '5 €', '10' => '10 €', '20' => '20 €', 'autre' => 'Autre montant'];
 
 if (empty($_SESSION['csrf'])) {
     $_SESSION['csrf'] = bin2hex(random_bytes(32));
@@ -24,17 +25,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email     = trim($_POST['email'] ?? '');
     $categorie = trim($_POST['categorie'] ?? '');
     $message   = trim($_POST['message'] ?? '');
-    $old       = compact('nom', 'email', 'categorie', 'message');
+    $don       = trim($_POST['don'] ?? '');
+    $old       = compact('nom', 'email', 'categorie', 'message', 'don');
 
     if ($nom === '')                                       $errors[] = 'Le nom est obligatoire.';
     if (!filter_var($email, FILTER_VALIDATE_EMAIL))        $errors[] = 'Email invalide.';
     if (!array_key_exists($categorie, $categories))         $errors[] = 'Veuillez choisir une catégorie de membre.';
+    if ($don !== '' && !array_key_exists($don, $donMontants)) $errors[] = 'Montant de don invalide.';
 
     if (empty($errors)) {
         try {
-            (new Membership())->create($nom, $email, $categorie, $message);
+            $fullMessage = $message;
+            if ($don !== '') {
+                $fullMessage = "Don complémentaire souhaité : {$donMontants[$don]}\n\n" . $message;
+            }
+            (new Membership())->create($nom, $email, $categorie, trim($fullMessage));
             $success = true;
-            $old = ['nom' => '', 'email' => '', 'categorie' => '', 'message' => ''];
+            $old = ['nom' => '', 'email' => '', 'categorie' => '', 'message' => '', 'don' => ''];
             $_SESSION['csrf'] = bin2hex(random_bytes(32));
         } catch (Throwable $e) {
             $errors[] = 'Erreur BDD : ' . $e->getMessage();
@@ -60,16 +67,64 @@ require __DIR__ . '/partials/header.php';
         <h1>Il y a une place pour vous</h1>
         <p class="rejoindre-lead">
             Nous accueillons plusieurs catégories de membres, selon votre profil
-            et votre niveau d'engagement souhaité.
+            et votre niveau d'engagement souhaité. Adhésion valable du 31 décembre
+            2026 au 31 décembre 2027.
         </p>
+    </div>
+</section>
+
+<!-- ============================================================
+     À QUOI SERT MON ADHÉSION ?
+     ============================================================ -->
+<section class="rejoindre-section rejoindre-section--tight-bottom">
+    <div class="rejoindre-container">
+        <h3 class="plans-title">À quoi sert mon adhésion ?</h3>
+
+        <div class="plans-grid">
+            <div class="plan-card plan-card--teal">
+                <div class="plan-card-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                        <ellipse cx="12" cy="6" rx="7" ry="3"/>
+                        <path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/>
+                        <path d="M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/>
+                    </svg>
+                </div>
+                <h4>Sur le plan financier</h4>
+                <p><em>Vous contribuez à soutenir nos missions d'aide et d'accompagnement des personnes victimes de violences.</em></p>
+            </div>
+
+            <div class="plan-card plan-card--purple">
+                <div class="plan-card-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 11v2a2 2 0 0 0 2 2h1l3 5V4L6 9H5a2 2 0 0 0-2 2z"/>
+                        <path d="M15 8a4 4 0 0 1 0 8"/>
+                        <path d="M18 5a8 8 0 0 1 0 14"/>
+                    </svg>
+                </div>
+                <h4>Sur le plan politique</h4>
+                <p><em>Vous donnez plus de poids et de visibilité au CREAI-VBG et participez au développement de son indépendance.</em></p>
+            </div>
+
+            <div class="plan-card plan-card--coral">
+                <div class="plan-card-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                </div>
+                <h4>Sur le plan militant</h4>
+                <p><em>Vous affirmez votre engagement pour la culture d'égalité et la fin des violences de genre.</em></p>
+            </div>
+        </div>
     </div>
 </section>
 
 <!-- ============================================================
      CATÉGORIES DE MEMBRES
      ============================================================ -->
-<section class="rejoindre-section">
+<section class="rejoindre-section rejoindre-section--tight-top">
     <div class="rejoindre-container">
+        <h3 class="plans-title">Nos catégories de membres</h3>
+
         <div class="categories-grid">
             <div class="categorie-card categorie-card--teal">
                 <h3>Membre actif</h3>
@@ -118,6 +173,8 @@ require __DIR__ . '/partials/header.php';
                         <span>Une fois agréé(e), vous rejoignez la communauté CREAI-VBG et pouvez prendre part à nos activités.</span>
                     </li>
                 </ol>
+
+                
             </div>
 
             <div class="form-card">
@@ -154,6 +211,16 @@ require __DIR__ . '/partials/header.php';
                         <option value="">— Choisir une catégorie —</option>
                         <?php foreach ($categories as $value => $label): ?>
                             <option value="<?= htmlspecialchars($value) ?>" <?= $old['categorie'] === $value ? 'selected' : '' ?>>
+                                <?= htmlspecialchars($label) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+
+                    <label for="don">Souhaitez-vous faire un don en plus de votre adhésion ?</label>
+                    <select id="don" name="don">
+                        <option value="">Pas de don</option>
+                        <?php foreach ($donMontants as $value => $label): $value = (string) $value; ?>
+                            <option value="<?= htmlspecialchars($value) ?>" <?= $old['don'] === $value ? 'selected' : '' ?>>
                                 <?= htmlspecialchars($label) ?>
                             </option>
                         <?php endforeach; ?>
