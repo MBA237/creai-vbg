@@ -19,6 +19,7 @@ return [
         ['numero' => '117', 'libelle' => 'Police secours',        'detail' => 'Danger immédiat, agression en cours', 'principal' => true],
         ['numero' => '113', 'libelle' => 'Gendarmerie nationale', 'detail' => 'Signaler une agression, demander une protection', 'principal' => true],
         ['numero' => '118', 'libelle' => 'Sapeurs-pompiers',      'detail' => 'Secours, blessures, urgence médicale', 'principal' => false],
+        ['numero' => '119', 'libelle' => 'SAMU',                  'detail' => 'Aide médicale urgente, 24h/24', 'principal' => false],
     ],
 
     // Ligne d'écoute du CREAI-VBG

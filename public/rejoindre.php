@@ -4,6 +4,11 @@ session_start();
 
 require __DIR__ . '/../src/Database.php';
 require __DIR__ . '/../src/Membership.php';
+require __DIR__ . '/../src/engagement_forms.php';
+require __DIR__ . '/../src/paiement.php';
+
+// Formulaires bénévole et partenariat (traités si form_type correspond)
+$forms = engagement_forms_handle();
 
 $errors  = [];
 $success = false;
@@ -16,7 +21,7 @@ if (empty($_SESSION['csrf'])) {
     $_SESSION['csrf'] = bin2hex(random_bytes(32));
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['form_type'] ?? 'adhesion') === 'adhesion') {
     if (!hash_equals($_SESSION['csrf'], $_POST['csrf'] ?? '')) {
         $errors[] = 'Token de sécurité invalide.';
     }
@@ -70,6 +75,12 @@ require __DIR__ . '/partials/header.php';
             et votre niveau d'engagement souhaité. Adhésion valable du 31 décembre
             2026 au 31 décembre 2027.
         </p>
+        <div class="rejoindre-hero-actions">
+            <a href="/don.php" class="btn btn--don">Faire un don</a>
+            <a href="#adhesion" class="btn btn--light">J'adhère</a>
+            <a href="#benevolat" class="btn btn--ghost-light">Je deviens bénévole</a>
+            <a href="#partenaires" class="btn btn--ghost-light">Je deviens partenaire</a>
+        </div>
     </div>
 </section>
 
@@ -149,7 +160,7 @@ require __DIR__ . '/partials/header.php';
 <!-- ============================================================
      COMMENT ADHÉRER + FORMULAIRE
      ============================================================ -->
-<section class="rejoindre-section rejoindre-section--alt">
+<section class="rejoindre-section rejoindre-section--alt" id="adhesion">
     <div class="rejoindre-container">
         <div class="adhesion-grid">
 
@@ -158,7 +169,7 @@ require __DIR__ . '/partials/header.php';
                 <ol class="steps-list">
                     <li>
                         <span class="step-num">1</span>
-                        <span>Prenez connaissance de nos statuts et de notre code de conduite.</span>
+                        <span>Prenez connaissance de <a href="/apropos.php#documents">nos statuts et de notre code de conduite</a>.</span>
                     </li>
                     <li>
                         <span class="step-num">2</span>
@@ -174,7 +185,14 @@ require __DIR__ . '/partials/header.php';
                     </li>
                 </ol>
 
-                
+                <div class="paiement-adhesion" id="paiement-adhesion">
+                    <h3>Régler votre adhésion</h3>
+                    <?php
+                    $moyensPaiement    = paiement_moyens();
+                    $moyensVideMessage = "Le règlement en ligne (Mobile Money, PayPal, virement) ouvre bientôt. Une fois votre demande agréée par notre Conseil d'Administration, nous vous indiquons comment régler votre adhésion.";
+                    require __DIR__ . '/partials/moyens-paiement.php';
+                    ?>
+                </div>
             </div>
 
             <div class="form-card">
@@ -195,8 +213,9 @@ require __DIR__ . '/partials/header.php';
                     </div>
                 <?php endif; ?>
 
-                <form method="post">
+                <form method="post" action="#adhesion">
                     <input type="hidden" name="csrf" value="<?= htmlspecialchars($_SESSION['csrf']) ?>">
+                    <input type="hidden" name="form_type" value="adhesion">
 
                     <label for="nom">Nom complet *</label>
                     <input type="text" id="nom" name="nom" required maxlength="100"
@@ -236,6 +255,17 @@ require __DIR__ . '/partials/header.php';
         </div>
     </div>
 </section>
+
+<!-- ============================================================
+     BÉNÉVOLAT (formulaire en 3 étapes)
+     ============================================================ -->
+<?php require __DIR__ . '/partials/section-benevolat.php'; ?>
+
+<!-- ============================================================
+     PARTENAIRE OU SPONSOR
+     ============================================================ -->
+<?php require __DIR__ . '/partials/section-partenaires.php'; ?>
+
 <!-- ============================================================
      CTA FINAL
      ============================================================ -->

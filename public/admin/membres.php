@@ -261,7 +261,7 @@ require __DIR__ . '/includes/header.php';
                         <tr>
                             <td>
                                 <img class="admin-avatar"
-                                     src="<?= htmlspecialchars($m['photo'] ?: '/images/team/default-avatar.png') ?>"
+                                     src="<?= htmlspecialchars($m['photo'] ?: '/images/team/default-avatar.svg') ?>"
                                      alt="">
                             </td>
                             <td><strong><?= htmlspecialchars($m['nom']) ?></strong></td>

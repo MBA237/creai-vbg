@@ -21,15 +21,7 @@ $widePage  = true;
 require __DIR__ . '/partials/header.php';
 ?>
 
-<!-- Quitter rapidement : un clic, ou 3 pressions sur Échap -->
-<a href="https://www.google.com" class="quick-exit" data-quick-exit
-   title="Quitter ce site immédiatement (ou appuyez 3 fois sur la touche Échap)">
-    Quitter rapidement
-    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <line x1="18" y1="6" x2="6" y2="18"/>
-        <line x1="6" y1="6" x2="18" y2="18"/>
-    </svg>
-</a>
+
 
 <div class="aide-page">
 
@@ -55,10 +47,296 @@ require __DIR__ . '/partials/header.php';
     </section>
 
     <!-- ============================================================
+         VOUS ÊTES... (onglets par situation)
+         ============================================================ -->
+    <section class="aide-section role-section">
+        <div class="aide-container">
+            <div class="aide-section-head">
+                <span class="eyebrow eyebrow--coral">Vous êtes...</span>
+                <p class="aide-section-intro">
+                    La violence n'a pas de genre&nbsp;: on peut la subir quel que soit son
+                    genre, et on peut aussi l'exercer quel que soit son genre. Choisissez
+                    la situation qui vous correspond pour accéder aux informations adaptées.
+                </p>
+            </div>
+
+            <div class="role-tabs" role="tablist" aria-label="Choisissez votre situation">
+                <button type="button" class="role-tab is-active" role="tab" id="role-tab-besoin" aria-controls="role-panel-besoin" aria-selected="true" data-role="besoin">
+                    <span class="role-tab-num">1</span> J'ai besoin d'aide
+                </button>
+                <button type="button" class="role-tab" role="tab" id="role-tab-proche" aria-controls="role-panel-proche" aria-selected="false" tabindex="-1" data-role="proche">
+                    <span class="role-tab-num">2</span> Je veux aider un proche
+                </button>
+                <button type="button" class="role-tab" role="tab" id="role-tab-pro" aria-controls="role-panel-pro" aria-selected="false" tabindex="-1" data-role="pro">
+                    <span class="role-tab-num">3</span> Je suis professionnel
+                </button>
+                <button type="button" class="role-tab" role="tab" id="role-tab-violent" aria-controls="role-panel-violent" aria-selected="false" tabindex="-1" data-role="violent">
+                    <span class="role-tab-num">4</span> J'ai des comportements violents
+                </button>
+            </div>
+
+            <div class="role-panels">
+
+                <!-- 1. J'ai besoin d'aide -->
+                <div class="role-panel is-active" id="role-panel-besoin" role="tabpanel" aria-labelledby="role-tab-besoin" data-role-panel="besoin">
+                    <p class="role-lead">
+                        Vous êtes confronté(e) à une situation difficile ou craignez pour
+                        votre sécurité&nbsp;? Voici des solutions rapides et adaptées pour
+                        comprendre, être écouté(e), accompagné(e) ou orienté(e).
+                    </p>
+
+                    <div class="role-cards-wrap">
+                        <button type="button" class="role-cards-nav role-cards-nav--prev" data-scroll="prev" aria-label="Voir les cartes précédentes">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <polyline points="15 18 9 12 15 6"/>
+                            </svg>
+                        </button>
+                        <div class="role-cards-scroll">
+                            <div class="role-block role-block--alert">
+                                <h3>Urgence / aide immédiate</h3>
+                                <p>
+                                    En cas de danger immédiat, contactez les services d'urgence. En
+                                    attendant leur arrivée&nbsp;: éloignez-vous si possible de la
+                                    personne violente, prévenez une personne de confiance, et
+                                    conservez des preuves si cela ne vous met pas davantage en danger
+                                    (enregistrements audio, vidéos, photos).
+                                </p>
+                                <a href="#urgence" class="role-link">Voir les numéros d'urgence ↓</a>
+                            </div>
+
+                            <div class="role-block">
+                                <h3>Auto-test&nbsp;: le violentomètre</h3>
+                                <p>
+                                    Difficile de mettre des mots sur ce que l'on subit&nbsp;? Nos
+                                    auto-tests aident à objectiver le vécu, provoquer un déclic et
+                                    amorcer une démarche vers un accompagnement adapté.
+                                </p>
+                                <a href="https://aidgbv.colibri-cric.org/violentometre" class="btn btn--outline-coral" target="_blank" rel="noopener noreferrer">Faire le test</a>
+                            </div>
+
+                            <div class="role-block">
+                                <h3>AidgbvChat <span class="role-soon">Bientôt disponible</span></h3>
+                                <p>
+                                    Un chatbot IA qui offre un moyen sûr, anonyme et accessible
+                                    d'identifier les abus, d'explorer les options disponibles et de
+                                    documenter en toute sécurité des informations importantes.
+                                </p>
+                            </div>
+
+                            <div class="role-block">
+                                <h3>Carte des services</h3>
+                                <p>
+                                    Consultez la carte des services destinée à orienter et répondre
+                                    aux besoins des victimes de violences de genre sur le territoire
+                                    camerounais, accessible sur la plateforme AidGBV et sur
+                                    l'application AidGBV.
+                                </p>
+                                <a href="https://aidgbv.colibri-cric.org/structures-referencees" class="role-link" target="_blank" rel="noopener noreferrer">Voir la carte sur AidGBV ↗</a>
+                            </div>
+
+                            <div class="role-block">
+                                <h3>Conseil en ligne</h3>
+                                <p>
+                                    Un service de conseil en ligne professionnel, anonyme, personnalisé
+                                    et gratuit, avec un délai de réponse de trois à cinq jours ouvrables.
+                                </p>
+                                <a href="https://aidgbv.colibri-cric.org/ligne_ecoute" class="role-link" target="_blank" rel="noopener noreferrer">Accéder au conseil en ligne ↗</a>
+                            </div>
+
+                            <div class="role-block">
+                                <h3>Solen — communauté de soutien <span class="role-soon">Bientôt disponible</span></h3>
+                                <p>
+                                    Une communauté-refuge solidaire, disponible 24h/24 et 7j/7,
+                                    entièrement fondée sur l'entraide entre victimes de violences
+                                    sexistes, avec un accompagnement personnalisé par des pairs dans
+                                    un cadre hautement sécurisé.
+                                </p>
+                                <button type="button" class="btn btn--outline-teal" disabled>Découvrir Solen</button>
+                            </div>
+                        </div>
+                        <button type="button" class="role-cards-nav role-cards-nav--next" data-scroll="next" aria-label="Voir les cartes suivantes">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2. Je veux aider un proche -->
+                <div class="role-panel" id="role-panel-proche" role="tabpanel" aria-labelledby="role-tab-proche" data-role-panel="proche" hidden>
+                    <p class="role-lead">
+                        Soutenir sans juger, orienter sans imposer&nbsp;: accepter qu'on ne
+                        sauvera pas, mais qu'on plante une graine. Quand un(e) proche
+                        traverse des violences sexistes et sexuelles, la présence, l'écoute
+                        et des repères concrets font souvent la différence.
+                    </p>
+
+                    <div class="role-block">
+                        <h3>Écouter et soutenir</h3>
+                        <ul class="role-list">
+                            <li><strong>Croire la victime</strong> et lui dire que ce qui s'est passé est inacceptable.</li>
+                            <li><strong>Écouter sans juger</strong>, sans remettre en cause son récit ni la forcer à en dire plus qu'elle ne le souhaite.</li>
+                            <li><strong>Écouter activement</strong>&nbsp;: reformuler pour montrer une attention réelle, sans chercher à résoudre le problème à sa place.</li>
+                            <li><strong>Accompagner avec patience</strong>, sans attendre de résultat immédiat.</li>
+                            <li><strong>Respecter son rythme et ses décisions</strong>&nbsp;: elle doit reprendre le contrôle de ses choix.</li>
+                            <li><strong>Déculpabiliser</strong>&nbsp;: ce n'est pas sa faute, l'agresseur est seul responsable.</li>
+                            <li><strong>Demander de quoi elle a besoin</strong> et se renseigner sur les ressources disponibles.</li>
+                            <li><strong>Proposer des services concrets</strong>&nbsp;: l'accompagner, l'aider dans ses démarches, ses courses, prendre des notes lors d'entretiens.</li>
+                        </ul>
+                    </div>
+
+                    <div class="role-block">
+                        <h3>Les mots qui aident</h3>
+                        <ul class="phrase-list">
+                            <li>« Je te crois. »</li>
+                            <li>« Tu as bien fait de venir me voir. »</li>
+                            <li>« Merci de ta confiance. »</li>
+                            <li>« C'est courageux. »</li>
+                            <li>« Tu n'y es pour rien. »</li>
+                            <li>« La loi interdit ces violences. »</li>
+                            <li>« Je peux t'aider. »</li>
+                        </ul>
+                    </div>
+
+                    <div class="role-block">
+                        <h3>Elle ne s'est pas confiée, mais vous avez des doutes&nbsp;?</h3>
+                        <p>
+                            Ce n'est pas facile de réagir face à des violences soupçonnées.
+                            Renseignez-vous et évitez de prendre une initiative sans en parler
+                            avec la personne concernée. Si elle ne souhaite pas se confier,
+                            respectez sa décision et assurez-la de votre disponibilité.
+                        </p>
+                        <a href="https://aidgbv.colibri-cric.org/structures-referencees.php" class="role-link" target="_blank" rel="noopener noreferrer">Services spécialisés pour les proches et témoins ↗</a>
+                    </div>
+
+                    <div class="role-block role-block--alert">
+                        <h3>La situation devient dangereuse&nbsp;?</h3>
+                        <p>S'il y a un danger pour la vie de la personne, appelez immédiatement les secours.</p>
+                        <a href="#urgence" class="role-link">Voir les numéros d'urgence ↓</a>
+                    </div>
+
+                    <div class="role-block">
+                        <h3>Prendre soin de soi</h3>
+                        <p>
+                            Il est normal de ressentir du malaise, de la colère, de la
+                            tristesse ou de l'impuissance face à ce qu'on entend. Rester à
+                            l'écoute de son propre ressenti est essentiel pour apporter le
+                            meilleur soutien. Des services existent aussi pour vous, proches
+                            et témoins.
+                        </p>
+                        <a href="https://aidgbv.colibri-cric.org" class="role-link" target="_blank" rel="noopener noreferrer">Consulter la plateforme AidGBV ↗</a>
+                    </div>
+
+                    <p class="role-callout">Soutenir sans juger</p>
+
+                    <div class="role-block">
+                        <h3>Comment orienter efficacement</h3>
+                        <p>
+                            Suggérer une aide ne veut pas dire décider à la place du proche&nbsp;:
+                            c'est être là, sans jugement, en montrant des options claires.
+                        </p>
+                        <ul class="role-list">
+                            <li>Proposer l'auto-test pour aborder le sujet ou confirmer une intuition&nbsp;: <a href="https://aidgbv.colibri-cric.org/violentometre" target="_blank" rel="noopener noreferrer">le violentomètre ↗</a></li>
+                            <li>Faire connaître notre communauté d'entraide WhatsApp <span class="role-soon">Bientôt disponible</span></li>
+                            <li>Partager nos <a href="https://aidgbv.colibri-cric.org/guides-pratiques" target="_blank" rel="noopener noreferrer">guides pratiques ↗</a> pour mieux comprendre les violences sexistes et savoir comment agir à son échelle.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 3. Je suis professionnel -->
+                <div class="role-panel" id="role-panel-pro" role="tabpanel" aria-labelledby="role-tab-pro" data-role-panel="pro" hidden>
+                    <p class="role-lead">
+                        Dans le cadre de votre pratique, vous avez été ou êtes susceptible
+                        d'accueillir la parole d'une victime de VBG, et cela vous pose
+                        question&nbsp;? Il n'est jamais aisé de savoir comment réagir face à
+                        ces situations complexes, et il n'existe pas de canevas unique
+                        applicable à toutes les situations : chaque intervention s'adapte au
+                        cas par cas. Voici quelques repères.
+                    </p>
+
+                    <div class="role-block">
+                        <h3>Offrir une écoute de qualité</h3>
+                        <p>
+                            Une écoute bienveillante permet de rompre l'isolement et d'éviter
+                            la victimisation secondaire. Croire la personne et reconnaître sa
+                            détresse est une étape indispensable de la reconstruction.
+                        </p>
+                    </div>
+
+                    <div class="role-block">
+                        <h3>Protection et prévention</h3>
+                        <p>
+                            Vérifiez que la personne est en sécurité et qu'elle a pu bénéficier
+                            de soins médicaux adaptés (par exemple, en cas d'agression
+                            sexuelle&nbsp;: traitements préventifs IST, prévention des risques
+                            de grossesse).
+                        </p>
+                    </div>
+
+                    <div class="role-block">
+                        <h3>Orienter vers une prise en charge</h3>
+                        <p>Informez la personne de l'existence de services professionnels spécialisés sur le territoire camerounais.</p>
+                        <a href="https://aidgbv.colibri-cric.org" class="role-link" target="_blank" rel="noopener noreferrer">Voir les services recensés sur AidGBV ↗</a>
+                    </div>
+                </div>
+
+                <!-- 4. J'ai des comportements violents -->
+                <div class="role-panel" id="role-panel-violent" role="tabpanel" aria-labelledby="role-tab-violent" data-role-panel="violent" hidden>
+                    <p class="role-lead">
+                        Vous ressentez le besoin de mieux comprendre certains de vos
+                        comportements&nbsp;? Peut-être parce que&nbsp;:
+                    </p>
+                    <ul class="role-list">
+                        <li>on vous a dit que l'un ou l'autre de vos comportements est inapproprié&nbsp;;</li>
+                        <li>vous réalisez que certains de vos comportements sont violents&nbsp;;</li>
+                        <li>vous prenez conscience des effets dévastateurs des violences sur la personne qui en est la cible&nbsp;;</li>
+                        <li>vous vous posez des questions.</li>
+                    </ul>
+                    <p class="role-lead">
+                        Pour y voir plus clair et trouver de l'aide, vous pouvez contacter
+                        notre ligne d'écoute, d'information et d'orientation, qui vous permet
+                        de parler en toute discrétion des difficultés que vous rencontrez.
+                    </p>
+                    <a href="#ligne-ecoute" class="role-link">Contacter la ligne d'écoute ↓</a>
+
+                    <div class="role-block">
+                        <h3>Pourquoi se faire aider&nbsp;?</h3>
+                        <p>
+                            Les violences affectent profondément les victimes et leurs proches,
+                            mais elles ont aussi des conséquences négatives sur la personne qui
+                            les commet. Reconnaître ses comportements et comprendre leur impact
+                            est un premier pas crucial vers la prise de responsabilité et le
+                            changement.
+                        </p>
+                        <ul class="role-list">
+                            <li>Mieux reconnaître et gérer vos émotions et vos éventuelles pulsions.</li>
+                            <li>Comprendre le sens de vos comportements et identifier les émotions qui les sous-tendent.</li>
+                            <li>Développer des compétences prosociales&nbsp;: empathie, coopération, communication, respect, entraide, gestion des conflits.</li>
+                        </ul>
+                        <a href="/pilier-accompagnement.php" class="btn btn--outline-teal">Découvrir notre accompagnement</a>
+                    </div>
+
+                    <div class="role-block">
+                        <h3>Test&nbsp;: ai-je un comportement violent en couple&nbsp;?</h3>
+                        <p>
+                            Nul ne trouve le bonheur dans la violence. Sortir de ce schéma
+                            commence par une prise de conscience. Ce test interactif
+                            d'auto-évaluation vous aide à mettre des mots sur des attitudes,
+                            intentionnelles ou non, afin de reprendre le contrôle et d'agir
+                            durablement.
+                        </p>
+                        <a href="https://www.125etapres.org/auto-tests/test-comportement-violent" class="btn btn--outline-coral" target="_blank" rel="noopener noreferrer">Faire le test</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- ============================================================
          URGENCE IMMÉDIATE
          ============================================================ -->
     <?php if (!empty($urgences)): ?>
-    <section class="aide-section">
+    <section class="aide-section" id="urgence">
         <div class="aide-container">
             <div class="aide-section-head">
                 <span class="eyebrow eyebrow--coral">Urgence immédiate</span>
@@ -99,7 +377,7 @@ require __DIR__ . '/partials/header.php';
     <!-- ============================================================
          NOTRE LIGNE D'ÉCOUTE
          ============================================================ -->
-    <section class="aide-section aide-section--alt">
+    <section class="aide-section aide-section--alt" id="ligne-ecoute">
         <div class="aide-container">
             <div class="ecoute-box">
                 <div class="ecoute-icon" aria-hidden="true">
@@ -397,5 +675,6 @@ require __DIR__ . '/partials/header.php';
 </div>
 
 <script src="/js/quick-exit.js" defer></script>
+<script src="/js/besoin-aide-tabs.js" defer></script>
 
 <?php require __DIR__ . '/partials/footer.php'; ?>

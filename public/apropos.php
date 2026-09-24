@@ -23,6 +23,11 @@ require __DIR__ . '/partials/header.php';
             la lutte contre les violences basées sur le genre ne peut plus se
             limiter à des réponses ponctuelles ou cloisonnées.
         </p>
+        <div class="apropos-hero-actions">
+            <a href="/piliers.php" class="btn-cta btn-cta--primary">Découvrir nos piliers</a>
+            <a href="/rejoindre.php" class="btn-cta btn-cta--outline">Nous rejoindre</a>
+            <a href="/don.php" class="btn-cta btn-cta--outline">Faire un don</a>
+        </div>
     </div>
 </section>
 <!-- ============================================================
@@ -37,15 +42,12 @@ require __DIR__ . '/partials/header.php';
             <!-- Colonne texte -->
             <div class="histoire-content">
                 <p class="apropos-text">
-                    Trop souvent, la recherche, l'éducation, l'innovation et l'intervention
-                    de terrain avancent chacune de leur côté, sans jamais converger vers
-                    une stratégie commune. Face à ce constat, il est nécessaire de relier
-                    ces quatre dimensions au sein d'une seule et même structure.
+                    Trop souvent, la recherche, l'éducation, l'innovation, l'intervention de terrain et le plaidoyer avancent chacun de leur côté, sans jamais converger vers
+                    une stratégie commune. Face à ce constat, il est nécessaire de relier ces cinq dimensions au sein d'une seule et même structure.
                 </p>
                 <p class="apropos-text">
                     C'est cette conviction — que la rigueur scientifique, l'éducation
-                    préventive, l'innovation technologique et l'action de terrain doivent
-                    avancer ensemble — qui fonde aujourd'hui le CREAI-VBG.
+                    préventive, l'innovation technologique, l'action de terrain et le plaidoyer doivent avancer ensemble — qui fonde aujourd'hui le CREAI-VBG.
                 </p>
                 <p class="apropos-text">
                     Notre approche repose sur un principe simple mais rarement mis en
@@ -97,9 +99,7 @@ require __DIR__ . '/partials/header.php';
                 </div>
                 <span class="vm-label">Notre mission</span>
                 <p>
-                    Articuler quatre leviers complémentaires — recherche, éducation
-                    et prévention, innovation technologique, action de terrain —
-                    pour enrayer la récidive et briser durablement le cycle de la
+                    Articuler cinq leviers complémentaires — recherche, éducation et prévention, innovation technologique, accompagnement de terrain et plaidoyer — pour enrayer la récidive et briser durablement le cycle de la
                     violence.
                 </p>
             </div>
@@ -249,7 +249,7 @@ require __DIR__ . '/partials/header.php';
                         <path d="M9 2h6"/>
                     </svg>
                 </div>
-                <h3>Éclairer par la science</h3>
+                <h3><a href="/pilier-recherche.php">Éclairer par la science</a></h3>
                 <p><em>Recherches empiriques et analyses rigoureuses pour guider les politiques publiques.</em></p>
             </div>
 
@@ -261,7 +261,7 @@ require __DIR__ . '/partials/header.php';
                         <circle cx="12" cy="9" r="2.5"/>
                     </svg>
                 </div>
-                <h3>Prévenir pour transformer</h3>
+                <h3><a href="/pilier-prevention.php">Prévenir pour transformer</a></h3>
                 <p><em>Formation, sensibilisation communautaire et éducation civique pour déconstruire les stéréotypes.</em></p>
             </div>
 
@@ -273,7 +273,7 @@ require __DIR__ . '/partials/header.php';
                         <path d="M8 21h8M12 17v4"/>
                     </svg>
                 </div>
-                <h3>Innover et digitaliser</h3>
+                <h3><a href="/pilier-innovation.php">Innover et digitaliser</a></h3>
                 <p><em>Chatbots d'assistance, plateformes de données et espaces mémoriels numériques.</em></p>
             </div>
 
@@ -287,7 +287,7 @@ require __DIR__ . '/partials/header.php';
                         <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
                     </svg>
                 </div>
-                <h3>Agir et accompagner sur le terrain</h3>
+                <h3><a href="/pilier-accompagnement.php">Agir et accompagner sur le terrain</a></h3>
                 <p><em>Écoute et orientation des survivantes, parcours de responsabilisation pour les auteurs.</em></p>
             </div>
 
@@ -298,11 +298,15 @@ require __DIR__ . '/partials/header.php';
                         <path d="M3 11l18-8-8 18-2-8-8-2z"/>
                     </svg>
                 </div>
-                <h3>Plaider et fédérer</h3>
+                <h3><a href="/pilier-plaidoyer.php">Plaider et fédérer</a></h3>
                 <p><em>Partenariats avec institutions, autorités locales et société civile.</em></p>
             </div>
 
         </div>
+
+        <p class="apropos-more">
+            <a href="/piliers.php">Découvrir nos cinq piliers d'action →</a>
+        </p>
     </div>
 </section>
 
@@ -380,6 +384,97 @@ require __DIR__ . '/partials/header.php';
 </section>
 
 <!-- ============================================================
+     CADRE JURIDIQUE ET DOCUMENTS
+     ============================================================ -->
+<?php
+$legal = require __DIR__ . '/../config/legal.php';
+
+$documents = [];
+foreach ((require __DIR__ . '/../config/documents.php') as $doc) {
+    $fichier = basename((string) ($doc['fichier'] ?? ''));
+    $chemin  = __DIR__ . '/documents/' . $fichier;
+    if ($fichier === '' || !is_file($chemin)) {
+        continue;
+    }
+    $octets = (int) filesize($chemin);
+    $doc['url']    = '/documents/' . rawurlencode($fichier);
+    $doc['format'] = strtoupper(pathinfo($fichier, PATHINFO_EXTENSION));
+    $doc['taille'] = $octets >= 1048576
+        ? number_format($octets / 1048576, 1, ',', ' ') . ' Mo'
+        : max(1, (int) round($octets / 1024)) . ' Ko';
+    $documents[] = $doc;
+}
+
+$esc = static fn (mixed $s): string => htmlspecialchars((string) $s, ENT_QUOTES, 'UTF-8');
+?>
+<section class="apropos-section" id="documents">
+    <div class="apropos-container">
+        <span class="eyebrow eyebrow--teal">Cadre juridique et documents</span>
+
+        <div class="cadre-layout">
+            <dl class="cadre-infos">
+                <div>
+                    <dt>Dénomination</dt>
+                    <dd><?= $esc($legal['nom_complet']) ?></dd>
+                </div>
+                <div>
+                    <dt>Statut</dt>
+                    <dd><?= $esc($legal['forme']) ?></dd>
+                </div>
+                <div>
+                    <dt>Siège social</dt>
+                    <dd><?= $esc($legal['siege']) ?></dd>
+                </div>
+                <?php if (!empty($legal['recepisse'])): ?>
+                    <div>
+                        <dt>Récépissé de déclaration</dt>
+                        <dd><?= $esc($legal['recepisse']) ?></dd>
+                    </div>
+                <?php endif; ?>
+                <div>
+                    <dt>Contact</dt>
+                    <dd>
+                        <a href="mailto:<?= $esc($legal['email']) ?>"><?= $esc($legal['email']) ?></a>
+                        <?php if (!empty($legal['telephone'])): ?>
+                            · <?= $esc($legal['telephone']) ?>
+                        <?php endif; ?>
+                    </dd>
+                </div>
+            </dl>
+
+            <div class="cadre-docs">
+                <h3>Documents de référence</h3>
+
+                <?php if ($documents): ?>
+                    <ul class="docs-liste">
+                        <?php foreach ($documents as $doc): ?>
+                            <li>
+                                <a href="<?= $esc($doc['url']) ?>" download>
+                                    <span class="doc-titre"><?= $esc($doc['titre']) ?></span>
+                                    <?php if (!empty($doc['description'])): ?>
+                                        <span class="doc-desc"><?= $esc($doc['description']) ?></span>
+                                    <?php endif; ?>
+                                    <span class="doc-meta"><?= $esc($doc['format']) ?> · <?= $esc($doc['taille']) ?> · Télécharger ↓</span>
+                                </a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php else: ?>
+                    <p class="docs-vide">
+                        Nos statuts et notre code de conduite et d'éthique seront bientôt
+                        disponibles au téléchargement.
+                    </p>
+                <?php endif; ?>
+
+                <p class="apropos-more apropos-more--left">
+                    <a href="/mentions-legales.php">Mentions légales et confidentialité →</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
      NOTRE ÉQUIPE
      ============================================================ -->
 <?php
@@ -389,15 +484,25 @@ require_once __DIR__ . '/../src/Membre.php';
 $poleModel   = new Pole();
 $membreModel = new Membre();
 
+require_once __DIR__ . '/../src/team_helpers.php';
+
 $poles        = $poleModel->getAll();
 $membresByPole = $membreModel->getAllGroupedByPole();
+
+$nbPoles    = count($poles);
+$motsNombre = [1 => 'un', 2 => 'deux', 3 => 'trois', 4 => 'quatre', 5 => 'cinq', 6 => 'six',
+               7 => 'sept', 8 => 'huit', 9 => 'neuf', 10 => 'dix'];
+$phrasePoles = $nbPoles === 0
+    ? 'Nos pôles organisent notre action au quotidien.'
+    : ucfirst($motsNombre[$nbPoles] ?? (string) $nbPoles)
+        . ($nbPoles === 1 ? ' pôle organise' : ' pôles organisent') . ' notre action au quotidien.';
 ?>
 
-<section class="apropos-section">
+<section class="apropos-section apropos-section--alt">
     <div class="apropos-container">
         <span class="eyebrow eyebrow--purple">Notre équipe</span>
         <p class="apropos-intro">
-            Sept pôles organisent notre action au quotidien.
+            <?= htmlspecialchars($phrasePoles) ?>
             <a href="/notre-equipe.php">Voir toute l'équipe →</a>
         </p>
 
@@ -430,19 +535,25 @@ $membresByPole = $membreModel->getAllGroupedByPole();
                         </p>
                     <?php else: ?>
                         <div class="membres-grid">
-                            <?php foreach ($membres as $m):
-                                $photo = $m['photo'] ?: '/images/team/default-avatar.png';
-                            ?>
+                            <?php foreach ($membres as $m): ?>
                                 <article class="membre-card">
-                                    <div class="membre-photo">
-                                        <img src="<?= htmlspecialchars($photo) ?>"
-                                             alt="<?= htmlspecialchars($m['nom']) ?>"
-                                             loading="lazy">
+                                    <div class="membre-photo <?= empty($m['photo']) ? 'membre-photo--initials' : '' ?>">
+                                        <?php if (!empty($m['photo'])): ?>
+                                            <img src="<?= htmlspecialchars($m['photo']) ?>"
+                                                 alt="<?= htmlspecialchars($m['nom']) ?>"
+                                                 loading="lazy">
+                                        <?php else: ?>
+                                            <span aria-hidden="true"><?= htmlspecialchars(initiales($m['nom'])) ?></span>
+                                        <?php endif; ?>
                                     </div>
                                     <div class="membre-body">
                                         <h3 class="membre-nom"><?= htmlspecialchars($m['nom']) ?></h3>
-                                        <p class="membre-poste"><?= htmlspecialchars($m['poste']) ?></p>
-                                        <p class="membre-profession"><?= htmlspecialchars($m['profession']) ?></p>
+                                        <?php if (!empty($m['poste'])): ?>
+                                            <p class="membre-poste"><?= htmlspecialchars($m['poste']) ?></p>
+                                        <?php endif; ?>
+                                        <?php if (!empty($m['profession'])): ?>
+                                            <p class="membre-profession"><?= htmlspecialchars($m['profession']) ?></p>
+                                        <?php endif; ?>
                                     </div>
                                 </article>
                             <?php endforeach; ?>
@@ -450,6 +561,49 @@ $membresByPole = $membreModel->getAllGroupedByPole();
                     <?php endif; ?>
                 </div>
             <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     NOS PARTENAIRES
+     ============================================================ -->
+<?php $partenaires = require __DIR__ . '/../config/partenaires.php'; ?>
+<section class="apropos-section" id="partenaires-institutionnels">
+    <div class="apropos-container">
+        <span class="eyebrow eyebrow--coral">Nos partenaires</span>
+
+        <?php if ($partenaires): ?>
+            <ul class="partenaires-grid">
+                <?php foreach ($partenaires as $part): ?>
+                    <li class="partenaire-card">
+                        <?php
+                        $contenu = !empty($part['logo'])
+                            ? '<img src="' . $esc($part['logo']) . '" alt="' . $esc($part['nom']) . '" loading="lazy">'
+                            : '<span class="partenaire-nom">' . $esc($part['nom']) . '</span>';
+                        $urlPart = (string) ($part['url'] ?? '');
+                        ?>
+                        <?php if (preg_match('#^https?://#i', $urlPart)): ?>
+                            <a href="<?= $esc($urlPart) ?>" target="_blank" rel="noopener noreferrer"><?= $contenu ?></a>
+                        <?php else: ?>
+                            <?= $contenu ?>
+                        <?php endif; ?>
+                        <?php if (!empty($part['description'])): ?>
+                            <p><?= $esc($part['description']) ?></p>
+                        <?php endif; ?>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        <?php endif; ?>
+
+        <div class="partenaires-invite">
+            <h3>Une institution, une entreprise, une organisation ?</h3>
+            <p>
+                Ensemble, construisons un partenariat basé sur nos valeurs communes :
+                mécénat financier ou en nature, parrainage, appui technique ou
+                convention institutionnelle, sans jamais compromettre notre indépendance.
+            </p>
+            <a href="/rejoindre.php#partenaires" class="btn-cta btn-cta--solid">Devenir partenaire →</a>
         </div>
     </div>
 </section>
@@ -467,6 +621,7 @@ $membresByPole = $membreModel->getAllGroupedByPole();
         </p>
         <div class="cta-buttons">
             <a href="/rejoindre.php" class="btn-cta btn-cta--primary">Devenir membre</a>
+            <a href="/don.php" class="btn-cta btn-cta--outline">Faire un don</a>
             <a href="/contact.php" class="btn-cta btn-cta--outline">Nous contacter</a>
         </div>
     </div>

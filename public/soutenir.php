@@ -2,119 +2,10 @@
 declare(strict_types=1);
 session_start();
 
-require __DIR__ . '/../src/Database.php';
-require __DIR__ . '/../src/Contact.php';
-require __DIR__ . '/../src/Benevole.php';
+require __DIR__ . '/../src/engagement_forms.php';
 
-$canaux = Benevole::CANAUX;
-
-// --- État par section (chaque formulaire garde ses propres erreurs / succès) ---
-$benevoleErrors  = [];
-$benevoleSuccess = false;
-$benevoleOld     = [
-    'email' => '', 'nom' => '', 'prenom' => '', 'telephone' => '', 'date_naissance' => '',
-    'ville' => '', 'connu_par' => '', 'motivations' => '', 'experience' => '', 'canal' => '', 'notes' => '',
-];
-
-$partenaireErrors  = [];
-$partenaireSuccess = false;
-$partenaireOld     = ['nom' => '', 'telephone' => '', 'email' => '', 'organisation' => '', 'objet' => '', 'question' => ''];
-
-if (empty($_SESSION['csrf'])) {
-    $_SESSION['csrf'] = bin2hex(random_bytes(32));
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $formType = $_POST['form_type'] ?? '';
-    $csrfOk   = hash_equals($_SESSION['csrf'], (string) ($_POST['csrf'] ?? ''));
-
-    // ---------------------------------------------------------------
-    // Formulaire bénévole
-    // ---------------------------------------------------------------
-    if ($formType === 'benevole') {
-        if (!$csrfOk) $benevoleErrors[] = 'Token de sécurité invalide.';
-
-        $email         = trim($_POST['email'] ?? '');
-        $nom           = trim($_POST['nom'] ?? '');
-        $prenom        = trim($_POST['prenom'] ?? '');
-        $telephone     = trim($_POST['telephone'] ?? '');
-        $dateNaissance = trim($_POST['date_naissance'] ?? '');
-        $ville         = trim($_POST['ville'] ?? '');
-        $connuPar      = trim($_POST['connu_par'] ?? '');
-        $motivations   = trim($_POST['motivations'] ?? '');
-        $experience    = trim($_POST['experience'] ?? '');
-        $canal         = trim($_POST['canal'] ?? '');
-        $notes         = trim($_POST['notes'] ?? '');
-        $benevoleOld   = compact(
-            'email', 'nom', 'prenom', 'telephone', 'date_naissance',
-            'ville', 'connu_par', 'motivations', 'experience', 'canal', 'notes'
-        );
-
-        $dateOk = \DateTime::createFromFormat('Y-m-d', $dateNaissance) !== false;
-
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $benevoleErrors[] = 'Email invalide.';
-        if ($nom === '')                                $benevoleErrors[] = 'Le nom est obligatoire.';
-        if ($prenom === '')                             $benevoleErrors[] = 'Le prénom est obligatoire.';
-        if ($telephone === '')                          $benevoleErrors[] = 'Le numéro de téléphone est obligatoire.';
-        if (!$dateOk)                                    $benevoleErrors[] = 'Date de naissance invalide.';
-        if ($ville === '')                              $benevoleErrors[] = 'La ville est obligatoire.';
-        if (!array_key_exists($canal, $canaux))          $benevoleErrors[] = 'Veuillez choisir un canal de communication préféré.';
-
-        if (empty($benevoleErrors)) {
-            try {
-                (new Benevole())->create(
-                    $email, $nom, $prenom, $telephone, $dateNaissance,
-                    $ville, $connuPar, $motivations, $experience, $canal, $notes
-                );
-                $benevoleSuccess = true;
-                $benevoleOld = [
-                    'email' => '', 'nom' => '', 'prenom' => '', 'telephone' => '', 'date_naissance' => '',
-                    'ville' => '', 'connu_par' => '', 'motivations' => '', 'experience' => '', 'canal' => '', 'notes' => '',
-                ];
-                $_SESSION['csrf'] = bin2hex(random_bytes(32));
-            } catch (Throwable $e) {
-                $benevoleErrors[] = 'Une erreur est survenue. Merci de réessayer.';
-            }
-        }
-    }
-
-    // ---------------------------------------------------------------
-    // Formulaire partenariat / sponsoring
-    // ---------------------------------------------------------------
-    if ($formType === 'partenariat') {
-        if (!$csrfOk) $partenaireErrors[] = 'Token de sécurité invalide.';
-
-        $nom          = trim($_POST['nom'] ?? '');
-        $telephone    = trim($_POST['telephone'] ?? '');
-        $email        = trim($_POST['email'] ?? '');
-        $organisation = trim($_POST['organisation'] ?? '');
-        $objet        = trim($_POST['objet'] ?? '');
-        $question     = trim($_POST['question'] ?? '');
-        $partenaireOld = compact('nom', 'telephone', 'email', 'organisation', 'objet', 'question');
-
-        if ($nom === '')                                $partenaireErrors[] = 'Le nom est obligatoire.';
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $partenaireErrors[] = 'Email invalide.';
-        if ($objet === '')                              $partenaireErrors[] = "L'objet de la demande est obligatoire.";
-        if (mb_strlen($question) < 10)                  $partenaireErrors[] = 'Merci de détailler votre demande (10 caractères min).';
-
-        if (empty($partenaireErrors)) {
-            try {
-                $lines = ["Objet : {$objet}"];
-                if ($organisation !== '') $lines[] = "Organisation : {$organisation}";
-                if ($telephone !== '')    $lines[] = "Téléphone : {$telephone}";
-                $composed = implode("\n", $lines) . "\n\n" . $question;
-
-                $ip = $_SERVER['REMOTE_ADDR'] ?? null;
-                (new Contact())->create($nom, $email, 'partenariat', $composed, $ip);
-                $partenaireSuccess = true;
-                $partenaireOld = ['nom' => '', 'telephone' => '', 'email' => '', 'organisation' => '', 'objet' => '', 'question' => ''];
-                $_SESSION['csrf'] = bin2hex(random_bytes(32));
-            } catch (Throwable $e) {
-                $partenaireErrors[] = 'Une erreur est survenue. Merci de réessayer.';
-            }
-        }
-    }
-}
+// Formulaires bénévole et partenariat : traitement et affichage partagés avec rejoindre.php
+$forms = engagement_forms_handle();
 
 $pageTitle = 'Nous soutenir — CREAI-VBG';
 $pageCss   = 'soutenir.css';
@@ -139,6 +30,9 @@ require __DIR__ . '/partials/header.php';
         </p>
         <div class="page-hero-cta">
             <a href="/don.php" class="btn-cta btn-cta--primary">Je fais un don</a>
+            <a href="/rejoindre.php#adhesion" class="btn-cta btn-cta--ghost">J'adhère</a>
+            <a href="#benevolat" class="btn-cta btn-cta--ghost">Je deviens bénévole</a>
+            <a href="#partenaires" class="btn-cta btn-cta--ghost">Je deviens partenaire</a>
         </div>
     </div>
 </section>
@@ -168,9 +62,9 @@ require __DIR__ . '/partials/header.php';
     <div class="page-container">
         <h2 class="section-title">Comment nous soutenir ?</h2>
         <p class="section-intro">
-            Les comptes de paiement en ligne sont en cours d'ouverture. En attendant,
-            écrivez-nous via le formulaire de contact en précisant l'option choisie —
-            notre équipe revient vers vous rapidement pour finaliser votre don.
+            Choisissez la façon de nous soutenir qui vous convient. Les paiements en
+            ligne sont en cours d'ouverture : une fois votre demande envoyée, notre
+            équipe vous répond rapidement pour finaliser votre don ou votre adhésion.
         </p>
 
         <div class="cards-grid cards-grid--2">
@@ -187,7 +81,7 @@ require __DIR__ . '/partials/header.php';
                     plus importante, chaque montant compte et peut faire une différence
                     significative. Ensemble, nous pouvons transformer des vies.
                 </p>
-                <a href="/don.php" class="info-card-link">Faire un don ponctuel →</a>
+                <a href="/don.php?type=unique" class="info-card-link">Faire un don ponctuel →</a>
             </article>
 
             <article class="info-card info-card--teal">
@@ -203,7 +97,7 @@ require __DIR__ . '/partials/header.php';
                     permettent d'assurer la pérennité de nos actions sur le long terme,
                     garantir notre indépendance et mener des projets qui changent des vies.
                 </p>
-                <a href="/don.php" class="info-card-link">Faire un don mensuel →</a>
+                <a href="/don.php?type=mensuel" class="info-card-link">Faire un don mensuel →</a>
             </article>
 
             <article class="info-card info-card--purple">
@@ -220,7 +114,39 @@ require __DIR__ . '/partials/header.php';
                     Créez une cagnotte solidaire en ligne et rassemblez votre entourage
                     autour de votre projet de collecte au profit du CREAI-VBG.
                 </p>
-                <a href="/don.php" class="info-card-link">Créer une cagnotte →</a>
+                <a href="/don.php?type=cagnotte" class="info-card-link">Créer une cagnotte →</a>
+            </article>
+
+            <article class="info-card info-card--teal">
+                <div class="info-card-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M19 8v6M22 11h-6"/>
+                    </svg>
+                </div>
+                <h3>J'adhère à la communauté CREAI-VBG</h3>
+                <p>
+                    Devenez adhérent(e) : vous soutenez financièrement, politiquement et
+                    de façon militante nos missions d'aide et d'accompagnement.
+                    Adhésion valable du 31 décembre 2026 au 31 décembre 2027.
+                </p>
+                <a href="/rejoindre.php#adhesion" class="info-card-link">Devenir adhérent(e) →</a>
+            </article>
+
+            <article class="info-card info-card--purple">
+                <div class="info-card-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 11V6a2 2 0 0 0-4 0M14 10V4a2 2 0 0 0-4 0v2M10 10.5V6a2 2 0 0 0-4 0v8"/>
+                        <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/>
+                    </svg>
+                </div>
+                <h3>Je souhaite devenir bénévole</h3>
+                <p>
+                    Sensibilisation, événements, recherche, communication : rejoignez une
+                    communauté de bénévoles bienveillante et militante.
+                </p>
+                <a href="#benevolat" class="info-card-link">Devenir bénévole →</a>
             </article>
 
             <article class="info-card info-card--gray">
@@ -241,265 +167,10 @@ require __DIR__ . '/partials/header.php';
     </div>
 </section>
 
-<!-- ============================================================
-     BÉNÉVOLAT
-     ============================================================ -->
-<section class="rejoindre-section rejoindre-section--alt" id="benevolat">
-    <div class="rejoindre-container">
-        <span class="page-badge page-badge--dark">S'engager</span>
-        <h2 class="section-title section-title--purple">Je souhaite devenir bénévole</h2>
-        <p class="section-intro">
-            Tout au long de l'année, nous avons besoin de vous pour vous mobiliser en
-            ligne, suivre nos formations, engager votre entreprise, faire un don ou
-            encore nous proposer du mécénat de compétences. Chez CREAI-VBG, les
-            bénévoles sont mobilisé(e)s lors des événements importants de l'année,
-            mais aussi pour des missions supports, des campagnes de sensibilisation
-            numérique et des enquêtes scientifiques de terrain. Nous imaginons la
-            communauté de bénévoles comme un espace bienveillant et militant dans
-            lequel chacun·e peut participer à la lutte contre les violences.
-        </p>
+<?php require __DIR__ . '/partials/section-benevolat.php'; ?>
 
-        <div class="adhesion-grid">
+<?php require __DIR__ . '/partials/section-partenaires.php'; ?>
 
-            <div class="adhesion-steps">
-                <h2>Être bénévole chez CREAI-VBG, c'est notamment :</h2>
-                <ul class="check-list">
-                    <li>Lutter pour l'égalité des genres en faisant de la sensibilisation auprès des communautés.</li>
-                    <li>Se faire former à la sensibilisation et à la lutte contre les violences sexistes et sexuelles.</li>
-                    <li>Participer à des activités de recherche et de transfert de connaissances.</li>
-                    <li>Animer des stands de sensibilisation lors de festivals ou d'événements partenaires.</li>
-                    <li>Animer et confectionner des jeux de sensibilisation ludiques.</li>
-                    <li>Faire des tournées dans les communautés pour promouvoir l'application AidGBV, ouverte à tous, gratuite et bienveillante.</li>
-                    <li>Soutenir les activités de communication de l'association.</li>
-                </ul>
-            </div>
-
-            <div class="form-card">
-                <h2>Devenir bénévole</h2>
-                <p class="section-intro" style="margin-bottom: 20px;">
-                    Remplis ce formulaire en quelques minutes si tu souhaites t'engager
-                    à nos côtés 💙 — nous reviendrons vers toi avec plus de précisions.
-                </p>
-
-                <?php if ($benevoleSuccess): ?>
-                    <div class="alert alert-success">Merci beaucoup pour ta réponse ! Nous reviendrons vers toi avec plus de précisions 🌸</div>
-                <?php endif; ?>
-
-                <?php if ($benevoleErrors): ?>
-                    <div class="alert alert-error">
-                        <strong>Veuillez corriger :</strong>
-                        <ul>
-                            <?php foreach ($benevoleErrors as $e): ?>
-                                <li><?= htmlspecialchars($e) ?></li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </div>
-                <?php endif; ?>
-
-                <form method="post" class="wizard-form">
-                    <input type="hidden" name="csrf" value="<?= htmlspecialchars($_SESSION['csrf']) ?>">
-                    <input type="hidden" name="form_type" value="benevole">
-
-                    <div class="wizard-progress" aria-hidden="true">
-                        <span class="wizard-dot is-active" data-dot="1"></span>
-                        <span class="wizard-dot" data-dot="2"></span>
-                        <span class="wizard-dot" data-dot="3"></span>
-                    </div>
-                    <p class="wizard-step-label">Étape <span data-current-step>1</span> sur 3</p>
-
-                    <!-- Étape 1 : coordonnées -->
-                    <div class="wizard-step" data-step="1">
-                        <label for="b_email">Adresse e-mail *</label>
-                        <input type="email" id="b_email" name="email" required
-                               value="<?= htmlspecialchars($benevoleOld['email']) ?>">
-
-                        <label for="b_nom">Ton nom *</label>
-                        <input type="text" id="b_nom" name="nom" required maxlength="100"
-                               value="<?= htmlspecialchars($benevoleOld['nom']) ?>">
-
-                        <label for="b_prenom">Ton prénom *</label>
-                        <input type="text" id="b_prenom" name="prenom" required maxlength="100"
-                               value="<?= htmlspecialchars($benevoleOld['prenom']) ?>">
-
-                        <label for="b_telephone">Ton numéro de téléphone *</label>
-                        <input type="tel" id="b_telephone" name="telephone" required maxlength="30"
-                               value="<?= htmlspecialchars($benevoleOld['telephone']) ?>">
-
-                        <div class="wizard-actions">
-                            <button type="button" class="wizard-next">Suivant</button>
-                        </div>
-                    </div>
-
-                    <!-- Étape 2 : toi en quelques mots -->
-                    <div class="wizard-step" data-step="2" hidden>
-                        <label for="b_date_naissance">Ta date de naissance *</label>
-                        <input type="date" id="b_date_naissance" name="date_naissance" required
-                               value="<?= htmlspecialchars($benevoleOld['date_naissance']) ?>">
-
-                        <label for="b_ville">Ta ville résidente *</label>
-                        <input type="text" id="b_ville" name="ville" required maxlength="100"
-                               value="<?= htmlspecialchars($benevoleOld['ville']) ?>">
-
-                        <label for="b_connu_par">Comment as-tu connu CREAI-VBG ?</label>
-                        <input type="text" id="b_connu_par" name="connu_par" maxlength="255"
-                               value="<?= htmlspecialchars($benevoleOld['connu_par']) ?>">
-
-                        <label for="b_motivations">Quelles sont tes motivations pour devenir bénévole ?</label>
-                        <textarea id="b_motivations" name="motivations" rows="3"><?= htmlspecialchars($benevoleOld['motivations']) ?></textarea>
-
-                        <label for="b_experience">As-tu déjà eu une activité bénévole ?</label>
-                        <textarea id="b_experience" name="experience" rows="3"><?= htmlspecialchars($benevoleOld['experience']) ?></textarea>
-
-                        <div class="wizard-actions">
-                            <button type="button" class="wizard-prev">Précédent</button>
-                            <button type="button" class="wizard-next">Suivant</button>
-                        </div>
-                    </div>
-
-                    <!-- Étape 3 : préférences -->
-                    <div class="wizard-step" data-step="3" hidden>
-                        <label>Quel canal de communication préfères-tu ? *</label>
-                        <div class="radio-group">
-                            <?php foreach ($canaux as $value => $label): ?>
-                                <label class="radio-option">
-                                    <input type="radio" name="canal" value="<?= htmlspecialchars($value) ?>"
-                                        <?= $benevoleOld['canal'] === $value ? 'checked' : '' ?> required>
-                                    <?= htmlspecialchars($label) ?>
-                                </label>
-                            <?php endforeach; ?>
-                        </div>
-
-                        <label for="b_notes">Y a-t-il autre chose que tu voudrais que l'on sache sur toi ? (facultatif)</label>
-                        <textarea id="b_notes" name="notes" rows="3"><?= htmlspecialchars($benevoleOld['notes']) ?></textarea>
-
-                        <div class="wizard-actions">
-                            <button type="button" class="wizard-prev">Précédent</button>
-                            <button type="submit">Envoyer ma candidature</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- ============================================================
-     DEVENIR PARTENAIRE OU SPONSOR
-     ============================================================ -->
-<section class="rejoindre-section" id="partenaires">
-    <div class="rejoindre-container">
-        <span class="page-badge page-badge--dark">Engagez votre entreprise</span>
-        <h2 class="section-title">Devenir partenaire ou sponsor</h2>
-        <p class="section-intro">
-            Nous encourageons les dynamiques de responsabilité sociale des entreprises
-            et pensons que l'union du monde associatif avec celui du privé peut créer
-            de grandes et belles choses. Faites de votre entreprise une structure
-            engagée dans la lutte pour l'égalité et la fin des violences basées sur le
-            genre, fédérez vos collaborateurs et collaboratrices, et développez
-            l'attractivité de votre marque employeur.
-        </p>
-
-        <div class="cards-grid cards-grid--3" style="margin-bottom: 48px;">
-            <article class="info-card info-card--teal">
-                <h3>Mécénat financier</h3>
-                <p>Versement mensuel ou ponctuel, arrondis sur salaire, arrondis en caisse…</p>
-            </article>
-            <article class="info-card info-card--purple">
-                <h3>Mécénat en nature</h3>
-                <p>Don mobilier, immobilier, de compétences…</p>
-            </article>
-            <article class="info-card info-card--coral">
-                <h3>Parrainage, sponsoring</h3>
-                <p>Prestation de service, produit-partage…</p>
-            </article>
-        </div>
-
-        <div class="adhesion-grid">
-
-            <div class="adhesion-steps">
-                <h2>Garanties d'indépendance inscrites dans notre ADN</h2>
-                <p class="section-intro">Sponsoriser le CREAI-VBG ne signifie PAS :</p>
-                <ul class="check-list check-list--cross">
-                    <li>Avoir un droit de regard sur nos contenus, analyses ou prises de position.</li>
-                    <li>Avoir accès aux données brutes ou individuelles collectées.</li>
-                    <li>Disposer d'une subordination dans nos orientations stratégiques.</li>
-                    <li>Influencer nos choix méthodologiques.</li>
-                </ul>
-                <p class="section-intro">
-                    Nous nous réservons le droit de refuser un sponsoring si l'organisation
-                    a des pratiques contraires à nos valeurs, s'il existe un conflit
-                    d'intérêt manifeste, ou si son image publique pourrait nuire à notre
-                    crédibilité.
-                </p>
-
-                <h2 style="margin-top: 32px;">Ce que votre soutien permet concrètement</h2>
-                <ul class="check-list">
-                    <li>La création d'emplois qualifiés (analystes, coordinateurs, formateurs, chargé(e)s de prévention et d'accompagnement des victimes et des auteur(e)s de violence…).</li>
-                    <li>Le développement de nouveaux outils méthodologiques gratuits pour le terrain.</li>
-                    <li>La collecte et l'analyse de données fiables et contextualisées.</li>
-                    <li>L'organisation de tables rondes et de projets intersectoriels.</li>
-                    <li>Une veille documentaire et législative mutualisée de qualité.</li>
-                    <li>Des formations accessibles adaptées aux réalités du terrain.</li>
-                    <li>L'opérationnalisation du service d'accompagnement des victimes de VBG.</li>
-                    <li>Des campagnes de sensibilisation et des actions de prévention pérennes.</li>
-                    <li>Le développement et le déploiement de solutions technologiques au service de la prévention et de la réponse aux VBG.</li>
-                </ul>
-            </div>
-
-            <div class="form-card">
-                <h2>Écrivez-nous</h2>
-                <p class="section-intro" style="margin-bottom: 20px;">Nous vous répondrons dans les meilleurs délais.</p>
-
-                <?php if ($partenaireSuccess): ?>
-                    <div class="alert alert-success">Merci pour votre message, nous revenons vers vous rapidement.</div>
-                <?php endif; ?>
-
-                <?php if ($partenaireErrors): ?>
-                    <div class="alert alert-error">
-                        <strong>Veuillez corriger :</strong>
-                        <ul>
-                            <?php foreach ($partenaireErrors as $e): ?>
-                                <li><?= htmlspecialchars($e) ?></li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </div>
-                <?php endif; ?>
-
-                <form method="post">
-                    <input type="hidden" name="csrf" value="<?= htmlspecialchars($_SESSION['csrf']) ?>">
-                    <input type="hidden" name="form_type" value="partenariat">
-
-                    <label for="p_nom">Nom *</label>
-                    <input type="text" id="p_nom" name="nom" required maxlength="100"
-                           value="<?= htmlspecialchars($partenaireOld['nom']) ?>">
-
-                    <label for="p_telephone">Numéro de téléphone</label>
-                    <input type="tel" id="p_telephone" name="telephone" maxlength="30"
-                           value="<?= htmlspecialchars($partenaireOld['telephone']) ?>">
-
-                    <label for="p_email">Email *</label>
-                    <input type="email" id="p_email" name="email" required
-                           value="<?= htmlspecialchars($partenaireOld['email']) ?>">
-
-                    <label for="p_organisation">Organisation</label>
-                    <input type="text" id="p_organisation" name="organisation" maxlength="150"
-                           value="<?= htmlspecialchars($partenaireOld['organisation']) ?>">
-
-                    <label for="p_objet">Objet de votre demande *</label>
-                    <input type="text" id="p_objet" name="objet" required maxlength="150"
-                           value="<?= htmlspecialchars($partenaireOld['objet']) ?>">
-
-                    <label for="p_question">Question *</label>
-                    <textarea id="p_question" name="question" rows="5" required minlength="10" maxlength="5000"><?= htmlspecialchars($partenaireOld['question']) ?></textarea>
-
-                    <button type="submit">Envoyer</button>
-                </form>
-            </div>
-
-        </div>
-    </div>
-</section>
 
 <!-- ============================================================
      CTA FINAL

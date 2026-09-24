@@ -9,7 +9,7 @@
         const currentLabel = form.querySelector('[data-current-step]');
         let current = 1;
 
-        function goToStep(n) {
+        function goToStep(n, scroll = true) {
             current = n;
 
             steps.forEach((step) => {
@@ -23,13 +23,25 @@
 
             if (currentLabel) currentLabel.textContent = String(n);
 
-            form.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            if (scroll) form.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // form.reportValidity() bloquerait sur les champs requis des étapes masquées
+        // (non focusables) : on ne valide que l'étape courante.
+        function currentStepIsValid() {
+            const fields = steps[current - 1].querySelectorAll('input, select, textarea');
+            for (const field of fields) {
+                if (!field.checkValidity()) {
+                    field.reportValidity();
+                    return false;
+                }
+            }
+            return true;
         }
 
         form.querySelectorAll('.wizard-next').forEach((btn) => {
             btn.addEventListener('click', () => {
-                // Les champs des étapes masquées sont exclus de la validation native.
-                if (!form.reportValidity()) return;
+                if (!currentStepIsValid()) return;
                 goToStep(Math.min(current + 1, steps.length));
             });
         });
@@ -40,6 +52,6 @@
             });
         });
 
-        goToStep(1);
+        goToStep(1, false);
     }
 })();

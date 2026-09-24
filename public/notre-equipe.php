@@ -15,16 +15,7 @@ try {
     error_log('[notre-equipe.php] ' . $e->getMessage());
 }
 
-/** Initiales (2 max) affichées quand un membre n'a pas de photo. */
-function initiales(string $nom): string
-{
-    $mots = preg_split('/\s+/', trim($nom), -1, PREG_SPLIT_NO_EMPTY) ?: [];
-    $init = '';
-    foreach (array_slice($mots, 0, 2) as $mot) {
-        $init .= mb_strtoupper(mb_substr($mot, 0, 1));
-    }
-    return $init !== '' ? $init : '?';
-}
+require_once __DIR__ . '/../src/team_helpers.php';
 
 $pageTitle = 'Notre équipe — CREAI-VBG';
 $pageCss   = 'notre-equipe.css';
