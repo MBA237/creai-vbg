@@ -6,15 +6,15 @@ $pageTitle = 'CREAI-VBG — Recherche, éducation et action contre les VBG';
 $pageCss   = 'index.css';
 $widePage  = true;
 
+require_once __DIR__ . '/../src/asset.php';
+require_once __DIR__ . '/../src/Database.php';
 require_once __DIR__ . '/../src/Article.php';
 require_once __DIR__ . '/../src/Evenement.php';
 
-$articleModel   = new Article();
-$evenementModel = new Evenement();
-
-// Tri par date desc → plus récents en premier
-$articles   = $articleModel->getRecent(10);
-$evenements = $evenementModel->getRecent(5);
+// Tri par date desc → plus récents en premier.
+// Base indisponible : la page d'accueil s'affiche quand même, sans actualités.
+$articles   = Database::soft(static fn () => (new Article())->getRecent(10), []);
+$evenements = Database::soft(static fn () => (new Evenement())->getRecent(5), []);
 
 require __DIR__ . '/partials/header.php';
 ?>
@@ -96,7 +96,7 @@ require __DIR__ . '/partials/header.php';
                 $datePub = $a['publie_le']
                     ? date('d M Y', strtotime($a['publie_le']))
                     : date('d M Y', strtotime($a['created_at']));
-                $image = $a['image'] ?: '/images/articles/default.jpg';
+                $image = image_or($a['image'], '/images/articles/default.jpg');
             ?>
                 <article class="feature-slide" data-index="<?= $slideIndex++ ?>">
 
@@ -141,7 +141,7 @@ require __DIR__ . '/partials/header.php';
                 $dateDebut = strtotime($e['date_debut']);
                 $dateFull  = date('d M Y', $dateDebut);
                 $heure     = date('H:i', $dateDebut);
-                $image     = $e['image'] ?: '/images/evenements/default.jpg';
+                $image     = image_or($e['image'], '/images/evenements/default.jpg');
             ?>
                 <article class="feature-slide feature-slide--evenement" data-index="<?= $slideIndex++ ?>">
 
@@ -184,7 +184,7 @@ require __DIR__ . '/partials/header.php';
         data-event-lieu="<?= htmlspecialchars($e['lieu']) ?>"
         data-event-date-debut="<?= htmlspecialchars($e['date_debut']) ?>"
         data-event-date-fin="<?= htmlspecialchars($e['date_fin'] ?? '') ?>"
-        data-event-image="<?= htmlspecialchars($e['image'] ?: '/images/evenements/default.jpg') ?>"
+        data-event-image="<?= htmlspecialchars(image_or($e['image'], '/images/evenements/default.jpg')) ?>"
         data-event-slug="<?= htmlspecialchars($e['slug']) ?>">
     En savoir plus
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -238,30 +238,38 @@ require __DIR__ . '/partials/header.php';
          ============================================================ -->
     <section class="home-section home-section--alt">
         <div class="home-container home-container--full">
-            <span class="eyebrow eyebrow--teal">Le constat</span>
+            <div class="constat-layout">
+                <figure class="constat-media">
+                    <img src="/images/constat.jpg" alt="Stop aux violences basées sur le genre" loading="lazy">
+                </figure>
 
-            <p class="home-text">
-                Les violences basées sur le genre (VBG) constituent un problème mondial
-                de droits humains, enraciné dans les inégalités de genre et les rapports
-                de force inégaux. Elles revêtent de nombreuses formes et causent des
-                préjudices à des millions de victimes, de familles et de communautés.
-                Bien qu'elles soient présentes dans toutes les sociétés, elles ne sont
-                pas une fatalité : <strong>les VBG sont évitables</strong>.
-            </p>
+                <div class="constat-content">
+                    <span class="eyebrow eyebrow--teal">Le constat</span>
 
-            <p class="home-text">
-                Au Cameroun, elles restent généralisées, banalisées et trop souvent
-                invisibles, faute de données fiables, d'information publique suffisante,
-                d'investissement dans la prévention et de structures d'accompagnement
-                accessibles à toutes et tous.
-            </p>
+                    <p class="home-text">
+                        Les violences basées sur le genre (VBG) constituent un problème mondial
+                        de droits humains, enraciné dans les inégalités de genre et les rapports
+                        de force inégaux. Elles revêtent de nombreuses formes et causent des
+                        préjudices à des millions de victimes, de familles et de communautés.
+                        Bien qu'elles soient présentes dans toutes les sociétés, elles ne sont
+                        pas une fatalité : <strong>les VBG sont évitables</strong>.
+                    </p>
 
-            <p class="home-text">
-                Face à ce constat, le CREAI-VBG agit sur tous les fronts à la fois :
-                <strong>comprendre par la science, transformer par l'éducation,
-                protéger par l'action</strong>. Parce que mettre fin aux VBG exige plus
-                qu'une réponse d'urgence — cela exige une stratégie.
-            </p>
+                    <p class="home-text">
+                        Au Cameroun, elles restent généralisées, banalisées et trop souvent
+                        invisibles, faute de données fiables, d'information publique suffisante,
+                        d'investissement dans la prévention et de structures d'accompagnement
+                        accessibles à toutes et tous.
+                    </p>
+
+                    <p class="home-text">
+                        Face à ce constat, le CREAI-VBG agit sur tous les fronts à la fois :
+                        <strong>comprendre par la science, transformer par l'éducation,
+                        protéger par l'action</strong>. Parce que mettre fin aux VBG exige plus
+                        qu'une réponse d'urgence — cela exige une stratégie.
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -333,7 +341,7 @@ require __DIR__ . '/partials/header.php';
 
                     <a href="/piliers.php" class="pillar-card">
                         <div class="pillar-image">
-                            <img src="/images/plaidoyer.jpg" alt="Plaidoyer et partenariats institutionnels" loading="lazy">
+                            <img src="/images/Plaidoyer.jpg" alt="Plaidoyer et partenariats institutionnels" loading="lazy">
                         </div>
                         <div class="pillar-body">
                             <h3>Plaidoyer &amp; Partenariats</h3>

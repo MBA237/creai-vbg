@@ -2,11 +2,11 @@
 declare(strict_types=1);
 session_start();
 
+require_once __DIR__ . '/../src/asset.php';
+require_once __DIR__ . '/../src/Database.php';
 require_once __DIR__ . '/../src/Article.php';
 require_once __DIR__ . '/../src/Evenement.php';
 
-$articleModel   = new Article();
-$evenementModel = new Evenement();
 
 // ============================================================
 //  PARAMÈTRES
@@ -25,16 +25,22 @@ if (!in_array($type, ['tous', 'articles', 'evenements'], true)) {
 // ============================================================
 //  CHARGEMENT DES DONNÉES
 // ============================================================
-$articlesResult   = ['items' => [], 'total' => 0, 'pages' => 0];
-$evenementsResult = ['items' => [], 'total' => 0, 'pages' => 0];
+$vide = ['items' => [], 'total' => 0, 'pages' => 0];
 
-if ($type === 'tous' || $type === 'articles') {
-    $articlesResult = $articleModel->search($q, $categorie, $page, $perPage);
-}
+// Base indisponible : la page s'affiche quand même, sans résultats.
+[$articlesResult, $evenementsResult, $categories] = Database::soft(
+    static function () use ($type, $q, $categorie, $page, $perPage, $vide): array {
+        $articleModel   = new Article();
+        $evenementModel = new Evenement();
 
-if ($type === 'tous' || $type === 'evenements') {
-    $evenementsResult = $evenementModel->search($q, $page, $perPage);
-}
+        return [
+            ($type === 'tous' || $type === 'articles')   ? $articleModel->search($q, $categorie, $page, $perPage) : $vide,
+            ($type === 'tous' || $type === 'evenements') ? $evenementModel->search($q, $page, $perPage)          : $vide,
+            $articleModel->getCategories(),
+        ];
+    },
+    [$vide, $vide, []]
+);
 
 // Fusion pour l'affichage "tous"
 $items = [];
@@ -72,8 +78,7 @@ if ($type === 'articles') {
 $totalItems = $articlesResult['total'] + $evenementsResult['total'];
 $maxPages   = max($articlesResult['pages'], $evenementsResult['pages']);
 
-// Catégories disponibles
-$categories = $articleModel->getCategories();
+
 
 // Helpers URL
 function urlWith(array $params): string
@@ -249,7 +254,7 @@ require __DIR__ . '/partials/header.php';
                     <?php foreach ($items as $item): ?>
 
                         <?php if ($item['_type'] === 'article'):
-                            $image = $item['image'] ?: '/images/articles/default.jpg';
+                            $image = image_or($item['image'], '/images/articles/default.jpg');
                             $date  = $item['_date'];
                         ?>
                             <a href="/article.php?slug=<?= urlencode($item['slug']) ?>" class="actualite-card actualite-card--article">
@@ -273,7 +278,7 @@ require __DIR__ . '/partials/header.php';
                             </a>
 
                         <?php else:
-                            $image = $item['image'] ?: '/images/evenements/default.jpg';
+                            $image = image_or($item['image'], '/images/evenements/default.jpg');
                             $date  = $item['_date'];
                         ?>
                             <button type="button"
@@ -286,10 +291,10 @@ require __DIR__ . '/partials/header.php';
         data-event-lieu="<?= htmlspecialchars($item['lieu']) ?>"
         data-event-date-debut="<?= htmlspecialchars($item['date_debut']) ?>"
         data-event-date-fin="<?= htmlspecialchars($item['date_fin'] ?? '') ?>"
-        data-event-image="<?= htmlspecialchars($item['image'] ?: '/images/evenements/default.jpg') ?>"
+        data-event-image="<?= htmlspecialchars(image_or($item['image'], '/images/evenements/default.jpg')) ?>"
         data-event-slug="<?= htmlspecialchars($item['slug']) ?>">
     <div class="actualite-card-image">
-        <img src="<?= htmlspecialchars($item['image'] ?: '/images/evenements/default.jpg') ?>"
+        <img src="<?= htmlspecialchars(image_or($item['image'], '/images/evenements/default.jpg')) ?>"
              alt="<?= htmlspecialchars($item['titre']) ?>"
              loading="lazy">
         <span class="actualite-card-tag actualite-card-tag--purple">Événement</span>

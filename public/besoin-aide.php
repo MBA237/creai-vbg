@@ -14,6 +14,17 @@ $hasTel = strlen(preg_replace('/\D/', '', $tel) ?? '') >= 6;
 $wa     = preg_replace('/\D/', '', $ligne['whatsapp']) ?? '';
 $hasWa  = strlen($wa) >= 8;
 
+// Numéros d'urgence cliquables (appel direct sur mobile), réutilisés à plusieurs endroits
+$telLinks = static function (string $class, bool $withLabel = true) use ($urgences, $e): string {
+    $out = '';
+    foreach ($urgences as $u) {
+        $num  = preg_replace('/[^\d+]/', '', $u['numero']) ?? '';
+        $out .= '<a href="tel:' . $e($num) . '" class="' . $class . '"><strong>' . $e($u['numero']) . '</strong>'
+              . ($withLabel ? ' <span>' . $e($u['libelle']) . '</span>' : '') . '</a>';
+    }
+    return $out;
+};
+
 $pageTitle = 'Besoin d\'aide ? — CREAI-VBG';
 $pageCss   = 'besoin-aide.css';
 $widePage  = true;
@@ -23,7 +34,18 @@ require __DIR__ . '/partials/header.php';
 
 
 
+<!-- Quitter rapidement : un clic, ou 3 pressions sur Échap -->
+<a href="https://www.google.com" class="quick-exit" data-quick-exit
+   title="Quitter ce site immédiatement (ou appuyez 3 fois sur la touche Échap)">
+    Quitter rapidement
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+</a>
+
 <div class="aide-page">
+
 
     <!-- ============================================================
          HERO
@@ -43,6 +65,12 @@ require __DIR__ . '/partials/header.php';
                 sont à votre disposition. <strong>Toute information partagée avec le
                 CREAI-VBG est traitée avec la plus stricte confidentialité.</strong>
             </p>
+            <?php if (!empty($urgences)): ?>
+                <div class="aide-hero-urgences">
+                    <span class="aide-hero-urgences-label">En danger immédiat&nbsp;? Appelez&nbsp;:</span>
+                    <div class="aide-hero-tels"><?= $telLinks('aide-hero-tel') ?></div>
+                </div>
+            <?php endif; ?>
         </div>
     </section>
 
@@ -101,7 +129,10 @@ require __DIR__ . '/partials/header.php';
                                     conservez des preuves si cela ne vous met pas davantage en danger
                                     (enregistrements audio, vidéos, photos).
                                 </p>
-                                <a href="#urgence" class="role-link">Voir les numéros d'urgence ↓</a>
+                                <?php if (!empty($urgences)): ?>
+                                    <div class="tel-chips"><?= $telLinks('tel-chip', false) ?></div>
+                                <?php endif; ?>
+                                <a href="#urgence" class="role-link">Voir le détail des numéros d'urgence ↓</a>
                             </div>
 
                             <div class="role-block">
@@ -180,7 +211,7 @@ require __DIR__ . '/partials/header.php';
                             <li><strong>Accompagner avec patience</strong>, sans attendre de résultat immédiat.</li>
                             <li><strong>Respecter son rythme et ses décisions</strong>&nbsp;: elle doit reprendre le contrôle de ses choix.</li>
                             <li><strong>Déculpabiliser</strong>&nbsp;: ce n'est pas sa faute, l'agresseur est seul responsable.</li>
-                            <li><strong>Demander de quoi elle a besoin</strong> et se renseigner sur les ressources disponibles.</li>
+                            <li><strong>Demander de quoi elle a besoin</strong> et se renseigner sur les ressources disponibles&nbsp;: lignes d'écoute, chatbot et carte des services sur la <a href="https://aidgbv.colibri-cric.org" target="_blank" rel="noopener noreferrer">plateforme AidGBV ↗</a>.</li>
                             <li><strong>Proposer des services concrets</strong>&nbsp;: l'accompagner, l'aider dans ses démarches, ses courses, prendre des notes lors d'entretiens.</li>
                         </ul>
                     </div>
@@ -191,6 +222,7 @@ require __DIR__ . '/partials/header.php';
                             <li>« Je te crois. »</li>
                             <li>« Tu as bien fait de venir me voir. »</li>
                             <li>« Merci de ta confiance. »</li>
+                            <li>« Tu as bien fait de m'en parler. »</li>
                             <li>« C'est courageux. »</li>
                             <li>« Tu n'y es pour rien. »</li>
                             <li>« La loi interdit ces violences. »</li>
@@ -206,13 +238,16 @@ require __DIR__ . '/partials/header.php';
                             avec la personne concernée. Si elle ne souhaite pas se confier,
                             respectez sa décision et assurez-la de votre disponibilité.
                         </p>
-                        <a href="https://aidgbv.colibri-cric.org/structures-referencees.php" class="role-link" target="_blank" rel="noopener noreferrer">Services spécialisés pour les proches et témoins ↗</a>
+                        <a href="https://aidgbv.colibri-cric.org/structures-referencees" class="role-link" target="_blank" rel="noopener noreferrer">Services spécialisés pour les proches et témoins ↗</a>
                     </div>
 
                     <div class="role-block role-block--alert">
                         <h3>La situation devient dangereuse&nbsp;?</h3>
                         <p>S'il y a un danger pour la vie de la personne, appelez immédiatement les secours.</p>
-                        <a href="#urgence" class="role-link">Voir les numéros d'urgence ↓</a>
+                        <?php if (!empty($urgences)): ?>
+                            <div class="tel-chips"><?= $telLinks('tel-chip') ?></div>
+                        <?php endif; ?>
+                        <a href="#urgence" class="role-link">Voir le détail des numéros d'urgence ↓</a>
                     </div>
 
                     <div class="role-block">
@@ -228,6 +263,18 @@ require __DIR__ . '/partials/header.php';
                     </div>
 
                     <p class="role-callout">Soutenir sans juger</p>
+
+                    <div class="role-block">
+                        <h3>Reconnaître les signes de violence pour mieux accompagner</h3>
+                        <p>
+                            Apprendre à repérer les signaux d'alerte chez un proche, c'est pouvoir
+                            l'aider efficacement&nbsp;: de l'écoute bienveillante et sans jugement aux
+                            mots justes à employer, en passant par les actions sécuritaires à mener
+                            et l'orientation vers les professionnels adaptés, chaque témoin peut
+                            devenir un acteur clé du soutien aux victimes.
+                        </p>
+                        <a href="https://aidgbv.colibri-cric.org/guides-pratiques" class="role-link" target="_blank" rel="noopener noreferrer">Lire nos guides pratiques ↗</a>
+                    </div>
 
                     <div class="role-block">
                         <h3>Comment orienter efficacement</h3>
@@ -289,6 +336,7 @@ require __DIR__ . '/partials/header.php';
                     <ul class="role-list">
                         <li>on vous a dit que l'un ou l'autre de vos comportements est inapproprié&nbsp;;</li>
                         <li>vous réalisez que certains de vos comportements sont violents&nbsp;;</li>
+                        <li>vous avez appris, par la presse ou par vos proches, que la loi punit sévèrement les actes de violence&nbsp;;</li>
                         <li>vous prenez conscience des effets dévastateurs des violences sur la personne qui en est la cible&nbsp;;</li>
                         <li>vous vous posez des questions.</li>
                     </ul>
@@ -297,7 +345,12 @@ require __DIR__ . '/partials/header.php';
                         notre ligne d'écoute, d'information et d'orientation, qui vous permet
                         de parler en toute discrétion des difficultés que vous rencontrez.
                     </p>
-                    <a href="#ligne-ecoute" class="role-link">Contacter la ligne d'écoute ↓</a>
+                    <div class="role-call">
+                        <?php if ($hasTel): ?>
+                            <a href="tel:<?= $e($tel) ?>" class="btn btn--primary">Appeler la ligne d'écoute&nbsp;: <?= $e($ligne['telephone']) ?></a>
+                        <?php endif; ?>
+                        <a href="#ligne-ecoute" class="role-link">Voir les coordonnées de la ligne d'écoute ↓</a>
+                    </div>
 
                     <div class="role-block">
                         <h3>Pourquoi se faire aider&nbsp;?</h3>
@@ -674,7 +727,7 @@ require __DIR__ . '/partials/header.php';
 
 </div>
 
-<script src="/js/quick-exit.js" defer></script>
-<script src="/js/besoin-aide-tabs.js" defer></script>
+<script src="<?= v('/js/quick-exit.js') ?>" defer></script>
+<script src="<?= v('/js/besoin-aide-tabs.js') ?>" defer></script>
 
 <?php require __DIR__ . '/partials/footer.php'; ?>

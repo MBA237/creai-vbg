@@ -12,6 +12,12 @@ if (!class_exists('Database')) {
         /** Délai maximum (secondes) pour joindre le serveur MySQL. */
         private const CONNECT_TIMEOUT = 5;
 
+        /**
+         * Si true, une connexion impossible lève une exception au lieu d'arrêter la page (die).
+         * Activé le temps d'un appel à Database::soft().
+         */
+        private static bool $throwOnFail = false;
+
         private string $server_name;
         private int $port = 3306;
         private string $user_name;
@@ -53,6 +59,11 @@ if (!class_exists('Database')) {
         {
             error_log('[Database] Connexion impossible : ' . $e->getMessage());
 
+            if (self::$throwOnFail) {
+                throw new RuntimeException('Connexion à la base de données impossible', 0, $e);
+            }
+
+
             if (!headers_sent()) {
                 http_response_code(503);
             }
@@ -85,6 +96,26 @@ if (!class_exists('Database')) {
         public function connect(): mysqli
         {
             return $this->conn;
+        }
+
+        /**
+         * Exécute $fn (lecture de données) sans jamais interrompre la page : base injoignable,
+         * table manquante (migration non lancée)… l'erreur est journalisée et $fallback est renvoyé.
+         * try/catch seul ne suffit pas : une connexion impossible appelle die(), qu'on ne peut pas attraper.
+         */
+        public static function soft(callable $fn, mixed $fallback = null): mixed
+        {
+            $previous = self::$throwOnFail;
+            self::$throwOnFail = true;
+
+            try {
+                return $fn();
+            } catch (Throwable $e) {
+                error_log('[Database::soft] ' . $e->getMessage());
+                return $fallback;
+            } finally {
+                self::$throwOnFail = $previous;
+            }
         }
     }
 }

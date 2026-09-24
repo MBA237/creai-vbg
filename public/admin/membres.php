@@ -261,7 +261,7 @@ require __DIR__ . '/includes/header.php';
                         <tr>
                             <td>
                                 <img class="admin-avatar"
-                                     src="<?= htmlspecialchars($m['photo'] ?: '/images/team/default-avatar.svg') ?>"
+                                     src="<?= htmlspecialchars(image_or($m['photo'], '/images/team/default-avatar.jpg')) ?>"
                                      alt="">
                             </td>
                             <td><strong><?= htmlspecialchars($m['nom']) ?></strong></td>
@@ -392,6 +392,6 @@ require __DIR__ . '/includes/header.php';
     </div>
 </div>
 
-<script src="/js/admin-membres.js" defer></script>
+<script src="<?= v('/js/admin-membres.js') ?>" defer></script>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>

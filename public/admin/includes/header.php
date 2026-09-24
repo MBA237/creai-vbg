@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../../../src/asset.php';
 /**
  * Header commun des pages admin.
  * Variables attendues :
@@ -22,8 +23,8 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
     <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-    <link rel="stylesheet" href="/css/base.css">
-    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="<?= v('/css/base.css') ?>">
+    <link rel="stylesheet" href="<?= v('/css/admin.css') ?>">
     <?php foreach (($extraCss ?? []) as $extraHref): ?>
     <link rel="stylesheet" href="<?= htmlspecialchars($extraHref) ?>">
     <?php endforeach; ?>
@@ -222,7 +223,7 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
         <div class="admin-sidebar-footer">
             <div class="admin-user-info">
                 <div class="admin-user-avatar">
-                    <?= htmlspecialchars(mb_substr($currentAdmin['nom'], 0, 1)) ?>
+                    <img src="/images/team/default-avatar.jpg" alt="">
                 </div>
                 <div class="admin-user-details">
                     <strong><?= htmlspecialchars($currentAdmin['nom']) ?></strong>

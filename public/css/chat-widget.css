@@ -69,7 +69,58 @@
     outline-offset: 2px;
 }
 
-/* Icônes : chat ou croix */
+/* Image (fermé) ou croix (ouvert) */
+.chat-fab {
+    overflow: hidden;
+    padding: 0;
+}
+
+.chat-fab-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    transition: opacity 0.2s, transform 0.2s;
+    animation:
+        chat-fab-spin 7s ease-in-out infinite,
+        chat-fab-zoom 7s ease-in-out infinite;
+}
+
+/* Cycle de 7 s : le bouton rebondit (haut/bas), puis l'image tourne
+   en zoomant vers l'avant avant de revenir à sa taille. */
+.chat-fab {
+    animation: chat-fab-bounce 7s ease-in-out infinite;
+}
+
+@keyframes chat-fab-bounce {
+    0%   { translate: 0 0; }
+    5%   { translate: 0 -16px; }
+    10%  { translate: 0 0; }
+    15%  { translate: 0 -10px; }
+    20%  { translate: 0 0; }
+    25%, 100% { translate: 0 0; }
+}
+
+@keyframes chat-fab-spin {
+    0%, 25% { rotate: 0deg; }
+    70%, 100% { rotate: 360deg; }
+}
+
+@keyframes chat-fab-zoom {
+    0%, 25% { scale: 1; }
+    47%     { scale: 1.45; }
+    70%, 100% { scale: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .chat-fab,
+    .chat-fab-image {
+        animation: none;
+    }
+}
+
 .chat-fab-icon {
     display: block;
     position: absolute;
@@ -81,9 +132,14 @@
     transform: rotate(-90deg);
 }
 
-.chat-fab.is-open .chat-fab-icon--chat {
+.chat-fab.is-open {
+    animation: none;
+}
+
+.chat-fab.is-open .chat-fab-image {
+    animation: none;
     opacity: 0;
-    transform: rotate(90deg);
+    transform: scale(0.8);
 }
 
 .chat-fab.is-open .chat-fab-icon--close {

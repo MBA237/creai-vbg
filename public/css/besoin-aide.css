@@ -1255,3 +1255,113 @@
         padding: 20px 20px;
     }
 }
+
+/* ============================================================
+   NUMÉROS D'URGENCE CLIQUABLES (hero + blocs d'alerte)
+   ============================================================ */
+
+.aide-hero-urgences {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 18px;
+    margin-top: 30px;
+}
+
+.aide-hero-urgences-label {
+    font-size: 15px;
+    font-weight: 700;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.aide-hero-tels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.aide-hero-tel {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 9px 18px;
+    background: #ffffff;
+    color: var(--coral-900);
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    text-shadow: none;
+    transition: background 0.15s, transform 0.1s;
+}
+
+.aide-hero-tel strong {
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--coral-500);
+}
+
+.aide-hero-tel:hover {
+    background: var(--coral-50);
+    transform: translateY(-1px);
+}
+
+.tel-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 4px 0 14px;
+}
+
+.tel-chip {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+    padding: 8px 14px;
+    background: #ffffff;
+    border: 1.5px solid var(--coral-500);
+    border-radius: 999px;
+    color: var(--coral-900);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: background 0.15s, color 0.15s;
+}
+
+.tel-chip strong {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--coral-500);
+}
+
+.tel-chip:hover {
+    background: var(--coral-500);
+    color: #ffffff;
+}
+
+.tel-chip:hover strong {
+    color: #ffffff;
+}
+
+.role-call {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 18px;
+    margin: 0 0 28px;
+}
+
+/* Espace sous la nav fixe quand on arrive via un lien direct (#proche…) */
+.role-section {
+    scroll-margin-top: 80px;
+}
+
+@media (max-width: 600px) {
+    .aide-hero-tel {
+        padding: 8px 14px;
+    }
+
+    .role-call .btn {
+        width: 100%;
+    }
+}

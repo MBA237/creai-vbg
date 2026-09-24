@@ -240,7 +240,7 @@ require __DIR__ . '/includes/header.php';
                 <!-- Demandeur -->
                 <div class="message-detail-sender">
                     <div class="message-sender-avatar">
-                        <?= htmlspecialchars(mb_strtoupper(mb_substr($selected['nom'], 0, 1))) ?>
+                        <img src="/images/team/default-avatar.jpg" alt="">
                     </div>
                     <div class="message-sender-info">
                         <strong><?= htmlspecialchars($selected['nom']) ?></strong>

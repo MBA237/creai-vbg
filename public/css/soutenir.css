@@ -5,8 +5,7 @@
    repris de rejoindre.css (form-card, categories-grid, adhesion-grid…)
    ============================================================ */
 
-/* rejoindre.css importe déjà contenu.css */
-@import url('rejoindre.css');
+/* Dépendances chargées par le header (voir CSS_DEPENDENCIES dans src/asset.php) */
 
 /* 4 modes de soutien : grille 2 x 2 sur grand écran */
 @media (min-width: 901px) {

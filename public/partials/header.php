@@ -3,6 +3,8 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+require_once __DIR__ . '/../../src/asset.php';
+
 $pageTitle = $pageTitle ?? 'CREAI-VBG';
 $pageCss   = $pageCss   ?? null;   
 $widePage  = $widePage  ?? false;
@@ -23,19 +25,20 @@ $widePage  = $widePage  ?? false;
     <?php if (!empty($noindex)): ?>
     <meta name="robots" content="noindex, nofollow">
     <?php endif; ?>
-    <link rel="stylesheet" href="/css/base.css">
-    <script src="/js/nav.js" defer></script>
-    <script src="/js/password-toggle.js" defer></script>
-    <script src="/js/piliers-carousel.js" defer></script>  
-    <script src="/js/feature-slider.js" defer></script>
-    <script src="/js/article.js" defer></script>
-    <script src="/js/pillars-carousel.js" defer></script>
-    <script src="/js/event-modal.js" defer></script>
-    <script src="/js/equipe-tabs.js" defer></script>
-    <script src="/js/don.js" defer></script>
-    <script src="/js/wizard.js" defer></script>
+    <link rel="stylesheet" href="<?= v('/css/base.css') ?>">
+    <script src="<?= v('/js/nav.js') ?>" defer></script>
+    <script src="<?= v('/js/password-toggle.js') ?>" defer></script>
+    <script src="<?= v('/js/piliers-carousel.js') ?>" defer></script>  
+    <script src="<?= v('/js/feature-slider.js') ?>" defer></script>
+    <script src="<?= v('/js/pillars-carousel.js') ?>" defer></script>
+    <script src="<?= v('/js/event-modal.js') ?>" defer></script>
+    <script src="<?= v('/js/equipe-tabs.js') ?>" defer></script>
+    <script src="<?= v('/js/don.js') ?>" defer></script>
+    <script src="<?= v('/js/wizard.js') ?>" defer></script>
     <?php if ($pageCss): ?>
-        <link rel="stylesheet" href="/css/<?= htmlspecialchars($pageCss) ?>">
+        <?php foreach (css_chain($pageCss) as $cssFile): ?>
+        <link rel="stylesheet" href="<?= htmlspecialchars(v('/css/' . $cssFile)) ?>">
+        <?php endforeach; ?>
     <?php endif; ?>
 </head>
 <body>

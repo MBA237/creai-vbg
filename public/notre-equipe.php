@@ -8,14 +8,9 @@ require_once __DIR__ . '/../src/Membre.php';
 $poles         = [];
 $membresByPole = [];
 
-try {
-    $poles         = (new Pole())->getAll();
-    $membresByPole = (new Membre())->getAllGroupedByPole();
-} catch (Throwable $e) {
-    error_log('[notre-equipe.php] ' . $e->getMessage());
-}
-
-require_once __DIR__ . '/../src/team_helpers.php';
+// Base indisponible : la page s'affiche quand même, sans les membres.
+$poles         = Database::soft(static fn () => (new Pole())->getAll(), []);
+$membresByPole = Database::soft(static fn () => (new Membre())->getAllGroupedByPole(), []);
 
 $pageTitle = 'Notre équipe — CREAI-VBG';
 $pageCss   = 'notre-equipe.css';
@@ -83,14 +78,10 @@ require __DIR__ . '/partials/header.php';
             <div class="membres-grid">
                 <?php foreach ($membres as $m): ?>
                     <article class="membre-card">
-                        <div class="membre-photo <?= empty($m['photo']) ? 'membre-photo--initials' : '' ?>">
-                            <?php if (!empty($m['photo'])): ?>
-                                <img src="<?= htmlspecialchars($m['photo']) ?>"
-                                     alt="<?= htmlspecialchars($m['nom']) ?>"
-                                     loading="lazy">
-                            <?php else: ?>
-                                <span aria-hidden="true"><?= htmlspecialchars(initiales($m['nom'])) ?></span>
-                            <?php endif; ?>
+                        <div class="membre-photo">
+                            <img src="<?= htmlspecialchars(image_or($m['photo'], '/images/team/default-avatar.jpg')) ?>"
+                                 alt="<?= htmlspecialchars($m['nom']) ?>"
+                                 loading="lazy">
                         </div>
                         <div class="membre-body">
                             <h3 class="membre-nom"><?= htmlspecialchars($m['nom']) ?></h3>

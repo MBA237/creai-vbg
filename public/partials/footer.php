@@ -54,9 +54,9 @@
 </footer>
 
 <!-- Chat Widget -->
-<link rel="stylesheet" href="/css/chat-widget.css">
+<link rel="stylesheet" href="<?= v('/css/chat-widget.css') ?>">
 <?php require __DIR__ . '/chat-widget.php'; ?>
-<script src="/js/chat-widget.js" defer></script>
+<script src="<?= v('/js/chat-widget.js') ?>" defer></script>
 </body>
 </html>
 

@@ -13,5 +13,9 @@ if (file_exists($envFile)) {
 
         putenv("$key=$value");
     }
+} else {
+    // Sans .env, le site tente root@localhost et échoue : on laisse au moins une trace dans les logs.
+    // Le fichier doit être à la racine du projet (à côté de ce fichier), pas dans public_html.
+    error_log('[environment] Fichier .env introuvable : ' . $envFile);
 }
 

@@ -4,6 +4,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (!tabs.length || !panels.length) return;
 
+    // 100vw inclut la barre de défilement verticale : on la compense pour que le rail
+    // de cartes couvre exactement la largeur visible du navigateur.
+    function syncScrollbarWidth() {
+        const sbw = window.innerWidth - document.documentElement.clientWidth;
+        document.documentElement.style.setProperty('--sbw', sbw + 'px');
+    }
+    syncScrollbarWidth();
+
+    // Rails de cartes : les flèches ne se calculent correctement que si le panneau est visible.
+    const cardNavUpdaters = [];
+
+    function refreshCardNavs() {
+        cardNavUpdaters.forEach(function (update) { update(); });
+    }
+
+    window.addEventListener('resize', function () {
+        syncScrollbarWidth();
+        refreshCardNavs();
+    });
+
     function activate(tab) {
         const role = tab.getAttribute('data-role');
 
@@ -23,6 +43,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 p.setAttribute('hidden', '');
             }
         });
+
+        refreshCardNavs();
     }
 
     tabs.forEach(function (tab) {
@@ -54,15 +76,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // 100vw inclut la barre de défilement verticale : on la compense pour que le rail
-    // de cartes couvre exactement la largeur visible du navigateur.
-    function syncScrollbarWidth() {
-        const sbw = window.innerWidth - document.documentElement.clientWidth;
-        document.documentElement.style.setProperty('--sbw', sbw + 'px');
-    }
-    syncScrollbarWidth();
-    window.addEventListener('resize', syncScrollbarWidth);
-
     // Boutons de défilement des rails de cartes
     document.querySelectorAll('.role-cards-wrap').forEach(function (wrap) {
         const track = wrap.querySelector('.role-cards-scroll');
@@ -78,6 +91,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         function updateNav() {
+            // Panneau masqué : rien à mesurer, on recalculera à son affichage.
+            if (track.clientWidth === 0) return;
             const maxScroll = track.scrollWidth - track.clientWidth - 1;
             prevBtn.disabled = track.scrollLeft <= 0;
             nextBtn.disabled = maxScroll <= 0 || track.scrollLeft >= maxScroll;
@@ -92,7 +107,24 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         track.addEventListener('scroll', updateNav);
-        window.addEventListener('resize', updateNav);
+        cardNavUpdaters.push(updateNav);
         updateNav();
     });
+
+    // Lien direct vers un onglet depuis une autre page : besoin-aide.php#proche
+    // (#besoin, #proche, #pro, #violent). On ne modifie jamais l'URL au clic : le choix
+    // de la personne ne doit pas apparaître dans son historique de navigation.
+    function openTabFromHash(scroll) {
+        const role = decodeURIComponent(window.location.hash.slice(1));
+        const tab = document.querySelector('.role-tab[data-role="' + role + '"]');
+        if (!tab) return;
+        activate(tab);
+        if (scroll) {
+            const section = document.querySelector('.role-section');
+            if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+
+    window.addEventListener('hashchange', function () { openTabFromHash(true); });
+    openTabFromHash(true);
 });

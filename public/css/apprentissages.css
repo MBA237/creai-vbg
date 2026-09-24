@@ -3,7 +3,6 @@
    Le socle (hero, cartes, encadrés, CTA) est dans contenu.css
    ============================================================ */
 
-@import url('contenu.css');
 
 /* 5 formats : 3 colonnes sur grand écran (3 + 2) */
 @media (min-width: 1000px) {

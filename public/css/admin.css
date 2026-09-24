@@ -272,6 +272,15 @@ html, body {
     font-weight: 700;
     font-size: 15px;
     flex-shrink: 0;
+    overflow: hidden;
+}
+
+.admin-user-avatar img,
+.message-sender-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .admin-user-details {
@@ -973,6 +982,7 @@ html, body {
     font-weight: 700;
     font-size: 18px;
     flex-shrink: 0;
+    overflow: hidden;
 }
 
 .message-sender-info {

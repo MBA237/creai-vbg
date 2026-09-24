@@ -266,6 +266,6 @@ require __DIR__ . '/partials/header.php';
 
 </main>
 
-<script src="/js/apprentissage.js" defer></script>
+<script src="<?= v('/js/apprentissage.js') ?>" defer></script>
 
 <?php require __DIR__ . '/partials/footer.php'; ?>

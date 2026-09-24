@@ -3,7 +3,6 @@
    Réutilise le socle de la page Besoin d'aide (hero corail, boutons).
    ============================================================ */
 
-@import url('besoin-aide.css');
 
 .aide-hero--compact {
     padding: 90px 0 70px;

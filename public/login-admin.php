@@ -3,6 +3,7 @@ declare(strict_types=1);
 session_start();
 
 // Si déjà connecté → redirige vers admin
+require_once __DIR__ . '/../src/asset.php';
 require_once __DIR__ . '/../src/Database.php';
 require_once __DIR__ . '/../src/AdminAuth.php';
 
@@ -60,7 +61,7 @@ $pageTitle = 'Connexion administrateur';
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex, nofollow">
     <title><?= htmlspecialchars($pageTitle) ?></title>
-    <link rel="stylesheet" href="/css/admin-login.css">
+    <link rel="stylesheet" href="<?= v('/css/admin-login.css') ?>">
 </head>
 <body>
 

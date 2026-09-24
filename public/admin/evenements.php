@@ -481,6 +481,6 @@ require __DIR__ . '/includes/header.php';
     </div>
 </div>
 
-<script src="/js/admin-evenements.js" defer></script>
+<script src="<?= v('/js/admin-evenements.js') ?>" defer></script>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>

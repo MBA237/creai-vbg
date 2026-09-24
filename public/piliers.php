@@ -464,7 +464,7 @@ require __DIR__ . '/partials/header.php';
             <div class="pilier-layout">
                 <div class="pilier-visual">
                     <div class="pilier-number">05</div>
-                    <img src="/images/plaidoyer.jpg" alt="Plaidoyer & Partenariats" loading="lazy">
+                    <img src="/images/Plaidoyer.jpg" alt="Plaidoyer & Partenariats" loading="lazy">
                 </div>
 
                 <div class="pilier-content">

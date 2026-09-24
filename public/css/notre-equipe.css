@@ -5,7 +5,6 @@
    navigation par pôle.
    ============================================================ */
 
-@import url('apropos.css');
 
 /* --- Navigation par pôle (ancres) --- */
 
@@ -83,22 +82,6 @@
     height: 4px;
     background: var(--purple-600);
     border-radius: 2px;
-}
-
-/* --- Avatar à initiales (membre sans photo) --- */
-
-.membre-photo--initials {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--purple-50);
-}
-
-.membre-photo--initials span {
-    font-size: 38px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    color: var(--purple-600);
 }
 
 /* --- Mobile --- */

@@ -542,7 +542,7 @@ require __DIR__ . '/includes/header.php';
     <?php endif; ?>
 </section>
 
-<script src="/js/vendor/quill/quill.js" defer></script>
-<script src="/js/admin-rich-editor.js" defer></script>
+<script src="<?= v('/js/vendor/quill/quill.js') ?>" defer></script>
+<script src="<?= v('/js/admin-rich-editor.js') ?>" defer></script>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>

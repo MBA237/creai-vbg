@@ -3,7 +3,6 @@
    Le socle (hero, conteneurs) est dans contenu.css
    ============================================================ */
 
-@import url('contenu.css');
 
 .page-hero--compact {
     padding: 70px 0 60px;

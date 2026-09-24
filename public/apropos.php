@@ -2,6 +2,14 @@
 declare(strict_types=1);
 session_start();
 
+require_once __DIR__ . '/../src/Database.php';
+require_once __DIR__ . '/../src/Pole.php';
+require_once __DIR__ . '/../src/Membre.php';
+// Données de l'équipe lues AVANT le début du HTML : une base indisponible ne coupe plus la page
+// en deux (footer, chat-widget… ne seraient jamais envoyés).
+$poles         = Database::soft(static fn () => (new Pole())->getAll(), []);
+$membresByPole = Database::soft(static fn () => (new Membre())->getAllGroupedByPole(), []);
+
 $pageTitle = 'Qui sommes-nous — CREAI-VBG';
 $pageCss   = 'apropos.css';
 $widePage  = true;
@@ -478,16 +486,9 @@ $esc = static fn (mixed $s): string => htmlspecialchars((string) $s, ENT_QUOTES,
      NOTRE ÉQUIPE
      ============================================================ -->
 <?php
-require_once __DIR__ . '/../src/Pole.php';
-require_once __DIR__ . '/../src/Membre.php';
 
-$poleModel   = new Pole();
-$membreModel = new Membre();
 
-require_once __DIR__ . '/../src/team_helpers.php';
 
-$poles        = $poleModel->getAll();
-$membresByPole = $membreModel->getAllGroupedByPole();
 
 $nbPoles    = count($poles);
 $motsNombre = [1 => 'un', 2 => 'deux', 3 => 'trois', 4 => 'quatre', 5 => 'cinq', 6 => 'six',
@@ -537,14 +538,10 @@ $phrasePoles = $nbPoles === 0
                         <div class="membres-grid">
                             <?php foreach ($membres as $m): ?>
                                 <article class="membre-card">
-                                    <div class="membre-photo <?= empty($m['photo']) ? 'membre-photo--initials' : '' ?>">
-                                        <?php if (!empty($m['photo'])): ?>
-                                            <img src="<?= htmlspecialchars($m['photo']) ?>"
-                                                 alt="<?= htmlspecialchars($m['nom']) ?>"
-                                                 loading="lazy">
-                                        <?php else: ?>
-                                            <span aria-hidden="true"><?= htmlspecialchars(initiales($m['nom'])) ?></span>
-                                        <?php endif; ?>
+                                    <div class="membre-photo">
+                                        <img src="<?= htmlspecialchars(image_or($m['photo'], '/images/team/default-avatar.jpg')) ?>"
+                                             alt="<?= htmlspecialchars($m['nom']) ?>"
+                                             loading="lazy">
                                     </div>
                                     <div class="membre-body">
                                         <h3 class="membre-nom"><?= htmlspecialchars($m['nom']) ?></h3>

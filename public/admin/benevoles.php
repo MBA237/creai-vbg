@@ -173,7 +173,7 @@ require __DIR__ . '/includes/header.php';
                 <!-- Candidat -->
                 <div class="message-detail-sender">
                     <div class="message-sender-avatar">
-                        <?= htmlspecialchars(mb_strtoupper(mb_substr($selected['prenom'], 0, 1))) ?>
+                        <img src="/images/team/default-avatar.jpg" alt="">
                     </div>
                     <div class="message-sender-info">
                         <strong><?= htmlspecialchars($selected['prenom'] . ' ' . $selected['nom']) ?></strong>

@@ -2,6 +2,7 @@
 declare(strict_types=1);
 session_start();
 
+require_once __DIR__ . '/../src/asset.php';
 require_once __DIR__ . '/../src/Database.php';
 require_once __DIR__ . '/../src/Article.php';
 require_once __DIR__ . '/../src/RichText.php';
@@ -13,8 +14,15 @@ if ($slug === '') {
     exit;
 }
 
-$articleModel = new Article();
-$article      = $articleModel->findBySlugAny($slug);
+// Base indisponible : message sobre (503) plutôt qu'une erreur PHP ou un « article introuvable » trompeur.
+$indisponible = new stdClass();
+$article      = Database::soft(static fn () => (new Article())->findBySlugAny($slug), $indisponible);
+
+if ($article === $indisponible) {
+    http_response_code(503);
+    die('Le site est momentanément indisponible. Merci de réessayer dans quelques instants.');
+}
+
 
 // Article introuvable ou non publié
 if (!$article || $article['statut'] !== 'publie') {
@@ -48,10 +56,9 @@ if (!$article || $article['statut'] !== 'publie') {
 // Incrémente le nombre de vues (optionnel - ajoute une colonne 'vues' si tu veux)
 // $articleModel->incrementViews((int) $article['id']);
 
-$related = $articleModel->getRelated(
-    (int) $article['id'],
-    $article['categorie'] ?? '',
-    3
+$related = Database::soft(
+    static fn () => (new Article())->getRelated((int) $article['id'], $article['categorie'] ?? '', 3),
+    []
 );
 
 // Temps de lecture (basé sur 200 mots/min)
@@ -60,7 +67,7 @@ $readingTime = max(1, (int) ceil($wordCount / 200));
 
 // Date d'affichage
 $datePub = $article['publie_le'] ?: $article['created_at'];
-$image   = $article['image'] ?: '/images/articles/default.jpg';
+$image   = image_or($article['image'], '/images/articles/default.jpg');
 
 $pageTitle = htmlspecialchars($article['titre']) . ' — CREAI-VBG';
 $pageCss   = 'article.css';
@@ -217,7 +224,7 @@ require __DIR__ . '/partials/header.php';
 
             <div class="article-related-grid">
                 <?php foreach ($related as $r):
-                    $rImage = $r['image'] ?: '/images/articles/default.jpg';
+                    $rImage = image_or($r['image'], '/images/articles/default.jpg');
                     $rDate  = $r['publie_le'] ?: $r['created_at'];
                 ?>
                     <a href="/article.php?slug=<?= urlencode($r['slug']) ?>" class="related-card">
@@ -264,6 +271,6 @@ require __DIR__ . '/partials/header.php';
 
 </div>
 
-<script src="/js/article.js" defer></script>
+<script src="<?= v('/js/article.js') ?>" defer></script>
 
 <?php require __DIR__ . '/partials/footer.php'; ?>
