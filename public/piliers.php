@@ -24,6 +24,8 @@ require __DIR__ . '/partials/header.php';
                 conçus pour se renforcer mutuellement et briser durablement le cycle
                 de la violence.
             </p>
+
+            <div class="hero-don"><?php require __DIR__ . '/partials/hero-don.php'; ?></div>
         </div>
     </section>
 

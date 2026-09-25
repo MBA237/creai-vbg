@@ -51,10 +51,10 @@ body {
     width: 64px;
     height: 64px;
     border-radius: 16px;
-    background: linear-gradient(135deg, #534ab7 0%, #3c3489 100%);
+    background: linear-gradient(135deg, #24808a 0%, #175a63 100%);
     color: #ffffff;
     margin-bottom: 20px;
-    box-shadow: 0 8px 20px rgba(83, 74, 183, 0.3);
+    box-shadow: 0 8px 20px rgba(36, 128, 138, 0.3);
 }
 
 .login-header h1 {
@@ -112,9 +112,9 @@ body {
 
 .form-row input:focus {
     outline: none;
-    border-color: #534ab7;
+    border-color: #24808a;
     background: #ffffff;
-    box-shadow: 0 0 0 3px rgba(83, 74, 183, 0.15);
+    box-shadow: 0 0 0 3px rgba(36, 128, 138, 0.15);
 }
 
 /* ============================================================
@@ -129,7 +129,7 @@ body {
     width: 100%;
     padding: 14px 24px;
     margin-top: 8px;
-    background: linear-gradient(135deg, #534ab7 0%, #3c3489 100%);
+    background: linear-gradient(135deg, #24808a 0%, #175a63 100%);
     color: #ffffff;
     border: none;
     border-radius: 10px;
@@ -138,12 +138,12 @@ body {
     font-weight: 600;
     cursor: pointer;
     transition: transform 0.1s, box-shadow 0.15s;
-    box-shadow: 0 4px 14px rgba(83, 74, 183, 0.3);
+    box-shadow: 0 4px 14px rgba(36, 128, 138, 0.3);
 }
 
 .btn-login:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(83, 74, 183, 0.4);
+    box-shadow: 0 8px 24px rgba(36, 128, 138, 0.4);
 }
 
 .btn-login:active {

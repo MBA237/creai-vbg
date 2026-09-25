@@ -5,10 +5,13 @@ session_start();
 require_once __DIR__ . '/../src/Database.php';
 require_once __DIR__ . '/../src/Pole.php';
 require_once __DIR__ . '/../src/Membre.php';
+require_once __DIR__ . '/../src/Partenaire.php';
+require_once __DIR__ . '/partials/partenaires-helpers.php';
 // Données de l'équipe lues AVANT le début du HTML : une base indisponible ne coupe plus la page
 // en deux (footer, chat-widget… ne seraient jamais envoyés).
 $poles         = Database::soft(static fn () => (new Pole())->getAll(), []);
 $membresByPole = Database::soft(static fn () => (new Membre())->getAllGroupedByPole(), []);
+$partenaires   = Database::soft(static fn () => (new Partenaire())->getPublished(), []);
 
 $pageTitle = 'Qui sommes-nous — CREAI-VBG';
 $pageCss   = 'apropos.css';
@@ -34,7 +37,7 @@ require __DIR__ . '/partials/header.php';
         <div class="apropos-hero-actions">
             <a href="/piliers.php" class="btn-cta btn-cta--primary">Découvrir nos piliers</a>
             <a href="/rejoindre.php" class="btn-cta btn-cta--outline">Nous rejoindre</a>
-            <a href="/don.php" class="btn-cta btn-cta--outline">Faire un don</a>
+            <?php require __DIR__ . '/partials/hero-don.php'; ?>
         </div>
     </div>
 </section>
@@ -565,43 +568,41 @@ $phrasePoles = $nbPoles === 0
 <!-- ============================================================
      NOS PARTENAIRES
      ============================================================ -->
-<?php $partenaires = require __DIR__ . '/../config/partenaires.php'; ?>
-<section class="apropos-section" id="partenaires-institutionnels">
+<section class="apropos-section partenaires-section" id="partenaires-institutionnels">
     <div class="apropos-container">
         <span class="eyebrow eyebrow--coral">Nos partenaires</span>
+    </div>
 
-        <?php if ($partenaires): ?>
+    <?php if ($partenaires): ?>
+        <!-- Pleine largeur du navigateur, sur 2 lignes ; pagination gérée par js/partenaires-liste.js -->
+        <div class="partenaires-liste" data-partenaires-liste data-rows="2">
             <ul class="partenaires-grid">
                 <?php foreach ($partenaires as $part): ?>
+                    <?php $urlPart = (string) ($part['site_web'] ?? ''); ?>
                     <li class="partenaire-card">
-                        <?php
-                        $contenu = !empty($part['logo'])
-                            ? '<img src="' . $esc($part['logo']) . '" alt="' . $esc($part['nom']) . '" loading="lazy">'
-                            : '<span class="partenaire-nom">' . $esc($part['nom']) . '</span>';
-                        $urlPart = (string) ($part['url'] ?? '');
-                        ?>
-                        <?php if (preg_match('#^https?://#i', $urlPart)): ?>
-                            <a href="<?= $esc($urlPart) ?>" target="_blank" rel="noopener noreferrer"><?= $contenu ?></a>
-                        <?php else: ?>
-                            <?= $contenu ?>
+                        <div class="partenaire-logo"><?= partenaire_logo($part) ?></div>
+                        <h3 class="partenaire-card-nom"><?= $esc($part['nom']) ?></h3>
+                        <?php if (!empty($part['categorie'])): ?>
+                            <p class="partenaire-card-type"><?= $esc($part['categorie']) ?></p>
                         <?php endif; ?>
-                        <?php if (!empty($part['description'])): ?>
-                            <p><?= $esc($part['description']) ?></p>
+                        <?php if (preg_match('#^https?://#i', $urlPart)): ?>
+                            <a href="<?= $esc($urlPart) ?>" class="partenaire-card-link" target="_blank" rel="noopener noreferrer"
+                               aria-label="Visiter le site de <?= $esc($part['nom']) ?> (nouvel onglet)">Visiter le site ↗</a>
                         <?php endif; ?>
                     </li>
                 <?php endforeach; ?>
             </ul>
-        <?php endif; ?>
 
-        <div class="partenaires-invite">
-            <h3>Une institution, une entreprise, une organisation ?</h3>
-            <p>
-                Ensemble, construisons un partenariat basé sur nos valeurs communes :
-                mécénat financier ou en nature, parrainage, appui technique ou
-                convention institutionnelle, sans jamais compromettre notre indépendance.
-            </p>
-            <a href="/rejoindre.php#partenaires" class="btn-cta btn-cta--solid">Devenir partenaire →</a>
+            <nav class="partenaires-pager" aria-label="Pagination des partenaires" hidden></nav>
         </div>
+
+        <div class="apropos-container partenaires-more">
+            <a href="/partenaires.php" class="btn-cta btn-cta--outline-dark">Voir nos partenaires</a>
+        </div>
+    <?php endif; ?>
+
+    <div class="apropos-container">
+        <?php require __DIR__ . '/partials/partenaires-invite.php'; ?>
     </div>
 </section>
 
@@ -626,4 +627,5 @@ $phrasePoles = $nbPoles === 0
 
 </main>
 
+<script src="<?= v('/js/partenaires-liste.js') ?>" defer></script>
 <?php require __DIR__ . '/partials/footer.php'; ?>

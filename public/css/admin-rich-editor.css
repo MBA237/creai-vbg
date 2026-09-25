@@ -12,8 +12,8 @@
 }
 
 .rich-editor:focus-within {
-    border-color: var(--purple-600, #534ab7);
-    box-shadow: 0 0 0 3px rgba(83, 74, 183, 0.15);
+    border-color: var(--accent-600, #24808a);
+    box-shadow: 0 0 0 3px rgba(36, 128, 138, 0.15);
 }
 
 /* --- Barre d'outils --- */
@@ -46,7 +46,7 @@
 }
 
 .rich-editor .ql-toolbar.ql-snow button:hover {
-    background: #eeedfe;
+    background: #e6f4f5;
 }
 
 .rich-editor .ql-toolbar.ql-snow .ql-picker {
@@ -93,7 +93,7 @@
 
 .rich-editor .ql-undo:hover .ql-stroke,
 .rich-editor .ql-redo:hover .ql-stroke {
-    stroke: var(--purple-600, #534ab7);
+    stroke: var(--accent-600, #24808a);
 }
 
 /* --- Zone d'écriture (aperçu fidèle à la page publique) --- */
@@ -126,20 +126,20 @@
     margin-bottom: 1em;
 }
 
-.rich-editor .ql-editor h2 { font-size: 1.6em;  font-weight: 700; line-height: 1.3; margin: 1.4em 0 0.6em; color: #0b5340; }
-.rich-editor .ql-editor h3 { font-size: 1.3em;  font-weight: 700; line-height: 1.35; margin: 1.3em 0 0.5em; color: #0b5340; }
-.rich-editor .ql-editor h4 { font-size: 1.1em;  font-weight: 700; line-height: 1.4; margin: 1.2em 0 0.4em; color: #0b5340; }
+.rich-editor .ql-editor h2 { font-size: 1.6em;  font-weight: 700; line-height: 1.3; margin: 1.4em 0 0.6em; color: #401a48; }
+.rich-editor .ql-editor h3 { font-size: 1.3em;  font-weight: 700; line-height: 1.35; margin: 1.3em 0 0.5em; color: #401a48; }
+.rich-editor .ql-editor h4 { font-size: 1.1em;  font-weight: 700; line-height: 1.4; margin: 1.2em 0 0.4em; color: #401a48; }
 
 .rich-editor .ql-editor blockquote {
     margin: 1.2em 0;
     padding: 6px 0 6px 18px;
-    border-left: 4px solid #1d9e75;
+    border-left: 4px solid #6a2c74;
     color: #5f5e5a;
     font-style: italic;
 }
 
 .rich-editor .ql-editor a {
-    color: #0f6e56;
+    color: #4e1f57;
 }
 
 .rich-editor .ql-editor img {
@@ -173,10 +173,10 @@
 .rich-image-frame {
     position: absolute;
     z-index: 7;
-    border: 2px solid var(--purple-600, #534ab7);
+    border: 2px solid var(--accent-600, #24808a);
     border-radius: 6px;
     pointer-events: none;
-    box-shadow: 0 0 0 3px rgba(83, 74, 183, 0.18);
+    box-shadow: 0 0 0 3px rgba(36, 128, 138, 0.18);
 }
 
 .rich-image-bar {
@@ -236,7 +236,7 @@
     padding: 0 16px;
     font-size: 13px;
     font-weight: 500;
-    color: #0f6e56;
+    color: #4e1f57;
 }
 
 .rich-status:not(:empty) {

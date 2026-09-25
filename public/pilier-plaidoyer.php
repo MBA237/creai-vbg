@@ -39,6 +39,8 @@ require __DIR__ . '/partials/header.php';
                 Construire des partenariats institutionnels pour ancrer durablement
                 une réponse multisectorielle aux violences basées sur le genre.
             </p>
+
+            <div class="hero-don"><?php require __DIR__ . '/partials/hero-don.php'; ?></div>
         </div>
     </section>
 

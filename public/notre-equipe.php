@@ -32,6 +32,8 @@ require __DIR__ . '/partials/header.php';
             Sept pôles organisent notre action au quotidien, du Bureau à l'innovation
             numérique. Découvrez les personnes qui les composent.
         </p>
+
+        <div class="hero-don"><?php require __DIR__ . '/partials/hero-don.php'; ?></div>
     </div>
 </section>
 

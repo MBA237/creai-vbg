@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!toggle || !links) return;
 
     // Point de bascule vers le menu hamburger (doit rester aligné sur base.css)
-    const MOBILE_MAX = 1180;
+    const MOBILE_MAX = 1359;
 
     const items = links.querySelectorAll('.nav-item');
 
@@ -64,6 +64,14 @@ document.addEventListener('DOMContentLoaded', function () {
         const btn = openItem.querySelector('.nav-item-toggle');
         if (btn) btn.focus();
     });
+
+    // Ombre sous la barre dès que la page défile
+    const nav = document.querySelector('.nav');
+    function onScroll() {
+        if (nav) nav.classList.toggle('is-scrolled', window.scrollY > 8);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
 
     // Ferme le menu si on repasse en grand écran (resize)
     window.addEventListener('resize', () => {

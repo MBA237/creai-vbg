@@ -50,6 +50,8 @@ require __DIR__ . '/partials/header.php';
             pour renforcer vos connaissances et vos compétences en matière de prévention
             des violences sexistes.
         </p>
+
+        <div class="hero-don"><?php require __DIR__ . '/partials/hero-don.php'; ?></div>
     </div>
 </section>
 

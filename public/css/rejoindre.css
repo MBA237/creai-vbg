@@ -10,16 +10,16 @@
    ============================================================ */
 
 :root {
-    --teal-50:  #e1f5ee;
-    --teal-200: #5dcaa5;
-    --teal-500: #1d9e75;
-    --teal-700: #0f6e56;
-    --teal-900: #085041;
+    --brand-50:  #f5eef7;
+    --brand-200: #c79dd1;
+    --brand-500: #6a2c74;
+    --brand-700: #4e1f57;
+    --brand-900: #33143a;
 
-    --purple-50:  #eeedfe;
-    --purple-200: #afa9ec;
-    --purple-600: #534ab7;
-    --purple-800: #3c3489;
+    --accent-50:  #e6f4f5;
+    --accent-200: #9fd3d8;
+    --accent-600: #24808a;
+    --accent-800: #175a63;
 
     --coral-50:  #faece7;
     --coral-500: #d85a30;
@@ -60,7 +60,7 @@
 
 .rejoindre-hero {
     width: 100%;
-    background: linear-gradient(135deg, var(--teal-900) 0%, var(--teal-700) 50%, var(--teal-500) 100%);
+    background: linear-gradient(135deg, var(--brand-900) 0%, var(--brand-700) 50%, var(--brand-500) 100%);
     color: #ffffff;
     padding: 110px 0 100px;
     text-align: left;
@@ -169,16 +169,16 @@
     align-items: flex-start;
     gap: 18px;
     padding: 24px 26px;
-    background: var(--teal-50);
-    border: 1px solid var(--teal-200);
-    border-left: 5px solid var(--teal-500);
+    background: var(--brand-50);
+    border: 1px solid var(--brand-200);
+    border-left: 5px solid var(--brand-500);
     border-radius: var(--radius);
 }
 
 .callout--care {
-    background: var(--purple-50);
-    border-color: var(--purple-200);
-    border-left-color: var(--purple-600);
+    background: var(--accent-50);
+    border-color: var(--accent-200);
+    border-left-color: var(--accent-600);
 }
 
 .callout-icon {
@@ -190,11 +190,11 @@
     height: 44px;
     border-radius: 50%;
     background: #ffffff;
-    color: var(--teal-700);
+    color: var(--brand-700);
 }
 
 .callout--care .callout-icon {
-    color: var(--purple-600);
+    color: var(--accent-600);
 }
 
 .callout-icon svg {
@@ -247,7 +247,7 @@
 .plan-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-top: 4px solid var(--teal-500);
+    border-top: 4px solid var(--brand-500);
     border-radius: var(--radius);
     padding: 26px 24px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -258,8 +258,8 @@
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
 }
 
-.plan-card--teal   { border-top-color: var(--teal-500); }
-.plan-card--purple { border-top-color: var(--purple-600); }
+.plan-card--teal   { border-top-color: var(--brand-500); }
+.plan-card--purple { border-top-color: var(--accent-600); }
 .plan-card--coral  { border-top-color: var(--coral-500); }
 
 .plan-card-icon {
@@ -270,11 +270,11 @@
     height: 44px;
     border-radius: 12px;
     margin-bottom: 16px;
-    background: var(--teal-50);
-    color: var(--teal-700);
+    background: var(--brand-50);
+    color: var(--brand-700);
 }
 
-.plan-card--purple .plan-card-icon { background: var(--purple-50); color: var(--purple-600); }
+.plan-card--purple .plan-card-icon { background: var(--accent-50); color: var(--accent-600); }
 .plan-card--coral  .plan-card-icon { background: var(--coral-50);  color: var(--coral-700); }
 
 .plan-card-icon svg {
@@ -313,7 +313,7 @@
 .categorie-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-top: 4px solid var(--teal-500);
+    border-top: 4px solid var(--brand-500);
     border-radius: var(--radius);
     padding: 28px 24px;
     transition: transform 0.2s, box-shadow 0.2s;
@@ -340,8 +340,8 @@
 }
 
 /* Variantes de couleur (charte) */
-.categorie-card--teal   { border-top-color: var(--teal-500); }
-.categorie-card--purple { border-top-color: var(--purple-600); }
+.categorie-card--teal   { border-top-color: var(--brand-500); }
+.categorie-card--purple { border-top-color: var(--accent-600); }
 .categorie-card--coral  { border-top-color: var(--coral-500); }
 .categorie-card--gray   { border-top-color: var(--gray-600); }
 
@@ -374,7 +374,7 @@
     bottom: 0;
     width: 60px;
     height: 4px;
-    background: var(--teal-500);
+    background: var(--brand-500);
     border-radius: 2px;
 }
 
@@ -400,8 +400,8 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: var(--teal-50);
-    color: var(--teal-700);
+    background: var(--brand-50);
+    color: var(--brand-700);
     font-size: 16px;
     font-weight: 700;
 }
@@ -421,7 +421,7 @@
     background: var(--surface);
     padding: 40px 36px;
     border-radius: var(--radius);
-    box-shadow: 0 8px 28px rgba(29, 158, 117, 0.08);
+    box-shadow: 0 8px 28px rgba(106, 44, 116, 0.08);
     border: 1px solid var(--border);
 }
 
@@ -441,7 +441,7 @@
     bottom: 0;
     width: 60px;
     height: 4px;
-    background: var(--teal-500);
+    background: var(--brand-500);
     border-radius: 2px;
 }
 
@@ -508,8 +508,8 @@
 .form-card select:focus,
 .form-card textarea:focus {
     outline: none;
-    border-color: var(--teal-500);
-    box-shadow: 0 0 0 3px rgba(29, 158, 117, 0.15);
+    border-color: var(--brand-500);
+    box-shadow: 0 0 0 3px rgba(106, 44, 116, 0.15);
 }
 
 .form-card select {
@@ -533,7 +533,7 @@
     width: 100%;
     padding: 16px 24px;
     min-height: 54px;
-    background: var(--teal-500);
+    background: var(--brand-500);
     color: #ffffff;
     border: none;
     border-radius: var(--radius-sm);
@@ -545,7 +545,7 @@
 }
 
 .form-card button[type="submit"]:hover {
-    background: var(--teal-700);
+    background: var(--brand-700);
     transform: translateY(-2px);
 }
 
@@ -576,7 +576,7 @@
 }
 
 .wizard-dot.is-active {
-    background: var(--teal-500);
+    background: var(--brand-500);
     transform: scale(1.2);
 }
 
@@ -606,7 +606,7 @@
 .wizard-next {
     padding: 16px 24px;
     min-height: 54px;
-    background: var(--teal-500);
+    background: var(--brand-500);
     color: #ffffff;
     border: none;
     border-radius: var(--radius-sm);
@@ -618,7 +618,7 @@
 }
 
 .wizard-next:hover {
-    background: var(--teal-700);
+    background: var(--brand-700);
     transform: translateY(-2px);
 }
 
@@ -648,7 +648,7 @@
 
 .rejoindre-cta {
     width: 100%;
-    background: linear-gradient(135deg, var(--purple-50) 0%, var(--surface) 50%, var(--teal-50) 100%);
+    background: linear-gradient(135deg, var(--accent-50) 0%, var(--surface) 50%, var(--brand-50) 100%);
     padding: 90px 0 100px;
     text-align: center;
     border-top: 1px solid var(--border);
@@ -700,22 +700,22 @@
 }
 
 .btn--primary {
-    background: var(--teal-500);
+    background: var(--brand-500);
     color: #fff;
-    border-color: var(--teal-500);
+    border-color: var(--brand-500);
 }
 .btn--primary:hover {
-    background: var(--teal-700);
-    border-color: var(--teal-700);
+    background: var(--brand-700);
+    border-color: var(--brand-700);
 }
 
 .btn--outline {
     background: transparent;
-    color: var(--purple-600);
-    border-color: var(--purple-600);
+    color: var(--accent-600);
+    border-color: var(--accent-600);
 }
 .btn--outline:hover {
-    background: var(--purple-600);
+    background: var(--accent-600);
     color: #fff;
 }
 
@@ -839,8 +839,8 @@
 /* Badge utilisé sur fond clair (sections adhésion / bénévolat / partenariat) */
 .page-badge--dark {
     display: inline-block;
-    background: var(--teal-50);
-    color: var(--teal-700);
+    background: var(--brand-50);
+    color: var(--brand-700);
     padding: 10px 22px;
     border-radius: 999px;
     font-size: 14px;
@@ -848,7 +848,7 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     margin-bottom: 20px;
-    border: 1px solid var(--teal-200);
+    border: 1px solid var(--brand-200);
 }
 
 /* Listes à puces (dons, bénévolat, partenariat) */
@@ -877,7 +877,7 @@
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    background: var(--teal-500);
+    background: var(--brand-500);
 }
 
 .check-list li::after {
@@ -927,7 +927,7 @@
 
 .form-card .radio-option input[type="radio"] {
     width: auto;
-    accent-color: var(--teal-500);
+    accent-color: var(--brand-500);
     cursor: pointer;
 }
 
@@ -953,12 +953,12 @@
 
 .btn--light {
     background: #ffffff;
-    color: var(--teal-700);
+    color: var(--brand-700);
     border-color: #ffffff;
 }
 .btn--light:hover {
-    background: var(--teal-50);
-    border-color: var(--teal-50);
+    background: var(--brand-50);
+    border-color: var(--brand-50);
 }
 
 .btn--don {
@@ -999,7 +999,7 @@
     text-align: center;
     font-size: 20px;
     font-weight: 700;
-    color: var(--teal-700);
+    color: var(--brand-700);
 }
 
 /* Moyens de paiement (adhésion) */
@@ -1029,31 +1029,31 @@
     padding: 14px 16px;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-left: 4px solid var(--teal-500);
+    border-left: 4px solid var(--brand-500);
     border-radius: var(--radius-sm);
     font-size: 15px;
     color: var(--text-secondary);
 }
 
 .paiement-liste a {
-    color: var(--teal-700);
+    color: var(--brand-700);
     font-weight: 700;
 }
 
 .paiement-vide {
     margin: 0;
     padding: 14px 16px;
-    background: var(--teal-50);
-    border: 1px solid var(--teal-200);
+    background: var(--brand-50);
+    border: 1px solid var(--brand-200);
     border-radius: var(--radius-sm);
     font-size: 15px;
     line-height: 1.6;
-    color: var(--teal-900);
+    color: var(--brand-900);
 }
 
 
 .steps-list a {
-    color: var(--teal-700);
+    color: var(--brand-700);
     font-weight: 600;
     text-decoration: underline;
 }

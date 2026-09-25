@@ -23,6 +23,8 @@ require __DIR__ . '/partials/header.php';
             ressources fondées sur des données probantes pour renforcer votre travail
             de prévention et de réponse à la violence sexiste.
         </p>
+
+        <div class="hero-don"><?php require __DIR__ . '/partials/hero-don.php'; ?></div>
     </div>
 </section>
 

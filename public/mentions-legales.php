@@ -20,6 +20,8 @@ require __DIR__ . '/partials/header.php';
         <span class="page-badge">Informations légales</span>
         <h1>Mentions légales et confidentialité</h1>
         <p class="page-lead">Dernière mise à jour : <?= $e($legal['derniere_maj']) ?></p>
+
+        <div class="hero-don"><?php require __DIR__ . '/partials/hero-don.php'; ?></div>
     </div>
 </section>
 

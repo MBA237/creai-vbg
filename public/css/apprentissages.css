@@ -41,12 +41,12 @@
 }
 
 .learn-filter:hover {
-    background: var(--teal-50);
-    color: var(--teal-700);
+    background: var(--brand-50);
+    color: var(--brand-700);
 }
 
 .learn-filter.is-active {
-    background: var(--teal-500);
+    background: var(--brand-500);
     color: #ffffff;
 }
 
@@ -74,9 +74,9 @@
 }
 
 .learn-card {
-    --accent: var(--teal-500);
-    --accent-soft: var(--teal-50);
-    --accent-text: var(--teal-700);
+    --accent: var(--brand-500);
+    --accent-soft: var(--brand-50);
+    --accent-text: var(--brand-700);
 
     display: flex;
     flex-direction: column;
@@ -96,7 +96,7 @@
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.07);
 }
 
-.learn-card--webinaire { --accent: var(--purple-600); --accent-soft: var(--purple-50); --accent-text: var(--purple-800); }
+.learn-card--webinaire { --accent: var(--accent-600); --accent-soft: var(--accent-50); --accent-text: var(--accent-800); }
 .learn-card--cours     { --accent: var(--coral-500);  --accent-soft: var(--coral-50);  --accent-text: var(--coral-700); }
 .learn-card--pairs     { --accent: var(--gray-600);   --accent-soft: var(--gray-100);  --accent-text: var(--gray-900); }
 
@@ -223,16 +223,16 @@
 }
 
 .learn-share:hover {
-    background: var(--teal-50);
-    color: var(--teal-700);
-    border-color: var(--teal-500);
+    background: var(--brand-50);
+    color: var(--brand-700);
+    border-color: var(--brand-500);
 }
 
 /* Confirmation « Lien copié ! » au-dessus du bouton */
 .learn-share.is-copied {
-    background: var(--teal-500);
+    background: var(--brand-500);
     color: #ffffff;
-    border-color: var(--teal-500);
+    border-color: var(--brand-500);
 }
 
 .learn-share.is-copied::after {

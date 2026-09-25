@@ -6,20 +6,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
-    --teal-50:  #e9f5f0;
-    --teal-100: #cdead9;
-    --teal-200: #7cc2a4;
-    --teal-500: #157a5c;
-    --teal-600: #106649;
-    --teal-700: #0c5540;
-    --teal-800: #0a4534;
-    --teal-900: #073328;
+    --brand-50:  #f5eef7;
+    --brand-100: #ead9ee;
+    --brand-200: #c79dd1;
+    --brand-500: #6a2c74;
+    --brand-600: #5c2565;
+    --brand-700: #4e1f57;
+    --brand-800: #401a48;
+    --brand-900: #33143a;
 
-    --purple-50:  #efeef9;
-    --purple-200: #b3aade;
-    --purple-600: #4c4494;
-    --purple-700: #3c366f;
-    --purple-800: #322d5c;
+    --accent-50:  #efeef9;
+    --accent-200: #b3aade;
+    --accent-600: #4c4494;
+    --accent-700: #3c366f;
+    --accent-800: #322d5c;
 
     --coral-50:  #faece7;
     --coral-500: #c04f2b;
@@ -51,8 +51,8 @@
     --radius:    10px;
     --radius-sm: 6px;
 
-    --shadow-sm: 0 1px 2px rgba(7, 51, 40, 0.06), 0 1px 1px rgba(7, 51, 40, 0.04);
-    --shadow-md: 0 8px 24px rgba(7, 51, 40, 0.10);
+    --shadow-sm: 0 1px 2px rgba(51, 20, 58, 0.06), 0 1px 1px rgba(51, 20, 58, 0.04);
+    --shadow-md: 0 8px 24px rgba(51, 20, 58, 0.10);
 }
 
 /* ============================================================
@@ -68,7 +68,7 @@
 }
 
 .piliers-page :focus-visible {
-    outline: 2px solid var(--teal-500);
+    outline: 2px solid var(--brand-500);
     outline-offset: 3px;
 }
 
@@ -89,7 +89,7 @@
 
 .piliers-hero {
     width: 100%;
-    background: linear-gradient(155deg, var(--teal-900) 0%, var(--teal-700) 55%, var(--teal-600) 100%);
+    background: linear-gradient(155deg, var(--brand-900) 0%, var(--brand-700) 55%, var(--brand-600) 100%);
     color: #ffffff;
 
     /* Hauteur augmentée + padding généreux */
@@ -245,11 +245,11 @@
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.04em;
-    color: var(--teal-600);
+    color: var(--brand-600);
     margin: 0 0 var(--space-1);
 }
 
-.eyebrow--purple { color: var(--purple-600); }
+.eyebrow--purple { color: var(--accent-600); }
 
 /* ============================================================
    TITRES DE PILIER
@@ -265,13 +265,13 @@
     font-weight: 700;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--teal-600);
+    color: var(--brand-600);
     margin-bottom: 8px;
 }
 
 #pilier-accompagnement .pilier-title-num,
 #pilier-plaidoyer .pilier-title-num {
-    color: var(--purple-600);
+    color: var(--accent-600);
 }
 
 .pilier-title-text {
@@ -295,14 +295,14 @@
     bottom: 0;
     width: 48px;
     height: 3px;
-    background: var(--teal-500);
+    background: var(--brand-500);
     border-radius: 2px;
 }
 
 .pilier-layout--reverse .pilier-content > h3::after,
 #pilier-accompagnement .pilier-content > h3::after,
 #pilier-plaidoyer .pilier-content > h3::after {
-    background: var(--purple-600);
+    background: var(--accent-600);
 }
 
 /* ============================================================
@@ -329,7 +329,7 @@
     font-weight: 700;
     line-height: 1.25;
     letter-spacing: -0.01em;
-    color: var(--teal-800, #0a4534);
+    color: var(--brand-800, #401a48);
     margin: 0 0 28px;
     padding-bottom: 14px;
     position: relative;
@@ -343,7 +343,7 @@
     bottom: 0;
     width: 60px;
     height: 4px;
-    background: var(--teal-500);
+    background: var(--brand-500);
     border-radius: 2px;
 }
 
@@ -421,7 +421,7 @@
     aspect-ratio: 3 / 2;
     overflow: hidden;
     background: var(--gray-100);
-    border-bottom: 3px solid var(--teal-500);
+    border-bottom: 3px solid var(--brand-500);
 }
 
 .vbg-card-image img {
@@ -470,8 +470,8 @@
     justify-content: center;
 
     background: var(--surface);
-    color: var(--teal-600);
-    border: 2px solid var(--teal-200);
+    color: var(--brand-600);
+    border: 2px solid var(--brand-200);
     border-radius: 50%;
 
     cursor: pointer;
@@ -489,7 +489,7 @@
         color 0.15s ease,
         border-color 0.15s ease;
 
-    box-shadow: 0 6px 20px rgba(7, 51, 40, 0.12);
+    box-shadow: 0 6px 20px rgba(51, 20, 58, 0.12);
 }
 
 .vbg-nav svg {
@@ -505,9 +505,9 @@
 }
 
 .vbg-nav:hover:not(:disabled) {
-    background: var(--teal-500);
+    background: var(--brand-500);
     color: #ffffff;
-    border-color: var(--teal-500);
+    border-color: var(--brand-500);
     transform: translateY(-50%) scale(1.08);
 }
 
@@ -648,7 +648,7 @@
     min-width: 48px;
     height: 40px;
     padding: 0 14px;
-    background: var(--teal-900);
+    background: var(--brand-900);
     color: #ffffff;
     font-size: 15px;
     font-weight: 700;
@@ -658,7 +658,7 @@
 
 #pilier-accompagnement .pilier-number,
 #pilier-plaidoyer .pilier-number {
-    background: var(--purple-800);
+    background: var(--accent-800);
 }
 
 .pilier-content > h3 {
@@ -682,13 +682,13 @@
 .pilier-subsection {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-left: 3px solid var(--teal-500);
+    border-left: 3px solid var(--brand-500);
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
     padding: 20px 24px;
 }
 
 .pilier-subsection--auteurs {
-    border-left-color: var(--purple-600);
+    border-left-color: var(--accent-600);
 }
 
 .pilier-subsection h3 {
@@ -710,8 +710,8 @@
     height: 34px;
     flex-shrink: 0;
     border-radius: 50%;
-    background: var(--teal-50);
-    color: var(--teal-600);
+    background: var(--brand-50);
+    color: var(--brand-600);
 }
 
 .pilier-icon svg {
@@ -720,8 +720,8 @@
 }
 
 .pilier-subsection--auteurs .pilier-icon {
-    background: var(--purple-50);
-    color: var(--purple-600);
+    background: var(--accent-50);
+    color: var(--accent-600);
 }
 
 .pilier-subsection p {
@@ -743,7 +743,7 @@
     flex: 1 1 0;
     min-width: 0;
     border-left: none;
-    border-top: 3px solid var(--teal-500);
+    border-top: 3px solid var(--brand-500);
     border-radius: 0 0 var(--radius-sm) var(--radius-sm);
     padding: 26px 24px 28px;
     transition: box-shadow 0.15s ease, transform 0.15s ease;
@@ -755,7 +755,7 @@
 }
 
 .pilier-subsections--grid .pilier-subsection--auteurs {
-    border-top-color: var(--purple-600);
+    border-top-color: var(--accent-600);
 }
 
 .pilier-subsections--grid .pilier-subsection h3 {
@@ -818,12 +818,12 @@
     position: absolute;
     left: 0;
     top: 0;
-    color: var(--teal-500);
+    color: var(--brand-500);
     font-weight: 700;
 }
 
 .pilier-subsection--auteurs .piliers-list li::before {
-    color: var(--purple-600);
+    color: var(--accent-600);
 }
 
 .piliers-list li strong {
@@ -849,30 +849,30 @@
     gap: 8px;
     padding: 14px 32px;
     background: transparent;
-    color: var(--teal-600);
+    color: var(--brand-600);
     text-decoration: none;
     font-size: 15px;
     font-weight: 600;
-    border: 1.5px solid var(--teal-500);
+    border: 1.5px solid var(--brand-500);
     border-radius: var(--radius-sm);
     transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
 }
 
 .piliers-cta:hover {
-    background: var(--teal-500);
+    background: var(--brand-500);
     color: #ffffff;
     transform: translateY(-2px);
 }
 
 #pilier-accompagnement .piliers-cta,
 #pilier-plaidoyer .piliers-cta {
-    color: var(--purple-600);
-    border-color: var(--purple-600);
+    color: var(--accent-600);
+    border-color: var(--accent-600);
 }
 
 #pilier-accompagnement .piliers-cta:hover,
 #pilier-plaidoyer .piliers-cta:hover {
-    background: var(--purple-600);
+    background: var(--accent-600);
     color: #ffffff;
 }
 
@@ -882,7 +882,7 @@
 
 .piliers-cta-final {
     width: 100%;
-    background: var(--teal-900);
+    background: var(--brand-900);
     padding: var(--space-7) 0;
     text-align: center;
 }
@@ -928,11 +928,11 @@
 
 .btn--primary {
     background: #ffffff;
-    color: var(--teal-800);
+    color: var(--brand-800);
     border-color: #ffffff;
 }
 .btn--primary:hover {
-    background: var(--teal-50);
+    background: var(--brand-50);
 }
 
 .btn--outline {
@@ -1181,24 +1181,24 @@
     width: 38px;
     height: 38px;
     border-radius: 10px;
-    background: var(--teal-50);
-    color: var(--teal-600);
+    background: var(--brand-50);
+    color: var(--brand-600);
     transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
 }
 
 .pilier-subsection--auteurs .service-item-icon {
-    background: var(--purple-50);
-    color: var(--purple-600);
+    background: var(--accent-50);
+    color: var(--accent-600);
 }
 
 .service-item:hover .service-item-icon {
-    background: var(--teal-500);
+    background: var(--brand-500);
     color: #ffffff;
     transform: scale(1.05);
 }
 
 .pilier-subsection--auteurs .service-item:hover .service-item-icon {
-    background: var(--purple-600);
+    background: var(--accent-600);
     color: #ffffff;
 }
 

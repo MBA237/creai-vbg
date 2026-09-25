@@ -76,7 +76,7 @@ require __DIR__ . '/partials/header.php';
             2026 au 31 décembre 2027.
         </p>
         <div class="rejoindre-hero-actions">
-            <a href="/don.php" class="btn btn--don">Faire un don</a>
+            <?php require __DIR__ . '/partials/hero-don.php'; ?>
             <a href="#adhesion" class="btn btn--light">J'adhère</a>
             <a href="#benevolat" class="btn btn--ghost-light">Je deviens bénévole</a>
             <a href="#partenaires" class="btn btn--ghost-light">Je deviens partenaire</a>

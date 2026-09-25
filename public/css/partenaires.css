@@ -1,0 +1,272 @@
+/* ============================================================
+   PAGE « NOS PARTENAIRES »
+   Hero, conteneurs, boutons et cartes viennent de apropos.css
+   (voir CSS_DEPENDENCIES dans src/asset.php).
+   Chaque partenaire occupe une bande sur toute la largeur du navigateur.
+   ============================================================ */
+
+/* Bandeau de synthèse sous le hero */
+.partenaires-bandeau {
+    width: 100%;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+.partenaires-bandeau-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 18px clamp(20px, 5vw, 72px);
+}
+
+.partenaires-total,
+.partenaires-page-info {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.partenaires-total {
+    color: var(--brand-700);
+}
+
+.partenaires-page-info {
+    color: var(--text-muted);
+}
+
+.apropos-page .partenaires-vide {
+    margin: 0 0 40px;
+    padding: 40px 24px;
+    text-align: center;
+    background: var(--surface);
+    border: 1px dashed var(--border);
+    border-radius: 16px;
+    font-size: 17px;
+    color: var(--text-secondary);
+}
+
+/* --- Une bande pleine largeur par partenaire --- */
+.partenaire-band {
+    width: 100%;
+    padding: 72px 0;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    scroll-margin-top: 80px;
+}
+
+.partenaire-band--alt {
+    background: var(--surface-alt);
+}
+
+.partenaire-band-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: center;
+    gap: clamp(32px, 6vw, 96px);
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 72px);
+}
+
+/* Une bande sur deux : logo à droite */
+.partenaire-band--alt .partenaire-band-inner {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+}
+
+.partenaire-band--alt .partenaire-band-logo {
+    order: 2;
+}
+
+.partenaire-band-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 320px;
+    padding: 40px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    box-shadow: 0 18px 44px rgba(51, 20, 58, 0.08);
+}
+
+.partenaire-band-logo .partenaire-logo {
+    height: 240px;
+    margin: 0;
+}
+
+.partenaire-band-logo .partenaire-logo img {
+    max-height: 220px;
+}
+
+.partenaire-band-logo .partenaire-monogram {
+    width: 180px;
+    height: 180px;
+    font-size: 56px;
+}
+
+.partenaire-band-body {
+    text-align: left;
+}
+
+.partenaire-band-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.partenaire-band-num {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--brand-500);
+}
+
+.partenaire-band-num::after {
+    content: '';
+    display: inline-block;
+    width: 36px;
+    height: 2px;
+    margin-left: 14px;
+    vertical-align: middle;
+    background: var(--brand-200);
+}
+
+.partenaire-detail-type {
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--brand-50);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--brand-700);
+}
+
+.apropos-page .partenaire-band-body h2 {
+    margin: 0 0 18px;
+    font-size: clamp(28px, 3.4vw, 40px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    color: var(--brand-900);
+    text-wrap: balance;
+}
+
+.apropos-page .partenaire-band-desc {
+    max-width: 62ch;
+    margin: 0 0 32px;
+    font-size: 18px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    text-wrap: pretty;
+}
+
+.partenaire-band-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px 24px;
+}
+
+.btn-cta--lg {
+    gap: 10px;
+    min-height: 54px;
+    padding: 16px 32px;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.btn-cta--lg.btn-cta--solid:hover {
+    color: #ffffff;
+}
+
+.partenaire-band-domain {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--text-muted);
+    overflow-wrap: anywhere;
+}
+
+/* --- Pagination (liens) --- */
+.partenaires-pager-zone {
+    width: 100%;
+    padding: 40px 0;
+    background: var(--surface);
+}
+
+.partenaires-pager-zone .partenaires-pager {
+    margin: 0;
+}
+
+a.partenaires-pager-btn,
+span.partenaires-pager-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+span.partenaires-pager-btn.is-disabled {
+    opacity: 0.4;
+}
+
+.partenaires-invite-section {
+    background: var(--surface-alt);
+}
+
+.partenaires-invite-section .partenaires-invite {
+    margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+    .partenaire-band {
+        padding: 48px 0;
+    }
+
+    .partenaire-band-inner,
+    .partenaire-band--alt .partenaire-band-inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .partenaire-band--alt .partenaire-band-logo {
+        order: 0;
+    }
+
+    .partenaire-band-logo {
+        min-height: 220px;
+        padding: 28px;
+    }
+
+    .partenaire-band-logo .partenaire-logo {
+        height: 160px;
+    }
+
+    .partenaire-band-logo .partenaire-logo img {
+        max-height: 150px;
+    }
+
+    .partenaire-band-logo .partenaire-monogram {
+        width: 130px;
+        height: 130px;
+        font-size: 42px;
+    }
+
+    .apropos-page .partenaire-band-desc {
+        font-size: 16.5px;
+    }
+
+    .partenaire-band-actions .btn-cta {
+        width: 100%;
+    }
+}

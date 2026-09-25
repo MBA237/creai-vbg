@@ -8,17 +8,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
-    --teal-50:  #e1f5ee;
-    --teal-200: #5dcaa5;
-    --teal-500: #1d9e75;
-    --teal-700: #0f6e56;
-    --teal-800: #0b5340;
-    --teal-900: #085041;
+    --brand-50:  #f5eef7;
+    --brand-200: #c79dd1;
+    --brand-500: #6a2c74;
+    --brand-700: #4e1f57;
+    --brand-800: #401a48;
+    --brand-900: #33143a;
 
-    --purple-50:  #eeedfe;
-    --purple-200: #afa9ec;
-    --purple-600: #534ab7;
-    --purple-800: #3c3489;
+    --accent-50:  #e6f4f5;
+    --accent-200: #9fd3d8;
+    --accent-600: #24808a;
+    --accent-800: #175a63;
 
     --coral-50:  #faece7;
     --coral-500: #d85a30;
@@ -66,7 +66,7 @@
 
 .page-hero {
     width: 100%;
-    background: linear-gradient(135deg, var(--teal-900) 0%, var(--teal-700) 50%, var(--teal-500) 100%);
+    background: linear-gradient(135deg, var(--brand-900) 0%, var(--brand-700) 50%, var(--brand-500) 100%);
     color: #ffffff;
     padding: 100px 0 90px;
     position: relative;
@@ -159,7 +159,7 @@
     font-weight: 700;
     line-height: 1.25;
     letter-spacing: -0.01em;
-    color: var(--teal-800);
+    color: var(--brand-800);
     margin: 0 0 14px;
     padding-bottom: 14px;
 }
@@ -171,12 +171,12 @@
     bottom: 0;
     width: 60px;
     height: 4px;
-    background: var(--teal-500);
+    background: var(--brand-500);
     border-radius: 2px;
 }
 
-.section-title--purple { color: var(--purple-800); }
-.section-title--purple::after { background: var(--purple-600); }
+.section-title--purple { color: var(--accent-800); }
+.section-title--purple::after { background: var(--accent-600); }
 
 .section-intro {
     max-width: 720px;
@@ -201,7 +201,7 @@
     flex-direction: column;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-top: 4px solid var(--teal-500);
+    border-top: 4px solid var(--brand-500);
     border-radius: var(--radius);
     padding: 28px 26px 26px;
     transition: transform 0.2s, box-shadow 0.2s;
@@ -212,8 +212,8 @@
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.07);
 }
 
-.info-card--teal   { border-top-color: var(--teal-500); }
-.info-card--purple { border-top-color: var(--purple-600); }
+.info-card--teal   { border-top-color: var(--brand-500); }
+.info-card--purple { border-top-color: var(--accent-600); }
 .info-card--coral  { border-top-color: var(--coral-500); }
 .info-card--gray   { border-top-color: var(--gray-600); }
 
@@ -225,11 +225,11 @@
     height: 48px;
     border-radius: 12px;
     margin-bottom: 18px;
-    background: var(--teal-50);
-    color: var(--teal-700);
+    background: var(--brand-50);
+    color: var(--brand-700);
 }
 
-.info-card--purple .info-card-icon { background: var(--purple-50); color: var(--purple-600); }
+.info-card--purple .info-card-icon { background: var(--accent-50); color: var(--accent-600); }
 .info-card--coral  .info-card-icon { background: var(--coral-50);  color: var(--coral-700); }
 .info-card--gray   .info-card-icon { background: var(--gray-100);  color: var(--gray-600); }
 
@@ -258,18 +258,18 @@
     align-self: flex-start;
     font-size: 14px;
     font-weight: 600;
-    color: var(--teal-700);
+    color: var(--brand-700);
     text-decoration: none;
     transition: color 0.15s;
 }
 
 .info-card-link:hover {
-    color: var(--teal-900);
+    color: var(--brand-900);
     text-decoration: underline;
 }
 
-.info-card--purple .info-card-link { color: var(--purple-600); }
-.info-card--purple .info-card-link:hover { color: var(--purple-800); }
+.info-card--purple .info-card-link { color: var(--accent-600); }
+.info-card--purple .info-card-link:hover { color: var(--accent-800); }
 .info-card--coral  .info-card-link { color: var(--coral-700); }
 
 /* ============================================================
@@ -281,16 +281,16 @@
     align-items: flex-start;
     gap: 18px;
     padding: 24px 26px;
-    background: var(--teal-50);
-    border: 1px solid var(--teal-200);
-    border-left: 5px solid var(--teal-500);
+    background: var(--brand-50);
+    border: 1px solid var(--brand-200);
+    border-left: 5px solid var(--brand-500);
     border-radius: var(--radius);
 }
 
 .callout--care {
-    background: var(--purple-50);
-    border-color: var(--purple-200);
-    border-left-color: var(--purple-600);
+    background: var(--accent-50);
+    border-color: var(--accent-200);
+    border-left-color: var(--accent-600);
 }
 
 .callout-icon {
@@ -302,10 +302,10 @@
     height: 44px;
     border-radius: 50%;
     background: #ffffff;
-    color: var(--teal-700);
+    color: var(--brand-700);
 }
 
-.callout--care .callout-icon { color: var(--purple-600); }
+.callout--care .callout-icon { color: var(--accent-600); }
 
 .callout-icon svg {
     width: 22px;
@@ -329,7 +329,7 @@
 .callout p + p { margin-top: 10px; }
 
 .callout a {
-    color: var(--purple-800);
+    color: var(--accent-800);
     font-weight: 600;
 }
 
@@ -388,24 +388,24 @@
 .btn-cta:hover { transform: translateY(-2px); }
 
 .btn-cta--primary {
-    background: var(--teal-500);
+    background: var(--brand-500);
     color: #ffffff;
-    border: 1.5px solid var(--teal-500);
+    border: 1.5px solid var(--brand-500);
 }
 
 .btn-cta--primary:hover {
-    background: var(--teal-700);
-    border-color: var(--teal-700);
+    background: var(--brand-700);
+    border-color: var(--brand-700);
 }
 
 .btn-cta--ghost {
     background: transparent;
-    color: var(--teal-700);
-    border: 1.5px solid var(--teal-500);
+    color: var(--brand-700);
+    border: 1.5px solid var(--brand-500);
 }
 
 .btn-cta--ghost:hover {
-    background: var(--teal-50);
+    background: var(--brand-50);
 }
 
 /* ============================================================
@@ -414,7 +414,7 @@
 
 .page-cta {
     width: 100%;
-    background: linear-gradient(135deg, var(--teal-900) 0%, var(--teal-700) 100%);
+    background: linear-gradient(135deg, var(--brand-900) 0%, var(--brand-700) 100%);
     padding: 80px 0 90px;
     text-align: center;
     color: #ffffff;
@@ -444,13 +444,13 @@
 
 .page-cta .btn-cta--primary {
     background: #ffffff;
-    color: var(--teal-700);
+    color: var(--brand-700);
     border-color: #ffffff;
 }
 
 .page-cta .btn-cta--primary:hover {
-    background: var(--teal-50);
-    border-color: var(--teal-50);
+    background: var(--brand-50);
+    border-color: var(--brand-50);
 }
 
 .page-cta .btn-cta--ghost {
@@ -460,7 +460,7 @@
 
 .page-cta .btn-cta--ghost:hover {
     background: #ffffff;
-    color: var(--teal-700);
+    color: var(--brand-700);
 }
 
 /* ============================================================

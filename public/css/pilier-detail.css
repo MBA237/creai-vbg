@@ -6,19 +6,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
-    --teal-50:  #e9f5f0;
-    --teal-100: #cdead9;
-    --teal-200: #7cc2a4;
-    --teal-500: #157a5c;
-    --teal-600: #106649;
-    --teal-700: #0c5540;
-    --teal-800: #0a4534;
-    --teal-900: #073328;
+    --brand-50:  #f5eef7;
+    --brand-100: #ead9ee;
+    --brand-200: #c79dd1;
+    --brand-500: #6a2c74;
+    --brand-600: #5c2565;
+    --brand-700: #4e1f57;
+    --brand-800: #401a48;
+    --brand-900: #33143a;
 
-    --purple-50:  #efeef9;
-    --purple-200: #b3aade;
-    --purple-600: #4c4494;
-    --purple-800: #322d5c;
+    --accent-50:  #efeef9;
+    --accent-200: #b3aade;
+    --accent-600: #4c4494;
+    --accent-800: #322d5c;
 
     --coral-50:  #faece7;
     --coral-500: #c04f2b;
@@ -50,8 +50,8 @@
     --radius:    10px;
     --radius-sm: 6px;
 
-    --shadow-sm: 0 1px 2px rgba(7, 51, 40, 0.06);
-    --shadow-md: 0 8px 24px rgba(7, 51, 40, 0.10);
+    --shadow-sm: 0 1px 2px rgba(51, 20, 58, 0.06);
+    --shadow-md: 0 8px 24px rgba(51, 20, 58, 0.10);
 }
 
 /* ============================================================
@@ -82,7 +82,7 @@
 
 .pilier-detail-hero {
     width: 100%;
-    background: linear-gradient(155deg, var(--teal-900) 0%, var(--teal-700) 55%, var(--teal-600) 100%);
+    background: linear-gradient(155deg, var(--brand-900) 0%, var(--brand-700) 55%, var(--brand-600) 100%);
     color: #ffffff;
     padding: clamp(100px, 12vw, 140px) 0 clamp(80px, 10vw, 120px);
     position: relative;
@@ -90,7 +90,7 @@
 }
 
 .pilier-detail-hero--purple {
-    background: linear-gradient(155deg, var(--purple-800) 0%, var(--purple-600) 100%);
+    background: linear-gradient(155deg, var(--accent-800) 0%, var(--accent-600) 100%);
 }
 
 .pilier-detail-hero::before {
@@ -237,7 +237,7 @@
     font-weight: 700;
     line-height: 1.25;
     letter-spacing: -0.01em;
-    color: var(--teal-800);
+    color: var(--brand-800);
     margin: 0 0 28px;
     padding-bottom: 14px;
     position: relative;
@@ -250,12 +250,12 @@
     bottom: 0;
     width: 60px;
     height: 4px;
-    background: var(--teal-500);
+    background: var(--brand-500);
     border-radius: 2px;
 }
 
-.eyebrow--purple { color: var(--purple-800); }
-.eyebrow--purple::after { background: var(--purple-600); }
+.eyebrow--purple { color: var(--accent-800); }
+.eyebrow--purple::after { background: var(--accent-600); }
 
 /* ============================================================
    GRILLE DE PROGRAMMES
@@ -280,7 +280,7 @@
 .programme-card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-md);
-    border-color: var(--teal-200);
+    border-color: var(--brand-200);
 }
 
 .programme-icon {
@@ -290,8 +290,8 @@
     width: 52px;
     height: 52px;
     border-radius: 12px;
-    background: var(--teal-50);
-    color: var(--teal-600);
+    background: var(--brand-50);
+    color: var(--brand-600);
     margin-bottom: 18px;
     flex-shrink: 0;
 }
@@ -303,8 +303,8 @@
 }
 
 .programme-icon--purple {
-    background: var(--purple-50);
-    color: var(--purple-600);
+    background: var(--accent-50);
+    color: var(--accent-600);
 }
 
 .programme-card h3 {
@@ -394,7 +394,7 @@
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: var(--teal-50);
+    background: var(--brand-50);
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23106649' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>");
     background-size: 14px;
     background-position: center;
@@ -411,16 +411,16 @@
    ============================================================ */
 
 .highlight-box {
-    background: linear-gradient(135deg, var(--teal-50) 0%, #d4f0e5 100%);
-    border-left: 5px solid var(--teal-500);
+    background: linear-gradient(135deg, var(--brand-50) 0%, #e6d3ea 100%);
+    border-left: 5px solid var(--brand-500);
     border-radius: 0 var(--radius) var(--radius) 0;
     padding: 32px 36px;
     margin: var(--space-4) 0;
 }
 
 .highlight-box--purple {
-    background: linear-gradient(135deg, var(--purple-50) 0%, #ddd9f7 100%);
-    border-left-color: var(--purple-600);
+    background: linear-gradient(135deg, var(--accent-50) 0%, #cfe9ec 100%);
+    border-left-color: var(--accent-600);
 }
 
 .highlight-box h3 {
@@ -473,8 +473,8 @@
 }
 
 .pilier-nav-link:hover {
-    background: var(--teal-50);
-    border-color: var(--teal-500);
+    background: var(--brand-50);
+    border-color: var(--brand-500);
     transform: translateY(-2px);
 }
 
@@ -483,7 +483,7 @@
     height: 18px;
     display: block;
     flex-shrink: 0;
-    color: var(--teal-600);
+    color: var(--brand-600);
 }
 
 .pilier-nav-link--next {
@@ -497,7 +497,7 @@
 
 .pilier-detail-cta {
     width: 100%;
-    background: linear-gradient(135deg, var(--purple-50) 0%, var(--surface) 50%, var(--teal-50) 100%);
+    background: linear-gradient(135deg, var(--accent-50) 0%, var(--surface) 50%, var(--brand-50) 100%);
     padding: var(--space-7) 0;
     text-align: center;
     border-top: 1px solid var(--border);
@@ -552,24 +552,24 @@
 }
 
 .btn--primary {
-    background: var(--teal-500);
+    background: var(--brand-500);
     color: #ffffff;
-    border-color: var(--teal-500);
+    border-color: var(--brand-500);
 }
 
 .btn--primary:hover {
-    background: var(--teal-700);
-    border-color: var(--teal-700);
+    background: var(--brand-700);
+    border-color: var(--brand-700);
 }
 
 .btn--outline {
     background: transparent;
-    color: var(--purple-600);
-    border-color: var(--purple-600);
+    color: var(--accent-600);
+    border-color: var(--accent-600);
 }
 
 .btn--outline:hover {
-    background: var(--purple-600);
+    background: var(--accent-600);
     color: #ffffff;
 }
 

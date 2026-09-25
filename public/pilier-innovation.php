@@ -40,6 +40,8 @@ require __DIR__ . '/partials/header.php';
                 Tirer parti des outils numériques pour améliorer les services de
                 prévention et de réponse à la violence basée sur le genre.
             </p>
+
+            <div class="hero-don"><?php require __DIR__ . '/partials/hero-don.php'; ?></div>
         </div>
     </section>
 

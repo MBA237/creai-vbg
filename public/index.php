@@ -41,7 +41,7 @@ require __DIR__ . '/partials/header.php';
                             est libre de participer pleinement à la société.
                         </p>
                         <div class="home-hero-cta">
-                            <a href="/don.php" class="btn btn--coral">Je fais un don</a>
+                            <?php require __DIR__ . '/partials/hero-don.php'; ?>
                             <a href="/rejoindre.php" class="btn btn--primary">Devenir membre</a>
                             <a href="/ce-que-nous-faisons.php" class="btn btn--outline">Découvrir nos actions</a>
                         </div>

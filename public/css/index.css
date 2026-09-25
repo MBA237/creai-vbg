@@ -6,17 +6,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
-    --teal-50:  #e1f5ee;
-    --teal-200: #5dcaa5;
-    --teal-500: #1d9e75;
-    --teal-700: #0f6e56;
-    --teal-900: #085041;
+    --brand-50:  #f5eef7;
+    --brand-200: #c79dd1;
+    --brand-500: #6a2c74;
+    --brand-700: #4e1f57;
+    --brand-900: #33143a;
 
-    --purple-50:  #eeedfe;
-    --purple-200: #afa9ec;
-    --purple-400: #7f77dd;
-    --purple-600: #534ab7;
-    --purple-800: #3c3489;
+    --accent-50:  #e6f4f5;
+    --accent-200: #9fd3d8;
+    --accent-400: #5ab3bb;
+    --accent-600: #24808a;
+    --accent-800: #175a63;
 
     --coral-50:  #faece7;
     --coral-200: #f0997b;
@@ -76,7 +76,7 @@
 
 .home-hero {
     width: 100%;
-    background: linear-gradient(135deg, var(--teal-900) 0%, var(--teal-700) 50%, var(--teal-500) 100%);
+    background: linear-gradient(135deg, var(--brand-900) 0%, var(--brand-700) 50%, var(--brand-500) 100%);
     color: #ffffff;
     padding: 110px 0 100px;
     text-align: left;
@@ -195,8 +195,8 @@
     height: 28px;
     flex-shrink: 0;
     border-radius: 50%;
-    background: var(--teal-50);
-    color: var(--teal-700);
+    background: var(--brand-50);
+    color: var(--brand-700);
 }
 
 .home-stat-icon svg {
@@ -213,7 +213,7 @@
 
 .home-stat-text strong {
     font-weight: 800;
-    color: var(--teal-800, #0b5340);
+    color: var(--brand-800, #401a48);
     margin-right: 3px;
 }
 
@@ -285,13 +285,13 @@
 }
 
 .btn--primary {
-    background: var(--teal-500);
+    background: var(--brand-500);
     color: #fff;
-    border-color: var(--teal-500);
+    border-color: var(--brand-500);
 }
 .btn--primary:hover {
-    background: var(--teal-700);
-    border-color: var(--teal-700);
+    background: var(--brand-700);
+    border-color: var(--brand-700);
 }
 
 .btn--outline {
@@ -301,17 +301,17 @@
 }
 .btn--outline:hover {
     background: #ffffff;
-    color: var(--teal-700);
+    color: var(--brand-700);
     border-color: #ffffff;
 }
 
 .btn--outline-teal {
     background: transparent;
-    color: var(--teal-500);
-    border-color: var(--teal-500);
+    color: var(--brand-500);
+    border-color: var(--brand-500);
 }
 .btn--outline-teal:hover {
-    background: var(--teal-500);
+    background: var(--brand-500);
     color: #fff;
 }
 
@@ -337,11 +337,11 @@
 
 .btn--outline-purple {
     background: transparent;
-    color: var(--purple-600);
-    border-color: var(--purple-600);
+    color: var(--accent-600);
+    border-color: var(--accent-600);
 }
 .btn--outline-purple:hover {
-    background: var(--purple-600);
+    background: var(--accent-600);
     color: #fff;
 }
 
@@ -387,7 +387,7 @@
     font-weight: 700;
     line-height: 1.25;
     letter-spacing: -0.01em;
-    color: var(--teal-800, #0b5340);
+    color: var(--brand-800, #401a48);
     margin: 0 0 32px;
     padding-bottom: 14px;
     position: relative;
@@ -400,7 +400,7 @@
     bottom: 0;
     width: 60px;
     height: 4px;
-    background: var(--teal-500);
+    background: var(--brand-500);
     border-radius: 2px;
 }
 
@@ -416,11 +416,11 @@
     transform: translateX(-50%);
 }
 
-.eyebrow--teal { color: var(--teal-800, #0b5340); }
-.eyebrow--teal::after { background: var(--teal-500); }
+.eyebrow--teal { color: var(--brand-800, #401a48); }
+.eyebrow--teal::after { background: var(--brand-500); }
 
-.eyebrow--purple { color: var(--purple-800); }
-.eyebrow--purple::after { background: var(--purple-600); }
+.eyebrow--purple { color: var(--accent-800); }
+.eyebrow--purple::after { background: var(--accent-600); }
 
 .eyebrow--coral { color: var(--coral-900); }
 .eyebrow--coral::after { background: var(--coral-500); }
@@ -550,8 +550,8 @@
 
 .feature-slide--evenement .feature-slide-overlay {
     background:
-        linear-gradient(180deg, rgba(50, 45, 92, 0.3) 0%, rgba(50, 45, 92, 0.55) 60%, rgba(50, 45, 92, 0.9) 100%),
-        linear-gradient(90deg, rgba(50, 45, 92, 0.7) 0%, transparent 60%);
+        linear-gradient(180deg, rgba(51, 20, 58, 0.3) 0%, rgba(51, 20, 58, 0.55) 60%, rgba(51, 20, 58, 0.9) 100%),
+        linear-gradient(90deg, rgba(51, 20, 58, 0.7) 0%, transparent 60%);
 }
 
 /* ============================================================
@@ -631,13 +631,13 @@
 }
 
 .feature-slide-tag--teal {
-    background: var(--teal-500);
-    border-color: var(--teal-500);
+    background: var(--brand-500);
+    border-color: var(--brand-500);
 }
 
 .feature-slide-tag--purple {
-    background: var(--purple-600);
-    border-color: var(--purple-600);
+    background: var(--accent-600);
+    border-color: var(--accent-600);
 }
 
 .feature-slide-date {
@@ -712,14 +712,14 @@
 }
 
 .feature-slide-btn:hover {
-    background: var(--teal-500);
+    background: var(--brand-500);
     color: #ffffff;
     transform: translateY(-2px);
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
 }
 
 .feature-slide--evenement .feature-slide-btn:hover {
-    background: var(--purple-600);
+    background: var(--accent-600);
 }
 
 .feature-slide-btn svg {
@@ -922,8 +922,8 @@
 
 .pillar-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 16px 36px rgba(29, 158, 117, 0.15);
-    border-color: var(--teal-200);
+    box-shadow: 0 16px 36px rgba(106, 44, 116, 0.15);
+    border-color: var(--brand-200);
 }
 
 .pillar-image {
@@ -971,11 +971,11 @@
 .pillar-link {
     font-size: 13.5px;
     font-weight: 600;
-    color: var(--teal-500);
+    color: var(--brand-500);
     transition: color 0.15s;
 }
 
-.pillar-card:hover .pillar-link { color: var(--teal-700); }
+.pillar-card:hover .pillar-link { color: var(--brand-700); }
 
 /* --- Flèches carrousel piliers --- */
 
@@ -989,8 +989,8 @@
     align-items: center;
     justify-content: center;
     background: var(--surface);
-    color: var(--teal-700);
-    border: 2px solid var(--teal-200);
+    color: var(--brand-700);
+    border: 2px solid var(--brand-200);
     border-radius: 50%;
     cursor: pointer;
     z-index: 10;
@@ -1007,9 +1007,9 @@
 }
 
 .pillars-nav:hover:not(:disabled) {
-    background: var(--teal-500);
+    background: var(--brand-500);
     color: #fff;
-    border-color: var(--teal-500);
+    border-color: var(--brand-500);
     transform: translateY(-50%) scale(1.1);
 }
 
@@ -1041,7 +1041,7 @@
 .approach-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-top: 4px solid var(--teal-500);
+    border-top: 4px solid var(--brand-500);
     border-radius: var(--radius);
     padding: 32px 28px;
     text-align: left;
@@ -1050,15 +1050,15 @@
 
 .approach-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 28px rgba(29, 158, 117, 0.1);
+    box-shadow: 0 12px 28px rgba(106, 44, 116, 0.1);
 }
 
 .approach-card:nth-child(2) {
-    border-top-color: var(--purple-600);
+    border-top-color: var(--accent-600);
 }
 
 .approach-card:nth-child(2):hover {
-    box-shadow: 0 12px 28px rgba(83, 74, 183, 0.1);
+    box-shadow: 0 12px 28px rgba(36, 128, 138, 0.1);
 }
 
 .approach-icon {
@@ -1080,23 +1080,23 @@
 }
 
 .approach-icon--teal {
-    background: var(--teal-50);
-    color: var(--teal-700);
+    background: var(--brand-50);
+    color: var(--brand-700);
 }
 
 .approach-icon--purple {
-    background: var(--purple-50);
-    color: var(--purple-600);
+    background: var(--accent-50);
+    color: var(--accent-600);
 }
 
 .approach-card:hover .approach-icon--teal {
-    background: var(--teal-500);
+    background: var(--brand-500);
     color: #ffffff;
     transform: scale(1.08);
 }
 
 .approach-card:hover .approach-icon--purple {
-    background: var(--purple-600);
+    background: var(--accent-600);
     color: #ffffff;
     transform: scale(1.08);
 }
@@ -1207,7 +1207,7 @@
 
 .home-cta {
     width: 100%;
-    background: linear-gradient(135deg, var(--purple-50) 0%, var(--surface) 50%, var(--teal-50) 100%);
+    background: linear-gradient(135deg, var(--accent-50) 0%, var(--surface) 50%, var(--brand-50) 100%);
     padding: 90px 0 100px;
     text-align: center;
     border-top: 1px solid var(--border);
@@ -1237,22 +1237,22 @@
 }
 
 .home-cta .btn--primary {
-    background: var(--teal-500);
+    background: var(--brand-500);
     color: #fff;
-    border-color: var(--teal-500);
+    border-color: var(--brand-500);
 }
 .home-cta .btn--primary:hover {
-    background: var(--teal-700);
-    border-color: var(--teal-700);
+    background: var(--brand-700);
+    border-color: var(--brand-700);
 }
 
 .home-cta .btn--outline {
     background: transparent;
-    color: var(--purple-600);
-    border-color: var(--purple-600);
+    color: var(--accent-600);
+    border-color: var(--accent-600);
 }
 .home-cta .btn--outline:hover {
-    background: var(--purple-600);
+    background: var(--accent-600);
     color: #fff;
 }
 

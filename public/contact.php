@@ -91,6 +91,8 @@ require __DIR__ . '/partials/header.php';
                 possibilités de partenariat, vous impliquer ou nous faire part de vos
                 commentaires, nous sommes à votre écoute.
             </p>
+
+            <div class="hero-don"><?php require __DIR__ . '/partials/hero-don.php'; ?></div>
         </div>
     </section>
 

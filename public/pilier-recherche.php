@@ -42,6 +42,8 @@ require __DIR__ . '/partials/header.php';
                 les causes, les contextes et les réponses les plus efficaces à la
                 violence basée sur le genre.
             </p>
+
+            <div class="hero-don"><?php require __DIR__ . '/partials/hero-don.php'; ?></div>
         </div>
     </section>
 

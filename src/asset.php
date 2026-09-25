@@ -12,6 +12,7 @@ const CSS_DEPENDENCIES = [
     'connaissances.css'    => ['contenu.css'],
     'mentions-legales.css' => ['contenu.css'],
     'notre-equipe.css'     => ['apropos.css'],
+    'partenaires.css'      => ['apropos.css'],
     'rejoindre.css'        => ['contenu.css'],
     'signalement.css'      => ['besoin-aide.css'],
     'soutenir.css'         => ['rejoindre.css'],

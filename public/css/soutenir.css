@@ -24,12 +24,12 @@
 
 .page-hero .btn-cta--primary {
     background: #ffffff;
-    color: var(--teal-700);
+    color: var(--brand-700);
     border-color: #ffffff;
 }
 .page-hero .btn-cta--primary:hover {
-    background: var(--teal-50);
-    border-color: var(--teal-50);
+    background: var(--brand-50);
+    border-color: var(--brand-50);
 }
 
 .page-hero .btn-cta--ghost {

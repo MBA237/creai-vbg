@@ -29,7 +29,7 @@ require __DIR__ . '/partials/header.php';
             organisation à nos actions.
         </p>
         <div class="page-hero-cta">
-            <a href="/don.php" class="btn-cta btn-cta--primary">Je fais un don</a>
+            <?php require __DIR__ . '/partials/hero-don.php'; ?>
             <a href="/rejoindre.php#adhesion" class="btn-cta btn-cta--ghost">J'adhère</a>
             <a href="#benevolat" class="btn-cta btn-cta--ghost">Je deviens bénévole</a>
             <a href="#partenaires" class="btn-cta btn-cta--ghost">Je deviens partenaire</a>

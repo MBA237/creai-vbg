@@ -15,10 +15,10 @@
 .legal h2 {
     font-size: 22px;
     font-weight: 700;
-    color: var(--teal-800);
+    color: var(--brand-800);
     margin: 48px 0 16px;
     padding-bottom: 10px;
-    border-bottom: 2px solid var(--teal-50);
+    border-bottom: 2px solid var(--brand-50);
 }
 
 .legal h2:first-child {
@@ -40,12 +40,12 @@
 }
 
 .legal a {
-    color: var(--teal-700);
+    color: var(--brand-700);
     font-weight: 600;
 }
 
 .legal a:hover {
-    color: var(--teal-900);
+    color: var(--brand-900);
 }
 
 /* Liste « intitulé / valeur » */

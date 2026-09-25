@@ -6,17 +6,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
-    --teal-50:  #e1f5ee;
-    --teal-200: #5dcaa5;
-    --teal-500: #1d9e75;
-    --teal-700: #0f6e56;
-    --teal-800: #0b5340;
-    --teal-900: #085041;
+    --brand-50:  #f5eef7;
+    --brand-200: #c79dd1;
+    --brand-500: #6a2c74;
+    --brand-700: #4e1f57;
+    --brand-800: #401a48;
+    --brand-900: #33143a;
 
-    --purple-50:  #eeedfe;
-    --purple-200: #afa9ec;
-    --purple-600: #534ab7;
-    --purple-800: #3c3489;
+    --accent-50:  #e6f4f5;
+    --accent-200: #9fd3d8;
+    --accent-600: #24808a;
+    --accent-800: #175a63;
 
     --coral-50:  #faece7;
     --coral-500: #d85a30;
@@ -111,7 +111,7 @@ html, body {
     justify-content: center;
     width: 40px;
     height: 40px;
-    background: linear-gradient(135deg, var(--teal-500), var(--teal-700));
+    background: linear-gradient(135deg, var(--brand-500), var(--brand-700));
     color: #ffffff;
     border-radius: 10px;
     font-weight: 800;
@@ -211,17 +211,17 @@ html, body {
 }
 
 .admin-nav-link:hover svg {
-    color: var(--teal-500);
+    color: var(--brand-500);
 }
 
 .admin-nav-link.is-active {
-    background: var(--teal-50);
-    color: var(--teal-800);
+    background: var(--brand-50);
+    color: var(--brand-800);
     font-weight: 600;
 }
 
 .admin-nav-link.is-active svg {
-    color: var(--teal-700);
+    color: var(--brand-700);
 }
 
 .admin-nav-badge {
@@ -266,8 +266,8 @@ html, body {
     justify-content: center;
     width: 38px;
     height: 38px;
-    background: var(--purple-50);
-    color: var(--purple-800);
+    background: var(--accent-50);
+    color: var(--accent-800);
     border-radius: 50%;
     font-weight: 700;
     font-size: 15px;
@@ -400,9 +400,9 @@ html, body {
 }
 
 .admin-topbar-btn:hover {
-    background: var(--teal-50);
-    color: var(--teal-700);
-    border-color: var(--teal-500);
+    background: var(--brand-50);
+    color: var(--brand-700);
+    border-color: var(--brand-500);
 }
 
 .admin-content {
@@ -506,8 +506,8 @@ html, body {
 .admin-form-row input:focus,
 .admin-form-row select:focus {
     outline: none;
-    border-color: var(--purple-600);
-    box-shadow: 0 0 0 3px rgba(83, 74, 183, 0.15);
+    border-color: var(--accent-600);
+    box-shadow: 0 0 0 3px rgba(36, 128, 138, 0.15);
 }
 
 .admin-form-row select {
@@ -539,14 +539,14 @@ html, body {
 }
 
 .admin-form-row input[type="file"]:hover {
-    border-color: var(--purple-600);
-    background: var(--purple-50);
+    border-color: var(--accent-600);
+    background: var(--accent-50);
 }
 
 .admin-form-row input[type="file"]::file-selector-button {
     padding: 8px 16px;
     margin-right: 14px;
-    background: var(--purple-600);
+    background: var(--accent-600);
     color: #ffffff;
     border: none;
     border-radius: 6px;
@@ -580,7 +580,7 @@ html, body {
     justify-content: center;
     gap: 8px;
     padding: 12px 22px;
-    background: var(--purple-600);
+    background: var(--accent-600);
     color: #ffffff;
     border: none;
     border-radius: var(--radius-sm);
@@ -593,7 +593,7 @@ html, body {
 }
 
 .btn-admin:hover {
-    background: var(--purple-800);
+    background: var(--accent-800);
     transform: translateY(-1px);
 }
 
@@ -640,15 +640,15 @@ html, body {
 }
 
 .btn-action--edit {
-    background: var(--purple-50);
-    color: var(--purple-600);
-    border-color: var(--purple-200);
+    background: var(--accent-50);
+    color: var(--accent-600);
+    border-color: var(--accent-200);
 }
 
 .btn-action--edit:hover {
-    background: var(--purple-600);
+    background: var(--accent-600);
     color: #ffffff;
-    border-color: var(--purple-600);
+    border-color: var(--accent-600);
 }
 
 .btn-action--delete {
@@ -715,8 +715,8 @@ html, body {
     display: inline-block;
     padding: 4px 12px;
     border-radius: 999px;
-    background: var(--purple-50);
-    color: var(--purple-800);
+    background: var(--accent-50);
+    color: var(--accent-800);
     font-size: 12.5px;
     font-weight: 600;
     white-space: nowrap;
@@ -828,8 +828,8 @@ html, body {
 }
 
 .message-item.is-active {
-    background: var(--teal-50);
-    border-left: 4px solid var(--teal-500);
+    background: var(--brand-50);
+    border-left: 4px solid var(--brand-500);
 }
 
 .message-item.is-unread .message-item-name {
@@ -867,7 +867,7 @@ html, body {
 .message-item-subject {
     font-size: 13px;
     font-weight: 600;
-    color: var(--teal-700);
+    color: var(--brand-700);
     margin-bottom: 4px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -976,7 +976,7 @@ html, body {
     justify-content: center;
     width: 46px;
     height: 46px;
-    background: var(--teal-500);
+    background: var(--brand-500);
     color: #ffffff;
     border-radius: 50%;
     font-weight: 700;
@@ -1001,7 +1001,7 @@ html, body {
 
 .message-sender-info a {
     font-size: 13.5px;
-    color: var(--teal-600);
+    color: var(--brand-600);
     text-decoration: none;
     font-weight: 500;
 }
@@ -1081,7 +1081,7 @@ html, body {
 .dashboard-card:hover {
     transform: translateY(-3px);
     box-shadow: var(--shadow-md);
-    border-color: var(--teal-200);
+    border-color: var(--brand-200);
 }
 
 .dashboard-card--alert {
@@ -1099,13 +1099,13 @@ html, body {
 }
 
 .dashboard-card-icon--teal {
-    background: var(--teal-50);
-    color: var(--teal-700);
+    background: var(--brand-50);
+    color: var(--brand-700);
 }
 
 .dashboard-card-icon--purple {
-    background: var(--purple-50);
-    color: var(--purple-600);
+    background: var(--accent-50);
+    color: var(--accent-600);
 }
 
 .dashboard-card-icon--gray {
@@ -1310,8 +1310,8 @@ html, body {
 
 .admin-form-row input[type="datetime-local"]:focus {
     outline: none;
-    border-color: var(--purple-600);
-    box-shadow: 0 0 0 3px rgba(83, 74, 183, 0.15);
+    border-color: var(--accent-600);
+    box-shadow: 0 0 0 3px rgba(36, 128, 138, 0.15);
 }
 
 /* Textareas admin */
@@ -1332,8 +1332,8 @@ html, body {
 
 .admin-form-row textarea:focus {
     outline: none;
-    border-color: var(--purple-600);
-    box-shadow: 0 0 0 3px rgba(83, 74, 183, 0.15);
+    border-color: var(--accent-600);
+    box-shadow: 0 0 0 3px rgba(36, 128, 138, 0.15);
 }
 /* ============================================================
    DEMANDES D'ADHÉSION
@@ -1362,13 +1362,13 @@ html, body {
 }
 
 .admin-filter:hover {
-    border-color: var(--purple-200);
-    color: var(--purple-800);
+    border-color: var(--accent-200);
+    color: var(--accent-800);
 }
 
 .admin-filter.is-active {
-    background: var(--purple-600);
-    border-color: var(--purple-600);
+    background: var(--accent-600);
+    border-color: var(--accent-600);
     color: #ffffff;
 }
 
@@ -1400,7 +1400,7 @@ html, body {
 }
 
 .adhesion-badge--en_attente { background: var(--coral-50);  color: var(--coral-700); }
-.adhesion-badge--agree      { background: var(--teal-50);   color: var(--teal-700); }
+.adhesion-badge--agree      { background: var(--brand-50);   color: var(--brand-700); }
 .adhesion-badge--refuse     { background: var(--gray-100);  color: var(--gray-600); }
 
 .adhesion-meta {
@@ -1469,7 +1469,7 @@ html, body {
 .admin-link {
     font-size: 13.5px;
     font-weight: 600;
-    color: var(--purple-600);
+    color: var(--accent-600);
     text-decoration: none;
 }
 
@@ -1479,12 +1479,12 @@ html, body {
 
 /* Carte en mode modification : bien visible */
 .admin-card--editing {
-    border-color: var(--purple-600);
-    box-shadow: 0 0 0 3px rgba(83, 74, 183, 0.14);
+    border-color: var(--accent-600);
+    box-shadow: 0 0 0 3px rgba(36, 128, 138, 0.14);
 }
 
 .admin-table tbody tr.is-editing {
-    background: var(--purple-50);
+    background: var(--accent-50);
 }
 
 /* Image de couverture actuelle */
@@ -1523,15 +1523,15 @@ html, body {
 
 /* Publier / Dépublier dans le tableau */
 .btn-action--publish {
-    background: var(--teal-50);
-    color: var(--teal-700);
-    border-color: var(--teal-200);
+    background: var(--brand-50);
+    color: var(--brand-700);
+    border-color: var(--brand-200);
 }
 
 .btn-action--publish:hover {
-    background: var(--teal-500);
+    background: var(--brand-500);
     color: #ffffff;
-    border-color: var(--teal-500);
+    border-color: var(--brand-500);
 }
 
 .btn-action--unpublish {
@@ -1600,18 +1600,18 @@ html, body {
     width: 18px;
     height: 18px;
     margin: 0;
-    accent-color: var(--purple-600);
+    accent-color: var(--accent-600);
     cursor: pointer;
 }
 
 .admin-check:has(input:checked) {
-    background: var(--purple-50);
-    border-color: var(--purple-600);
-    color: var(--purple-800);
+    background: var(--accent-50);
+    border-color: var(--accent-600);
+    color: var(--accent-800);
 }
 
 .admin-check:focus-within {
-    box-shadow: 0 0 0 3px rgba(83, 74, 183, 0.15);
+    box-shadow: 0 0 0 3px rgba(36, 128, 138, 0.15);
 }
 
 /* ============================================================
@@ -1633,12 +1633,12 @@ html, body {
 }
 
 .sig-flag--danger { background: var(--coral-500); color: #ffffff; }
-.sig-flag--mineur { background: var(--purple-600); color: #ffffff; }
+.sig-flag--mineur { background: var(--accent-600); color: #ffffff; }
 
 .sig-statut { margin-right: 8px; }
 .sig-statut--nouveau  { background: var(--coral-50);  color: var(--coral-700); }
-.sig-statut--en_cours { background: var(--purple-50); color: var(--purple-800); }
-.sig-statut--traite   { background: var(--teal-50);   color: var(--teal-700); }
+.sig-statut--en_cours { background: var(--accent-50); color: var(--accent-800); }
+.sig-statut--traite   { background: var(--brand-50);   color: var(--brand-700); }
 
 .sig-alerts {
     display: flex;
@@ -1655,7 +1655,7 @@ html, body {
 }
 
 .sig-alert--danger { background: var(--coral-50);  color: var(--coral-700); border: 1.5px solid var(--coral-500); }
-.sig-alert--mineur { background: var(--purple-50); color: var(--purple-800); border: 1.5px solid var(--purple-200); }
+.sig-alert--mineur { background: var(--accent-50); color: var(--accent-800); border: 1.5px solid var(--accent-200); }
 
 .adhesion-meta .sig-meta-wide {
     flex-basis: 100%;
@@ -1688,11 +1688,11 @@ html, body {
 }
 
 .sig-contact-anon { margin: 0; color: var(--gray-600); }
-.sig-contact-ok   { color: var(--teal-700); }
+.sig-contact-ok   { color: var(--brand-700); }
 .sig-contact-warn { color: var(--coral-700); }
 
 .sig-contact a {
-    color: var(--purple-600);
+    color: var(--accent-600);
     font-weight: 600;
 }
 
@@ -1700,7 +1700,7 @@ html, body {
    COMPTES ADMINISTRATEURS
    ============================================================ */
 
-.admin-badge--info   { background: var(--purple-50); color: var(--purple-800); margin-left: 6px; }
+.admin-badge--info   { background: var(--accent-50); color: var(--accent-800); margin-left: 6px; }
 .admin-badge--danger { background: var(--coral-50);  color: var(--coral-700); }
 .admin-badge--muted  { background: var(--gray-100);  color: var(--gray-600); }
 
@@ -1728,7 +1728,7 @@ html, body {
     width: 18px;
     height: 18px;
     margin: 2px 0 0;
-    accent-color: var(--purple-600);
+    accent-color: var(--accent-600);
 }
 
 .admin-role strong {
@@ -1748,12 +1748,12 @@ html, body {
 }
 
 .admin-role:has(input:checked) {
-    background: var(--purple-50);
-    border-color: var(--purple-600);
+    background: var(--accent-50);
+    border-color: var(--accent-600);
 }
 
 .admin-role:focus-within {
-    box-shadow: 0 0 0 3px rgba(83, 74, 183, 0.15);
+    box-shadow: 0 0 0 3px rgba(36, 128, 138, 0.15);
 }
 
 .admin-role.is-disabled {
@@ -1779,7 +1779,7 @@ html, body {
 .admin-pw-status {
     font-size: 13px;
     font-weight: 600;
-    color: var(--teal-700);
+    color: var(--brand-700);
 }
 
 .admin-form-row input[type="email"],
@@ -1803,4 +1803,36 @@ html, body {
 @media (max-width: 900px) {
     .admin-roles { grid-template-columns: 1fr; }
     .admin-pw-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   PARTENAIRES — logos
+   ============================================================ */
+
+.admin-thumb--logo {
+    object-fit: contain;
+    padding: 4px;
+    background: #ffffff;
+    border: 1px solid var(--gray-300);
+}
+
+.edit-logo-current {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.edit-logo-current[hidden] {
+    display: none;
+}
+
+.edit-logo-remove {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gray-600);
+    cursor: pointer;
 }

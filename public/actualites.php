@@ -115,6 +115,8 @@ require __DIR__ . '/partials/header.php';
                 rendez-vous autour de la lutte contre les violences basées
                 sur le genre.
             </p>
+
+            <div class="hero-don"><?php require __DIR__ . '/partials/hero-don.php'; ?></div>
         </div>
     </section>
 
