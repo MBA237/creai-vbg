@@ -22,15 +22,78 @@ $bOld = $bf['old'];
 
             <div class="adhesion-steps">
                 <h2>Être bénévole chez CREAI-VBG, c'est notamment :</h2>
-                <ul class="check-list">
-                    <li>Lutter pour l'égalité des genres en faisant de la sensibilisation auprès des communautés.</li>
-                    <li>Se faire former à la sensibilisation et à la lutte contre les violences sexistes et sexuelles.</li>
-                    <li>Participer à des activités de recherche et de transfert de connaissances.</li>
-                    <li>Animer des stands de sensibilisation lors de festivals ou d'événements partenaires.</li>
-                    <li>Animer et confectionner des jeux de sensibilisation ludiques.</li>
-                    <li>Faire des tournées dans les communautés pour promouvoir l'application AidGBV, ouverte à tous, gratuite et bienveillante.</li>
-                    <li>Soutenir les activités de communication de l'association.</li>
-                </ul>
+                <div class="fact-card fact-card--compact">
+                    <ul class="fact-list fact-list--compact">
+                        <li class="fact-item fact-item--inline">
+                            <span class="fact-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                            </span>
+                            <p><strong>Lutter pour l'égalité des genres</strong> en faisant de la sensibilisation auprès des communautés.</p>
+                        </li>
+                        <li class="fact-item fact-item--inline">
+                            <span class="fact-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                                    <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                                </svg>
+                            </span>
+                            <p><strong>Se faire former</strong> à la sensibilisation et à la lutte contre les violences sexistes et sexuelles.</p>
+                        </li>
+                        <li class="fact-item fact-item--inline">
+                            <span class="fact-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="11" cy="11" r="8"/>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                                </svg>
+                            </span>
+                            <p><strong>Participer à des activités de recherche</strong> et de transfert de connaissances.</p>
+                        </li>
+                        <li class="fact-item fact-item--inline">
+                            <span class="fact-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="4" width="18" height="18" rx="2"/>
+                                    <line x1="16" y1="2" x2="16" y2="6"/>
+                                    <line x1="8" y1="2" x2="8" y2="6"/>
+                                    <line x1="3" y1="10" x2="21" y2="10"/>
+                                </svg>
+                            </span>
+                            <p><strong>Animer des stands de sensibilisation</strong> lors de festivals ou d'événements partenaires.</p>
+                        </li>
+                        <li class="fact-item fact-item--inline">
+                            <span class="fact-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                                    <line x1="9" y1="9" x2="9.01" y2="9"/>
+                                    <line x1="15" y1="9" x2="15.01" y2="9"/>
+                                </svg>
+                            </span>
+                            <p><strong>Animer et confectionner des jeux</strong> de sensibilisation ludiques.</p>
+                        </li>
+                        <li class="fact-item fact-item--inline">
+                            <span class="fact-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                            </span>
+                            <p><strong>Faire des tournées dans les communautés</strong> pour promouvoir l'application AidGBV, ouverte à tous, gratuite et bienveillante.</p>
+                        </li>
+                        <li class="fact-item fact-item--inline">
+                            <span class="fact-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                                </svg>
+                            </span>
+                            <p><strong>Soutenir les activités de communication</strong> de l'association.</p>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
             <div class="form-card">

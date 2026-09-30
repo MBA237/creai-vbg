@@ -143,3 +143,57 @@
     wireFreeformAmount();
     applyMode(modeInput ? modeInput.value : 'mensuel', { rerenderAmounts: false });
 })();
+
+// Sélecteur d'indicatif téléphonique avec drapeaux (images : les emojis de drapeaux ne s'affichent pas sous Windows)
+(() => {
+    document.querySelectorAll('[data-phone-country]').forEach((box) => {
+        const input = box.querySelector('input[type="hidden"]');
+        const btn = box.querySelector('.phone-country-btn');
+        const list = box.querySelector('.phone-country-list');
+        const flag = btn.querySelector('[data-flag]');
+        const code = btn.querySelector('[data-code]');
+
+        const setOpen = (open) => {
+            list.hidden = !open;
+            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        };
+
+        btn.addEventListener('click', () => setOpen(list.hidden));
+
+        const paysSelect = document.querySelector('[data-pays-select]');
+
+        // Applique un indicatif : drapeau, code affiché et champ envoyé
+        const pick = (li) => {
+            input.value = li.dataset.code;
+            flag.src = '/images/flags/' + li.dataset.iso + '.svg';
+            code.textContent = li.dataset.code;
+            list.querySelectorAll('li').forEach((o) => o.setAttribute('aria-selected', o === li ? 'true' : 'false'));
+        };
+        const byCode = (c) => [...list.querySelectorAll('li')].find((o) => o.dataset.code === c);
+
+        list.addEventListener('click', (e) => {
+            const li = e.target.closest('li[data-code]');
+            if (!li) return;
+            pick(li);
+            // Le pays suit l'indicatif choisi
+            if (paysSelect) {
+                const opt = [...paysSelect.options].find((o) => o.dataset.code === li.dataset.code);
+                if (opt) paysSelect.value = opt.value;
+            }
+            setOpen(false);
+            btn.focus();
+        });
+
+        // Le drapeau et l'indicatif suivent le pays choisi
+        if (paysSelect) {
+            paysSelect.addEventListener('change', () => {
+                const opt = paysSelect.selectedOptions[0];
+                const li = opt && opt.dataset.code ? byCode(opt.dataset.code) : null;
+                if (li) pick(li);
+            });
+        }
+
+        document.addEventListener('click', (e) => { if (!box.contains(e.target)) setOpen(false); });
+        box.addEventListener('keydown', (e) => { if (e.key === 'Escape') { setOpen(false); btn.focus(); } });
+    });
+})();

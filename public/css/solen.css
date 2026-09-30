@@ -1,0 +1,472 @@
+/* ============================================================
+   PAGE « PROGRAMME SOLEN » — /solen.php
+   S'appuie uniquement sur pilier-detail.css (hero, sections,
+   eyebrows, cartes, duo-grid, boutons). La mise en page en deux
+   colonnes (infos à côté du contenu) s'inspire de la page Contact.
+   Volontairement indépendant de contact.css : charger cette
+   feuille écraserait la palette de la page (accent violet → teal)
+   et les champs tel/date n'y sont pas stylés.
+   ============================================================ */
+
+/* Les composants communs (intro en deux colonnes, carte de repères,
+   grille 3 + 2, pastille numérotée) vivent dans pilier-detail.css. */
+
+/* ============================================================
+   FONDEMENTS ET VISION — texte à gauche, outils à droite
+   ============================================================ */
+
+.solen-vision-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: clamp(32px, 5vw, 72px);
+    align-items: center;
+}
+
+.solen-vision-text p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin: 0 0 16px;
+}
+
+.solen-vision-text p:first-of-type {
+    font-size: 18px;
+    color: var(--text-primary);
+}
+
+.solen-tools-title {
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-600);
+    margin: 0 0 14px;
+}
+
+/* ============================================================
+   CHARTE
+   ============================================================ */
+
+.charte-intro {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--accent-50);
+    border-left: 5px solid var(--accent-600);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 22px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.6;
+    color: var(--accent-800);
+}
+
+.charte-note {
+    margin-top: 28px;
+    padding: 18px 22px;
+    background: var(--gray-50);
+    border: 1px dashed var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: var(--text-muted);
+}
+
+/* ============================================================
+   FORMULAIRE D'ADHÉSION — colonne d'infos + carte du formulaire
+   ============================================================ */
+
+.solen-layout {
+    display: grid;
+    grid-template-columns: 380px minmax(0, 1fr);
+    gap: 60px;
+    align-items: start;
+}
+
+.solen-aside {
+    position: sticky;
+    top: calc(var(--nav-h, 76px) + 24px);
+}
+
+.solen-aside-intro {
+    font-size: 15.5px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin: 0 0 28px;
+}
+
+.solen-form-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: 0 4px 20px rgba(51, 20, 58, 0.07);
+    padding: 40px clamp(24px, 4vw, 44px);
+}
+
+.solen-form-intro {
+    font-size: 14.5px;
+    color: var(--text-muted);
+    margin: 0 0 24px;
+}
+
+.solen-form .req,
+.solen-form-intro .req,
+.solen-legend .req {
+    color: #e53e3e;
+    font-weight: 700;
+}
+
+/* --- Alertes --- */
+
+.solen-alert {
+    padding: 16px 20px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 24px;
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+.solen-alert--error {
+    background: #fed7d7;
+    color: #742a2a;
+    border-left: 4px solid #e53e3e;
+}
+
+.solen-alert ul {
+    margin: 8px 0 0 20px;
+    padding: 0;
+}
+
+/* --- Progression en deux étapes (piloté par js/wizard.js : .is-active) --- */
+
+.solen-stepper {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0 0 8px;
+    padding: 0;
+}
+
+.solen-stepper li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 0 0 auto;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text-muted);
+    transition: color 0.2s;
+}
+
+/* Le connecteur appartient à la 2e étape : il s'étire entre les deux */
+.solen-stepper li + li {
+    flex: 1;
+}
+
+.solen-stepper li + li::before {
+    content: "";
+    flex: 1;
+    min-width: 24px;
+    height: 3px;
+    margin: 0 14px;
+    border-radius: 2px;
+    background: var(--border);
+    transition: background 0.2s;
+}
+
+.solen-stepper-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--gray-100);
+    color: var(--text-muted);
+    font-size: 14px;
+    font-weight: 700;
+    transition: background 0.2s, color 0.2s;
+}
+
+.solen-stepper li.is-active {
+    color: var(--text-primary);
+}
+
+.solen-stepper li.is-active .solen-stepper-num {
+    background: var(--accent-600);
+    color: #ffffff;
+}
+
+.solen-stepper li + li.is-active::before {
+    background: var(--accent-600);
+}
+
+.solen-step-label {
+    margin: 0 0 28px;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+/* --- Groupes de champs --- */
+
+.solen-fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+}
+
+.solen-fieldset + .solen-fieldset {
+    margin-top: 32px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+}
+
+.solen-legend {
+    display: block;
+    width: 100%;
+    padding: 0 0 16px;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.solen-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.solen-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.solen-row--full {
+    grid-column: 1 / -1;
+}
+
+.solen-row label {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Tous les types de champs, tel et date compris */
+.solen-row input[type="text"],
+.solen-row input[type="email"],
+.solen-row input[type="tel"],
+.solen-row input[type="date"] {
+    width: 100%;
+    min-height: 50px;
+    padding: 13px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: #ffffff;
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--text-primary);
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.solen-row input::placeholder {
+    color: #b4b2a9;
+}
+
+.solen-row input:focus {
+    outline: none;
+    border-color: var(--accent-600);
+    box-shadow: 0 0 0 3px rgba(76, 68, 148, 0.16);
+}
+
+.solen-row small {
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* --- Choix (radio / cases à cocher) --- */
+
+.solen-hint {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    margin: -6px 0 14px;
+}
+
+.solen-choice {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 18px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+}
+
+.solen-choice:last-child {
+    margin-bottom: 0;
+}
+
+.solen-choice:hover {
+    border-color: var(--accent-600);
+    background: var(--accent-50);
+}
+
+/* Choix sélectionné : visible sans dépendre de :has() ailleurs */
+.solen-choice:has(input:checked) {
+    border-color: var(--accent-600);
+    background: var(--accent-50);
+}
+
+.solen-choice input[type="radio"],
+.solen-choice input[type="checkbox"] {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    accent-color: var(--accent-600);
+}
+
+.solen-choice span {
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--text-primary);
+}
+
+.solen-choice span a {
+    color: var(--accent-600);
+    font-weight: 600;
+}
+
+/* --- Pied du formulaire --- */
+
+.solen-form-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+}
+
+.solen-form-note {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.solen-form-note svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    color: var(--accent-600);
+}
+
+/* --- Message de succès --- */
+
+.solen-success {
+    text-align: center;
+    padding: 24px 10px 8px;
+}
+
+.solen-success-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--accent-50);
+    color: var(--accent-600);
+    margin-bottom: 24px;
+}
+
+.solen-success-icon svg {
+    width: 40px;
+    height: 40px;
+}
+
+.solen-success h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 12px;
+}
+
+.solen-success p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    max-width: 52ch;
+    margin: 0 auto 28px;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 1100px) {
+    .solen-layout {
+        grid-template-columns: 320px minmax(0, 1fr);
+        gap: 40px;
+    }
+}
+
+@media (max-width: 900px) {
+    .solen-vision-layout,
+    .solen-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .solen-aside {
+        position: static;
+    }
+}
+
+@media (max-width: 600px) {
+    .solen-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .solen-form-card {
+        padding: 28px 20px;
+    }
+
+    /* Peu de place : les pastilles et « Étape X sur 2 » suffisent */
+    .solen-stepper-label {
+        display: none;
+    }
+
+    .solen-form-footer {
+        flex-direction: column-reverse;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .solen-form-footer .btn {
+        width: 100%;
+    }
+
+    .solen-form-note {
+        justify-content: center;
+    }
+
+    .charte-intro {
+        padding: 18px 20px;
+    }
+}

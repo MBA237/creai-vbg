@@ -4,17 +4,26 @@ session_start();
 
 require __DIR__ . '/../src/Contact.php';
 require __DIR__ . '/../src/paiement.php';
+require __DIR__ . '/../src/mails.php';
 
 $h = static fn (mixed $s): string => htmlspecialchars((string) $s, ENT_QUOTES, 'UTF-8');
 
 $modes = ['mensuel' => 'Don mensuel', 'unique' => 'Don unique', 'cagnotte' => 'Cagnotte'];
 $montants = ['mensuel' => [7, 12, 30], 'unique' => [15, 30, 60]];
 
+// Indicatif => [code pays du drapeau (images/flags/xx.svg), nom du pays].
+// Des images plutôt que des emojis : Windows n'affiche pas les emojis de drapeaux (il montre « CM »).
 $paysTel = [
-    '+237' => '🇨🇲', '+33' => '🇫🇷', '+225' => '🇨🇮', '+221' => '🇸🇳', '+234' => '🇳🇬',
-    '+235' => '🇹🇩', '+241' => '🇬🇦', '+242' => '🇨🇬', '+243' => '🇨🇩', '+229' => '🇧🇯',
-    '+228' => '🇹🇬', '+223' => '🇲🇱', '+226' => '🇧🇫', '+227' => '🇳🇪', '+224' => '🇬🇳',
-    '+32' => '🇧🇪', '+1' => '🇨🇦', '+44' => '🇬🇧', '+49' => '🇩🇪', '+41' => '🇨🇭',
+    '+237' => ['cm', 'Cameroun'],       '+33'  => ['fr', 'France'],
+    '+225' => ['ci', "Côte d'Ivoire"],  '+221' => ['sn', 'Sénégal'],
+    '+234' => ['ng', 'Nigeria'],        '+235' => ['td', 'Tchad'],
+    '+241' => ['ga', 'Gabon'],          '+242' => ['cg', 'Congo'],
+    '+243' => ['cd', 'RD Congo'],       '+229' => ['bj', 'Bénin'],
+    '+228' => ['tg', 'Togo'],           '+223' => ['ml', 'Mali'],
+    '+226' => ['bf', 'Burkina Faso'],   '+227' => ['ne', 'Niger'],
+    '+224' => ['gn', 'Guinée'],         '+32'  => ['be', 'Belgique'],
+    '+1'   => ['ca', 'Canada'],         '+44'  => ['gb', 'Royaume-Uni'],
+    '+49'  => ['de', 'Allemagne'],      '+41'  => ['ch', 'Suisse'],
 ];
 
 $defaults = [
@@ -65,6 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($old['prenom'] === '')                              $errors[] = 'Le prénom est obligatoire.';
     if ($old['nom'] === '')                                 $errors[] = 'Le nom est obligatoire.';
     if (!isset($paysTel[$old['pays_tel']]))                 $old['pays_tel'] = '+237';
+    if ($old['pays'] !== 'Autre' && !in_array($old['pays'], array_column($paysTel, 1), true)) $old['pays'] = 'Cameroun';
     $telDigits = preg_replace('/\D/', '', $old['telephone']) ?? '';
     if (strlen($telDigits) < 6 || strlen($telDigits) > 15)  $errors[] = 'Numéro de téléphone invalide.';
 
@@ -133,12 +143,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nomContact = mb_substr(trim($old['prenom'] . ' ' . $old['nom']), 0, 100);
             (new Contact())->create($nomContact, $old['email'], 'don', implode("\n", $lignes), $_SERVER['REMOTE_ADDR'] ?? null);
 
+            // Suivi du don dans l'admin. Un échec (ex. migration non jouée) ne doit pas perdre
+            // la demande, déjà enregistrée ci-dessus dans les messages.
+            $reference = null;
+            if ($mode !== 'cagnotte') {
+                try {
+                    require_once __DIR__ . '/../src/Don.php';
+                    $reference = (new Don())->create([
+                        'mode' => $mode, 'montant' => $montant, 'moyen' => $old['moyen'],
+                        'mobile_operateur' => $old['moyen'] === 'mobile' ? $old['mobile_operateur'] : '',
+                        'mobile_numero'    => $old['moyen'] === 'mobile' ? $old['mobile_numero'] : '',
+                        'prenom' => $old['prenom'], 'nom' => $old['nom'], 'email' => $old['email'],
+                        'telephone' => $old['pays_tel'] . ' ' . $old['telephone'],
+                        'organisation' => $old['association'] === '1', 'adresse' => $adresse,
+                    ]);
+                } catch (Throwable $donErr) {
+                    error_log('Enregistrement du don impossible : ' . $donErr->getMessage());
+                }
+            }
+
             $success = [
-                'mode'     => $mode,
-                'montant'  => $montant,
+                'mode'      => $mode,
+                'reference' => $reference,
+                'montant'   => $montant,
                 'moyen'    => $mode === 'cagnotte' ? null : $old['moyen'],
                 'moyens'   => $mode === 'cagnotte' ? [] : paiement_moyens($old['moyen'], $old['mobile_operateur']),
             ];
+            // E-mails (donateur + équipe) : un échec d'envoi n'annule jamais le don.
+            if ($mode === 'cagnotte') {
+                mail_equipe('Nouvelle demande de cagnotte — ' . $nomContact, 'Nouvelle demande de cagnotte', [
+                    'Contact' => $identite, 'Email' => $old['email'],
+                    'Téléphone' => $old['pays_tel'] . ' ' . $old['telephone'],
+                    'Titre' => $old['cagnotte_titre'], 'Objectif' => $old['cagnotte_objectif'] !== '' ? $old['cagnotte_objectif'] . ' €' : '',
+                    'Projet' => $old['cagnotte_description'],
+                ], $old['email']);
+            } else {
+                mail_don_declare([
+                    'reference' => $reference ?? 'sans référence', 'mode' => $mode, 'montant' => $montant,
+                    'moyen' => $old['moyen'], 'moyen_libelle' => PAIEMENT_MOYENS[$old['moyen']],
+                    'prenom' => $old['prenom'], 'nom' => $old['nom'], 'email' => $old['email'],
+                    'telephone' => $old['pays_tel'] . ' ' . $old['telephone'],
+                    'moyens' => $success['moyens'],
+                ]);
+            }
+
             $old = $defaults;
             $_SESSION['csrf'] = bin2hex(random_bytes(32));
         } catch (Throwable $e) {
@@ -187,6 +235,10 @@ require __DIR__ . '/partials/header.php';
                 de <strong><?= $h($success['montant']) ?> €</strong> est bien enregistrée.
                 Aucun paiement n'a été prélevé : voici comment finaliser votre don.
             </p>
+            <?php if (!empty($success['reference'])): ?>
+                <p>Référence de votre don : <strong><?= $h($success['reference']) ?></strong>
+                   — indiquez-la lors de votre règlement.</p>
+            <?php endif; ?>
             <?php
             $moyensPaiement = $success['moyens'];
             $moyensVideMessage = "Nos moyens de paiement en ligne sont en cours d'ouverture : notre équipe vous écrit très prochainement avec les instructions pour finaliser votre don.";
@@ -330,13 +382,35 @@ require __DIR__ . '/partials/header.php';
                         </div>
 
                         <div class="field field--full">
+                            <label for="don-pays">Pays</label>
+                            <select id="don-pays" name="pays" data-pays-select>
+                                <?php foreach ($paysTel as $code => [$iso, $pays]): ?>
+                                    <option value="<?= $h($pays) ?>" data-code="<?= $h($code) ?>" <?= $old['pays'] === $pays ? 'selected' : '' ?>><?= $h($pays) ?></option>
+                                <?php endforeach; ?>
+                                <option value="Autre" <?= $old['pays'] === 'Autre' ? 'selected' : '' ?>>Autre pays</option>
+                            </select>
+                        </div>
+
+                        <div class="field field--full">
                             <label for="don-telephone">Téléphone *</label>
                             <div class="phone-field">
-                                <select id="don-pays-tel" name="pays_tel" class="phone-country" aria-label="Indicatif pays">
-                                    <?php foreach ($paysTel as $code => $flag): ?>
-                                        <option value="<?= $h($code) ?>" <?= $old['pays_tel'] === $code ? 'selected' : '' ?>><?= $flag ?> <?= $h($code) ?></option>
-                                    <?php endforeach; ?>
-                                </select>
+                                <div class="phone-country" data-phone-country>
+                                    <input type="hidden" name="pays_tel" value="<?= $h($old['pays_tel']) ?>">
+                                    <button type="button" class="phone-country-btn" id="don-pays-tel" aria-haspopup="listbox"
+                                            aria-expanded="false" aria-label="Indicatif pays">
+                                        <img src="/images/flags/<?= $h($paysTel[$old['pays_tel']][0]) ?>.svg" alt="" width="22" height="16" data-flag>
+                                        <span data-code><?= $h($old['pays_tel']) ?></span>
+                                    </button>
+                                    <ul class="phone-country-list" role="listbox" hidden>
+                                        <?php foreach ($paysTel as $code => [$iso, $pays]): ?>
+                                            <li role="option" data-code="<?= $h($code) ?>" data-iso="<?= $h($iso) ?>"
+                                                aria-selected="<?= $old['pays_tel'] === $code ? 'true' : 'false' ?>">
+                                                <img src="/images/flags/<?= $h($iso) ?>.svg" alt="" width="22" height="16" loading="lazy">
+                                                <span><?= $h($pays) ?></span> <b><?= $h($code) ?></b>
+                                            </li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
                                 <input id="don-telephone" type="tel" name="telephone" required maxlength="20"
                                        placeholder="6 00 00 00 00" value="<?= $h($old['telephone']) ?>">
                             </div>
@@ -373,11 +447,6 @@ require __DIR__ . '/partials/header.php';
                         <div class="field">
                             <label for="don-ville">Ville</label>
                             <input id="don-ville" type="text" name="ville" maxlength="100" value="<?= $h($old['ville']) ?>">
-                        </div>
-
-                        <div class="field field--full">
-                            <label for="don-pays">Pays</label>
-                            <input id="don-pays" type="text" name="pays" maxlength="100" value="<?= $h($old['pays']) ?>">
                         </div>
                     </div>
                 </div>

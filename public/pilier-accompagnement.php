@@ -84,6 +84,10 @@ require __DIR__ . '/partials/header.php';
                         Du lundi au vendredi, de 9h00 à 17h00. Écoute, information
                         et orientation en toute confidentialité.
                     </p>
+                    <a href="/permanence-telephonique.php" class="programme-link programme-link--purple">
+                        En savoir plus
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    </a>
                 </article>
 
                 <article class="programme-card">
@@ -97,6 +101,10 @@ require __DIR__ . '/partials/header.php';
                         Soutien psychologique individuel et collectif pour comprendre
                         les mécanismes de l'emprise et reconstruire son autonomie.
                     </p>
+                    <a href="/accompagnement-psychosocial.php#soutien-psychologique" class="programme-link programme-link--purple">
+                        En savoir plus
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    </a>
                 </article>
 
                 <article class="programme-card">
@@ -113,6 +121,10 @@ require __DIR__ . '/partials/header.php';
                         Information sur vos droits, préparation d'un dépôt de plainte,
                         accompagnement tout au long de la procédure judiciaire.
                     </p>
+                    <a href="/accompagnement-psychosocial.php#soutien-juridique" class="programme-link programme-link--purple">
+                        En savoir plus
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    </a>
                 </article>
 
                 <article class="programme-card">
@@ -127,6 +139,10 @@ require __DIR__ . '/partials/header.php';
                         Préparation avant l'audience, présence physique pendant le
                         procès et suivi après l'audience.
                     </p>
+                    <a href="/accompagnement-psychosocial.php#accompagnement-proces" class="programme-link programme-link--purple">
+                        En savoir plus
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    </a>
                 </article>
 
                 <article class="programme-card">
@@ -142,6 +158,10 @@ require __DIR__ . '/partials/header.php';
                         Pair-aidance et reconnaissance entre pairs, dans un cadre
                         bienveillant et confidentiel.
                     </p>
+                    <a href="/groupes-soutien.php" class="programme-link programme-link--purple">
+                        En savoir plus
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    </a>
                 </article>
 
                 <article class="programme-card">
@@ -156,6 +176,28 @@ require __DIR__ . '/partials/header.php';
                         Mise en relation avec les structures médicales, juridiques
                         et sociales de votre région.
                     </p>
+                    <a href="/permanence-telephonique.php#orientation" class="programme-link programme-link--purple">
+                        En savoir plus
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    </a>
+                </article>
+
+                <article class="programme-card programme-card--solen">
+                    <div class="programme-icon programme-icon--purple">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                        </svg>
+                    </div>
+                    <h3>Solen — communauté de soutien</h3>
+                    <p>
+                        Une communauté d'entraide entre ancien(ne)s et actuelles
+                        survivant(e)s, accessible 24h/24 et 7j/7, où chacune veille
+                        sur l'autre.
+                    </p>
+                    <a href="/solen.php" class="programme-link programme-link--purple">
+                        En savoir plus
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    </a>
                 </article>
 
             </div>
@@ -190,6 +232,10 @@ require __DIR__ . '/partials/header.php';
                         favoriser l'expression des difficultés et prévenir les
                         conduites violentes.
                     </p>
+                    <a href="/accompagnement-auteurs.php#accompagnement-collectif" class="programme-link programme-link--purple">
+                        En savoir plus
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    </a>
                 </article>
 
                 <article class="programme-card">
@@ -204,6 +250,10 @@ require __DIR__ . '/partials/header.php';
                         Entretien thérapeutique, accompagnement médical, social
                         et professionnel adapté à chaque situation.
                     </p>
+                    <a href="/accompagnement-auteurs.php#accompagnement-individuel" class="programme-link programme-link--purple">
+                        En savoir plus
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    </a>
                 </article>
 
                 <article class="programme-card">
@@ -220,6 +270,10 @@ require __DIR__ . '/partials/header.php';
                         prendre la mesure des conséquences, transmettre le principe
                         d'égalité.
                     </p>
+                    <a href="/accompagnement-auteurs.php#objectifs-parcours" class="programme-link programme-link--purple">
+                        En savoir plus
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    </a>
                 </article>
 
             </div>
@@ -228,14 +282,26 @@ require __DIR__ . '/partials/header.php';
 
     <section class="pilier-detail-section pilier-detail-section--alt">
         <div class="pilier-detail-container pilier-detail-container--narrow">
-            <div class="highlight-box highlight-box--purple">
-                <h3>Ne restez pas seul(e)</h3>
-                <p>
-                    Notre expertise en violences basées sur le genre peut vous aider
-                    à sortir des violences. Chaque situation est unique : une écoute
-                    peut tenir compte de la complexité de votre situation et donner
-                    des réponses à vos besoins spécifiques.
-                </p>
+            <div class="info-highlight">
+                <div class="info-highlight-row">
+                    <div class="info-highlight-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                    <div class="info-highlight-text">
+                        <h3>Ne restez pas seul(e)</h3>
+                        <p>
+                            Notre expertise en violences basées sur le genre peut
+                            vous aider à sortir des violences.
+                            <strong>Chaque situation est unique</strong> : une
+                            écoute peut tenir compte de la complexité de votre
+                            situation et donner des réponses à vos besoins
+                            spécifiques.
+                        </p>
+                        <a href="/besoin-aide.php" class="btn btn--primary">Demander de l'aide</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -257,16 +323,26 @@ require __DIR__ . '/partials/header.php';
     <div class="pilier-detail-container">
         <nav class="pilier-nav-links">
             <a href="/pilier-innovation.php" class="pilier-nav-link">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="15 18 9 12 15 6"/>
-                </svg>
-                Pilier précédent : Innovation
+                <span class="pilier-nav-icon" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"/>
+                    </svg>
+                </span>
+                <span class="pilier-nav-text">
+                    <span class="pilier-nav-label">Pilier précédent</span>
+                    <span class="pilier-nav-title">Innovation</span>
+                </span>
             </a>
             <a href="/pilier-plaidoyer.php" class="pilier-nav-link pilier-nav-link--next">
-                Pilier suivant : Plaidoyer
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="9 18 15 12 9 6"/>
-                </svg>
+                <span class="pilier-nav-text">
+                    <span class="pilier-nav-label">Pilier suivant</span>
+                    <span class="pilier-nav-title">Plaidoyer</span>
+                </span>
+                <span class="pilier-nav-icon" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"/>
+                    </svg>
+                </span>
             </a>
         </nav>
     </div>

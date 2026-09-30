@@ -68,14 +68,20 @@ $widePage  = $widePage  ?? false;
         'apropos'  => $navIs('apropos.php'),
         'equipe'   => $navIs('notre-equipe.php'),
         'parten'   => $navIs('partenaires.php'),
-        'piliers'  => $navIs('piliers.php') || str_starts_with($navFile, 'pilier-'),
+        'piliers'  => $navIs(
+                          'piliers.php',
+                          'permanence-telephonique.php',
+                          'accompagnement-psychosocial.php',
+                          'groupes-soutien.php',
+                          'accompagnement-auteurs.php'
+                      ) || str_starts_with($navFile, 'pilier-'),
         'actus'    => $navIs('actualites.php', 'article.php'),
         'connais'  => $navIs('connaissances.php'),
         'apprent'  => $navIs('apprentissage.php'),
         'rejoindre' => $navIs('rejoindre.php'),
         'soutenir' => $navIs('soutenir.php', 'don.php'),
         'contact'  => $navIs('contact.php'),
-        'aide'     => $navIs('besoin-aide.php', 'signalement.php'),
+        'aide'     => $navIs('besoin-aide.php', 'signalement.php', 'solen.php'),
     ];
     // Attributs d'un lien : classes + aria-current pour les lecteurs d'écran
     $navAttr = static fn (bool $on, string $class = ''): string =>

@@ -32,6 +32,17 @@ class Membership
         return $ok;
     }
 
+
+    public function find(int $id): ?array
+    {
+        $stmt = $this->conn->prepare("SELECT * FROM memberships WHERE id = ?");
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $row = $stmt->get_result()->fetch_assoc();
+        $stmt->close();
+        return $row ?: null;
+    }
+
     /** Demandes d'adhésion, les plus récentes d'abord. Filtre optionnel sur le statut. */
     public function getAll(?string $statut = null): array
     {

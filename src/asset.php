@@ -10,11 +10,15 @@ declare(strict_types=1);
 const CSS_DEPENDENCIES = [
     'apprentissages.css'   => ['contenu.css'],
     'connaissances.css'    => ['contenu.css'],
+    'index.css'            => ['blocks.css'],
+    'contact.css'          => ['solen.css'],
     'mentions-legales.css' => ['contenu.css'],
     'notre-equipe.css'     => ['apropos.css'],
     'partenaires.css'      => ['apropos.css'],
-    'rejoindre.css'        => ['contenu.css'],
+    'pilier-detail.css'    => ['blocks.css'],
+    'rejoindre.css'        => ['contenu.css', 'blocks.css'],
     'signalement.css'      => ['besoin-aide.css'],
+    'solen.css'            => ['pilier-detail.css'],
     'soutenir.css'         => ['rejoindre.css'],
 ];
 

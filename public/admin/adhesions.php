@@ -5,6 +5,7 @@ require __DIR__ . '/includes/auth.php';
 
 require_once __DIR__ . '/../../src/Database.php';
 require_once __DIR__ . '/../../src/Membership.php';
+require_once __DIR__ . '/../../src/mails.php';
 
 $membershipModel = new Membership();
 
@@ -48,7 +49,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (hash_equals($_SESSION['csrf'], (string) ($_POST['csrf'] ?? '')) && $id > 0) {
 
         if ($action === 'set_statut') {
-            $membershipModel->setStatut($id, (string) ($_POST['statut'] ?? ''));
+            $nouveau = (string) ($_POST['statut'] ?? '');
+            $avant   = $membershipModel->find($id);
+            if ($membershipModel->setStatut($id, $nouveau) && $avant && $avant['statut'] !== $nouveau
+                && in_array($nouveau, ['agree', 'refuse'], true)) {
+                mail_adhesion_decision($avant, $nouveau, Membership::CATEGORIES[$avant['categorie']] ?? $avant['categorie']);
+            }
             header('Location: ' . adhesions_url($filtrePost, $id));
             exit;
         }

@@ -464,6 +464,7 @@
 }
 
 .constat-media {
+    position: relative;
     margin: 0;
     border-radius: var(--radius);
     overflow: hidden;
@@ -476,11 +477,204 @@
     height: auto;
 }
 
+/* Le slogan de la campagne, posé sur l'image */
+.constat-media figcaption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 72px 26px 24px;
+    background: linear-gradient(to top, rgba(23, 90, 99, 0.94) 0%, rgba(23, 90, 99, 0) 100%);
+    color: #ffffff;
+    font-size: clamp(19px, 2vw, 26px);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+}
+
+/* Paragraphe d'accroche : plus grand, plus sombre */
+.home-text--lead {
+    font-size: clamp(17px, 1.5vw, 19px);
+    color: var(--text-primary);
+}
+
+/* Suite du constat : Cameroun, puis « agir sur tous les fronts ».
+   Chaque rangée réutilise les MÊMES colonnes que « image | texte » (5fr / 7fr) :
+   les bords verticaux restent alignés du haut en bas de la section. */
+.constat-rows {
+    display: grid;
+    gap: 32px;
+    margin-top: 40px;
+}
+
+/* Colonnes de même hauteur : le panneau de gauche et la carte de droite s'alignent */
+.constat-layout--stretch {
+    align-items: stretch;
+    gap: 32px 48px;
+}
+
+/* Panneau de texte (gauche) : le contenu est centré verticalement */
+.constat-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 34px 32px;
+    background: var(--coral-50);
+    border-left: 5px solid var(--coral-500);
+    border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.constat-panel--accent {
+    background: var(--accent-50);
+    border-left-color: var(--accent-600);
+}
+
+.constat-panel .home-text {
+    margin: 0;
+    color: var(--coral-900);
+}
+
+.constat-panel-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    background: var(--coral-500);
+    color: #ffffff;
+}
+
+.constat-panel--accent .constat-panel-icon {
+    background: var(--accent-600);
+}
+
+.constat-panel-icon svg {
+    width: 22px;
+    height: 22px;
+    display: block;
+}
+
+.constat-action-title {
+    font-size: clamp(20px, 2.2vw, 26px);
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: var(--accent-800);
+    margin: 0;
+}
+
+/* Conclusion : la phrase clé en bandeau plein, texte blanc sur dégradé */
+.constat-conclusion {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 32px 38px;
+    border-radius: var(--radius);
+    background: linear-gradient(135deg, var(--accent-800) 0%, var(--accent-600) 100%);
+    color: #ffffff;
+    box-shadow: 0 10px 28px rgba(23, 90, 99, 0.25);
+}
+
+.constat-conclusion::after {
+    content: "";
+    position: absolute;
+    top: -90px;
+    right: -60px;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    pointer-events: none;
+}
+
+.constat-conclusion-icon {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.constat-conclusion-icon svg {
+    width: 26px;
+    height: 26px;
+    display: block;
+}
+
+.constat-conclusion p {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    font-size: clamp(18px, 2vw, 24px);
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: -0.005em;
+}
+
+/* « cela exige une stratégie » : surligné */
+.constat-conclusion strong {
+    font-weight: 800;
+    padding: 0 4px;
+    background: linear-gradient(transparent 62%, rgba(255, 255, 255, 0.3) 62%);
+}
+
+/* Carte de droite : occupe toute la hauteur, éléments répartis */
+.constat-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Trois tuiles empilées, de même hauteur, alignées sur la hauteur du panneau */
+.constat-tiles {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: 1fr;
+    gap: 14px;
+}
+
+.constat-tiles .tile {
+    padding: 22px 26px;
+    font-size: 16.5px;
+}
+
 @media (max-width: 900px) {
     .constat-layout {
         grid-template-columns: 1fr;
         gap: 28px;
     }
+
+    .constat-layout--stretch {
+        gap: 20px;
+    }
+
+    .constat-rows {
+        margin-top: 28px;
+        gap: 28px;
+    }
+
+    .constat-panel {
+        padding: 26px 22px;
+    }
+
+    .constat-conclusion {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+        padding: 28px 22px;
+    }
+
 }
 
 /* ============================================================

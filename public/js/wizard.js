@@ -52,6 +52,8 @@
             });
         });
 
-        goToStep(1, false);
+        // Étape d'ouverture : data-start-step (ex. rouvrir l'étape en erreur après un envoi refusé)
+        const start = Number(form.dataset.startStep) || 1;
+        goToStep(Math.min(Math.max(start, 1), steps.length), false);
     }
 })();

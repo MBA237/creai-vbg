@@ -11,5 +11,8 @@
             "name": "xentixar",
             "email": "xentixar@gmail.com"
         }
-    ]
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^7.1"
+    }
 }

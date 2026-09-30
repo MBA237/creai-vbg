@@ -318,72 +318,97 @@ require __DIR__ . '/partials/header.php';
                     </h3>
 
                     <ul class="service-items">
-                        <li class="service-item">
-                            <span class="service-item-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                                </svg>
-                            </span>
-                            <div class="service-item-body">
-                                <strong>Ligne d'écoute téléphonique</strong>
-                                <span>Du lundi au vendredi, 9h00 – 17h00</span>
-                            </div>
+                        <li>
+                            <a class="service-item" href="/permanence-telephonique.php">
+                                <span class="service-item-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                    </svg>
+                                </span>
+                                <div class="service-item-body">
+                                    <strong>Ligne d'écoute téléphonique</strong>
+                                    <span>Du lundi au vendredi, 9h00 – 17h00</span>
+                                </div>
+                                <span class="service-item-arrow" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                                </span>
+                            </a>
                         </li>
 
-                        <li class="service-item">
-                            <span class="service-item-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                                </svg>
-                            </span>
-                            <div class="service-item-body">
-                                <strong>Accompagnement psycho-social</strong>
-                                <span>Soutien psychologique individuel et collectif</span>
-                            </div>
+                        <li>
+                            <a class="service-item" href="/accompagnement-psychosocial.php#soutien-psychologique">
+                                <span class="service-item-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                                    </svg>
+                                </span>
+                                <div class="service-item-body">
+                                    <strong>Accompagnement psycho-social</strong>
+                                    <span>Soutien psychologique individuel et collectif</span>
+                                </div>
+                                <span class="service-item-arrow" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                                </span>
+                            </a>
                         </li>
 
-                        <li class="service-item">
-                            <span class="service-item-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 3v18"/>
-                                    <path d="M5 8h14"/>
-                                    <path d="M5 8l-2 7a3 3 0 0 0 6 0l-2-7"/>
-                                    <path d="M19 8l-2 7a3 3 0 0 0 6 0l-2-7"/>
-                                </svg>
-                            </span>
-                            <div class="service-item-body">
-                                <strong>Soutien juridique</strong>
-                                <span>Information et accompagnement dans les démarches</span>
-                            </div>
+                        <li>
+                            <a class="service-item" href="/accompagnement-psychosocial.php#soutien-juridique">
+                                <span class="service-item-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 3v18"/>
+                                        <path d="M5 8h14"/>
+                                        <path d="M5 8l-2 7a3 3 0 0 0 6 0l-2-7"/>
+                                        <path d="M19 8l-2 7a3 3 0 0 0 6 0l-2-7"/>
+                                    </svg>
+                                </span>
+                                <div class="service-item-body">
+                                    <strong>Soutien juridique</strong>
+                                    <span>Information et accompagnement dans les démarches</span>
+                                </div>
+                                <span class="service-item-arrow" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                                </span>
+                            </a>
                         </li>
 
-                        <li class="service-item">
-                            <span class="service-item-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                    <polyline points="14 2 14 8 20 8"/>
-                                    <line x1="9" y1="15" x2="15" y2="15"/>
-                                </svg>
-                            </span>
-                            <div class="service-item-body">
-                                <strong>Accompagnement au procès</strong>
-                                <span>Préparation, présence et suivi</span>
-                            </div>
+                        <li>
+                            <a class="service-item" href="/accompagnement-psychosocial.php#accompagnement-proces">
+                                <span class="service-item-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                        <polyline points="14 2 14 8 20 8"/>
+                                        <line x1="9" y1="15" x2="15" y2="15"/>
+                                    </svg>
+                                </span>
+                                <div class="service-item-body">
+                                    <strong>Accompagnement au procès</strong>
+                                    <span>Préparation, présence et suivi</span>
+                                </div>
+                                <span class="service-item-arrow" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                                </span>
+                            </a>
                         </li>
 
-                        <li class="service-item">
-                            <span class="service-item-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                                    <circle cx="9" cy="7" r="4"/>
-                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                                </svg>
-                            </span>
-                            <div class="service-item-body">
-                                <strong>Groupes de soutien</strong>
-                                <span>Pair-aidance et reconnaissance entre pairs</span>
-                            </div>
+                        <li>
+                            <a class="service-item" href="/groupes-soutien.php">
+                                <span class="service-item-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="9" cy="7" r="4"/>
+                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                    </svg>
+                                </span>
+                                <div class="service-item-body">
+                                    <strong>Groupes de soutien</strong>
+                                    <span>Pair-aidance et reconnaissance entre pairs</span>
+                                </div>
+                                <span class="service-item-arrow" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                                </span>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -400,46 +425,61 @@ require __DIR__ . '/partials/header.php';
                     </h3>
 
                     <ul class="service-items">
-                        <li class="service-item">
-                            <span class="service-item-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                                    <circle cx="9" cy="7" r="4"/>
-                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                                </svg>
-                            </span>
-                            <div class="service-item-body">
-                                <strong>Accompagnement collectif</strong>
-                                <span>Groupe de parole, stage de responsabilisation</span>
-                            </div>
+                        <li>
+                            <a class="service-item" href="/accompagnement-auteurs.php#accompagnement-collectif">
+                                <span class="service-item-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="9" cy="7" r="4"/>
+                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                    </svg>
+                                </span>
+                                <div class="service-item-body">
+                                    <strong>Accompagnement collectif</strong>
+                                    <span>Groupe de parole, stage de responsabilisation</span>
+                                </div>
+                                <span class="service-item-arrow" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                                </span>
+                            </a>
                         </li>
 
-                        <li class="service-item">
-                            <span class="service-item-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                                    <circle cx="12" cy="7" r="4"/>
-                                </svg>
-                            </span>
-                            <div class="service-item-body">
-                                <strong>Accompagnement individuel</strong>
-                                <span>Entretien thérapeutique, suivi médical, social et professionnel</span>
-                            </div>
+                        <li>
+                            <a class="service-item" href="/accompagnement-auteurs.php#accompagnement-individuel">
+                                <span class="service-item-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="12" cy="7" r="4"/>
+                                    </svg>
+                                </span>
+                                <div class="service-item-body">
+                                    <strong>Accompagnement individuel</strong>
+                                    <span>Entretien thérapeutique, suivi médical, social et professionnel</span>
+                                </div>
+                                <span class="service-item-arrow" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                                </span>
+                            </a>
                         </li>
 
-                        <li class="service-item">
-                            <span class="service-item-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10"/>
-                                    <circle cx="12" cy="12" r="6"/>
-                                    <circle cx="12" cy="12" r="2"/>
-                                </svg>
-                            </span>
-                            <div class="service-item-body">
-                                <strong>Objectifs</strong>
-                                <span>Comprendre les mécanismes de la violence, prévenir la récidive, transmettre le principe d'égalité</span>
-                            </div>
+                        <li>
+                            <a class="service-item" href="/accompagnement-auteurs.php#objectifs-parcours">
+                                <span class="service-item-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <circle cx="12" cy="12" r="6"/>
+                                        <circle cx="12" cy="12" r="2"/>
+                                    </svg>
+                                </span>
+                                <div class="service-item-body">
+                                    <strong>Objectifs</strong>
+                                    <span>Comprendre les mécanismes de la violence, prévenir la récidive, transmettre le principe d'égalité</span>
+                                </div>
+                                <span class="service-item-arrow" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                                </span>
+                            </a>
                         </li>
                     </ul>
                 </div>

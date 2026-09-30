@@ -7,10 +7,16 @@
 
 /* Dépendances chargées par le header (voir CSS_DEPENDENCIES dans src/asset.php) */
 
-/* 4 modes de soutien : grille 2 x 2 sur grand écran */
-@media (min-width: 901px) {
-    .cards-grid--2 {
-        grid-template-columns: repeat(2, 1fr);
+/* 6 modes de soutien : grille 3 x 2 sur grand écran (2 colonnes sur tablette) */
+@media (min-width: 1001px) {
+    .cards-grid--3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 601px) and (max-width: 1000px) {
+    .cards-grid--3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 

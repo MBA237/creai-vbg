@@ -42,16 +42,67 @@ require __DIR__ . '/partials/header.php';
      ============================================================ -->
 <section class="page-section" id="don">
     <div class="page-container">
-        <h2 class="section-title">À quoi servent vos dons ?</h2>
-        <ul class="check-list">
-            <li>Maintenir notre ligne d'écoute ouverte 5 jours sur 7 afin d'aider et d'accompagner toujours plus de personnes vivant des violences sexistes et sexuelles.</li>
-            <li>Financer la formation et la disponibilité de nos écoutant(e)s.</li>
-            <li>Développer et déployer notre chatbot et notre application AidGBV.</li>
-            <li>Soutenir les activités de recherche et de transfert de connaissances.</li>
-            <li>Multiplier et développer les actions de prévention auprès des communautés et renforcer les formations auprès des professionnel(le)s.</li>
-            <li>Améliorer et enrichir la sensibilisation numérique via notre site web et nos réseaux sociaux.</li>
-            <li>Développer la compréhension des phénomènes de violences sexistes et sexuelles chez les jeunes à travers la recherche.</li>
-        </ul>
+        <div class="intro-split">
+
+            <div class="intro-split-main">
+                <h2 class="section-title">À quoi servent vos dons ?</h2>
+
+                <p class="intro-split-lead">
+                    Votre soutien <strong>maintient nos services ouverts</strong>
+                    et finance nos actions de terrain, de recherche et de
+                    prévention, pour accompagner toujours plus de personnes
+                    vivant des violences sexistes et sexuelles.
+                </p>
+
+                <div class="intro-split-actions">
+                    <a href="/don.php" class="btn-cta btn-cta--primary">Faire un don</a>
+                    <a href="/rejoindre.php#adhesion" class="btn-cta btn-cta--ghost">J'adhère</a>
+                </div>
+            </div>
+
+            <aside class="fact-card" aria-label="L'utilisation de vos dons">
+                <ul class="fact-list">
+                    <?php
+                    // Chaque repère est un accès direct vers la page qui détaille l'action financée.
+                    // [lien, classe supplémentaire, icône (contenu du <svg>), titre, texte]
+                    $usages = [
+                        ['/permanence-telephonique.php', ' fact-item--main',
+                         '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>',
+                         "Une ligne d'écoute ouverte 5 jours sur 7",
+                         'Financer la formation et la disponibilité de nos écoutant(e)s, pour aider toujours plus de personnes.'],
+                        ['/pilier-recherche.php', '',
+                         '<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>',
+                         'Recherche et transfert de connaissances',
+                         'Soutenir la recherche et mieux comprendre les violences sexistes et sexuelles, notamment chez les jeunes.'],
+                        ['/pilier-prevention.php', '',
+                         '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+                         'Prévention et formation',
+                         'Multiplier les actions de prévention auprès des communautés et renforcer les formations des professionnel(le)s.'],
+                        ['/pilier-innovation.php', '',
+                         '<rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/>',
+                         'Outils numériques et sensibilisation',
+                         "Développer notre chatbot et l'application AidGBV, enrichir notre site web et nos réseaux sociaux."],
+                    ];
+                    foreach ($usages as [$href, $modifier, $iconPaths, $titre, $texte]): ?>
+                        <li>
+                            <a href="<?= htmlspecialchars($href) ?>" class="fact-item fact-item--link<?= $modifier ?>">
+                                <span class="fact-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><?= $iconPaths ?></svg>
+                                </span>
+                                <div>
+                                    <h3><?= htmlspecialchars($titre) ?></h3>
+                                    <p><?= htmlspecialchars($texte) ?></p>
+                                </div>
+                                <span class="fact-arrow" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                                </span>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </aside>
+
+        </div>
     </div>
 </section>
 
@@ -61,13 +112,30 @@ require __DIR__ . '/partials/header.php';
 <section class="page-section page-section--alt">
     <div class="page-container">
         <h2 class="section-title">Comment nous soutenir ?</h2>
-        <p class="section-intro">
-            Choisissez la façon de nous soutenir qui vous convient. Les paiements en
-            ligne sont en cours d'ouverture : une fois votre demande envoyée, notre
-            équipe vous répond rapidement pour finaliser votre don ou votre adhésion.
+        <p class="section-intro" style="margin-bottom: 28px;">
+            Choisissez la façon de nous soutenir qui vous convient.
         </p>
 
-        <div class="cards-grid cards-grid--2">
+        <!-- Information importante : paiements en cours d'ouverture -->
+        <div class="info-highlight" style="margin: 0 0 36px;">
+            <div class="info-highlight-row">
+                <div class="info-highlight-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 6v6l4 2"/>
+                    </svg>
+                </div>
+                <div class="info-highlight-text">
+                    <h3>Les paiements en ligne sont en cours d'ouverture</h3>
+                    <p>
+                        Une fois votre demande envoyée, notre équipe vous répond
+                        rapidement pour finaliser votre don ou votre adhésion.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cards-grid cards-grid--3">
 
             <article class="info-card info-card--coral">
                 <div class="info-card-icon" aria-hidden="true">

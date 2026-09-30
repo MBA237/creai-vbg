@@ -236,39 +236,168 @@ require __DIR__ . '/partials/header.php';
     <!-- ============================================================
          LE CONSTAT
          ============================================================ -->
-    <section class="home-section home-section--alt">
+    <section class="home-section home-section--alt" id="constat">
         <div class="home-container home-container--full">
+
+            <!-- Le constat : image + idée forte -->
             <div class="constat-layout">
                 <figure class="constat-media">
                     <img src="/images/constat.jpg" alt="Stop aux violences basées sur le genre" loading="lazy">
+                    <figcaption>Stop aux violences basées sur le genre</figcaption>
                 </figure>
 
                 <div class="constat-content">
                     <span class="eyebrow eyebrow--teal">Le constat</span>
 
-                    <p class="home-text">
-                        Les violences basées sur le genre (VBG) constituent un problème mondial
-                        de droits humains, enraciné dans les inégalités de genre et les rapports
-                        de force inégaux. Elles revêtent de nombreuses formes et causent des
-                        préjudices à des millions de victimes, de familles et de communautés.
-                        Bien qu'elles soient présentes dans toutes les sociétés, elles ne sont
-                        pas une fatalité : <strong>les VBG sont évitables</strong>.
+                    <p class="home-text home-text--lead">
+                        Les violences basées sur le genre (VBG) constituent un problème
+                        mondial de droits humains, enraciné dans les inégalités de genre
+                        et les rapports de force inégaux. Elles revêtent de nombreuses
+                        formes et causent des préjudices à des millions de victimes, de
+                        familles et de communautés.
                     </p>
 
-                    <p class="home-text">
-                        Au Cameroun, elles restent généralisées, banalisées et trop souvent
-                        invisibles, faute de données fiables, d'information publique suffisante,
-                        d'investissement dans la prévention et de structures d'accompagnement
-                        accessibles à toutes et tous.
-                    </p>
+                    <div class="info-highlight" style="margin: 26px 0 0;">
+                        <div class="info-highlight-row">
+                            <div class="info-highlight-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                    <path d="M9 12l2 2 4-4"/>
+                                </svg>
+                            </div>
+                            <div class="info-highlight-text">
+                                <h3>Les VBG ne sont pas une fatalité</h3>
+                                <p>
+                                    Bien qu'elles soient présentes dans toutes les sociétés,
+                                    <strong>les VBG sont évitables</strong>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                    <p class="home-text">
-                        Face à ce constat, le CREAI-VBG agit sur tous les fronts à la fois :
-                        <strong>comprendre par la science, transformer par l'éducation,
-                        protéger par l'action</strong>. Parce que mettre fin aux VBG exige plus
-                        qu'une réponse d'urgence — cela exige une stratégie.
+            <div class="constat-rows">
+
+                <!-- Au Cameroun : une réalité invisible, faute de… (mêmes colonnes que l'image ci-dessus) -->
+                <div class="constat-layout constat-layout--stretch">
+
+                    <div class="constat-panel">
+<span class="constat-panel-icon" aria-hidden="true">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+<circle cx="12" cy="10" r="3"/>
+</svg>
+</span>
+                        <p class="home-text home-text--lead">
+                            Au Cameroun, elles restent
+                            <strong>généralisées, banalisées et trop souvent
+                            invisibles</strong>, faute de&nbsp;:
+                        </p>
+                    </div>
+
+                    <aside class="fact-card fact-card--compact constat-card" aria-label="Ce qui manque au Cameroun">
+                        <ul class="fact-list fact-list--compact">
+                            <li class="fact-item fact-item--inline">
+                                <span class="fact-icon fact-icon--no" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="18" y1="20" x2="18" y2="10"/>
+                                        <line x1="12" y1="20" x2="12" y2="4"/>
+                                        <line x1="6" y1="20" x2="6" y2="14"/>
+                                    </svg>
+                                </span>
+                                <p><strong>Données fiables</strong></p>
+                            </li>
+                            <li class="fact-item fact-item--inline">
+                                <span class="fact-icon fact-icon--no" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <line x1="12" y1="16" x2="12" y2="12"/>
+                                        <line x1="12" y1="8" x2="12.01" y2="8"/>
+                                    </svg>
+                                </span>
+                                <p><strong>Information publique</strong> suffisante</p>
+                            </li>
+                            <li class="fact-item fact-item--inline">
+                                <span class="fact-icon fact-icon--no" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                                    </svg>
+                                </span>
+                                <p><strong>Investissement dans la prévention</strong></p>
+                            </li>
+                            <li class="fact-item fact-item--inline">
+                                <span class="fact-icon fact-icon--no" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                                    </svg>
+                                </span>
+                                <p><strong>Structures d'accompagnement</strong> accessibles à toutes et tous</p>
+                            </li>
+                        </ul>
+                    </aside>
+                </div>
+
+                <!-- Face à ce constat : comprendre, transformer, protéger -->
+                <div class="constat-layout constat-layout--stretch">
+
+                    <div class="constat-panel constat-panel--accent">
+<span class="constat-panel-icon" aria-hidden="true">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="12" cy="12" r="10"/>
+<polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+</svg>
+</span>
+                        <h3 class="constat-action-title">
+                            Face à ce constat, le CREAI-VBG agit sur tous les fronts à la fois
+                        </h3>
+                    </div>
+
+                    <div class="constat-tiles">
+                        <div class="tile">
+                            <span class="tile-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="11" cy="11" r="8"/>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                                </svg>
+                            </span>
+                            Comprendre par la science
+                        </div>
+                        <div class="tile">
+                            <span class="tile-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                                    <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                                </svg>
+                            </span>
+                            Transformer par l'éducation
+                        </div>
+                        <div class="tile">
+                            <span class="tile-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                </svg>
+                            </span>
+                            Protéger par l'action
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Conclusion : la phrase clé, en bandeau plein largeur -->
+                <div class="constat-conclusion">
+<span class="constat-conclusion-icon" aria-hidden="true">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+<path d="M4 22V4"/>
+<path d="M4 4h13l-2.5 4.5L17 13H4"/>
+</svg>
+</span>
+                    <p>
+                        Parce que mettre fin aux VBG exige plus qu'une réponse d'urgence —
+                        <strong>cela exige une stratégie</strong>.
                     </p>
                 </div>
+
             </div>
         </div>
     </section>

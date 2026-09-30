@@ -183,14 +183,14 @@ require __DIR__ . '/partials/header.php';
                             </div>
 
                             <div class="role-block">
-                                <h3>Solen — communauté de soutien <span class="role-soon">Bientôt disponible</span></h3>
+                                <h3>Solen — communauté de soutien</h3>
                                 <p>
                                     Une communauté-refuge solidaire, disponible 24h/24 et 7j/7,
                                     entièrement fondée sur l'entraide entre victimes de violences
                                     sexistes, avec un accompagnement personnalisé par des pairs dans
                                     un cadre hautement sécurisé.
                                 </p>
-                                <button type="button" class="btn btn--outline-teal" disabled>Découvrir Solen</button>
+                                <a href="/solen.php" class="btn btn--outline-teal">Découvrir Solen</a>
                             </div>
                         </div>
                         <button type="button" class="role-cards-nav role-cards-nav--next" data-scroll="next" aria-label="Voir les cartes suivantes">

@@ -6,6 +6,7 @@ require __DIR__ . '/../src/Database.php';
 require __DIR__ . '/../src/Membership.php';
 require __DIR__ . '/../src/engagement_forms.php';
 require __DIR__ . '/../src/paiement.php';
+require __DIR__ . '/../src/mails.php';
 
 // Formulaires bénévole et partenariat (traités si form_type correspond)
 $forms = engagement_forms_handle();
@@ -45,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['form_type'] ?? 'adhesion')
                 $fullMessage = "Don complémentaire souhaité : {$donMontants[$don]}\n\n" . $message;
             }
             (new Membership())->create($nom, $email, $categorie, trim($fullMessage));
+            mail_adhesion_recue($nom, $email, $categories[$categorie], trim($fullMessage));
             $success = true;
             $old = ['nom' => '', 'email' => '', 'categorie' => '', 'message' => '', 'don' => ''];
             $_SESSION['csrf'] = bin2hex(random_bytes(32));

@@ -9,6 +9,7 @@ $contactTelHref = preg_replace('/[^\d+]/', '', $contactTel) ?? '';
 
 require __DIR__ . '/../src/Database.php';
 require __DIR__ . '/../src/Contact.php';
+require __DIR__ . '/../src/mails.php';
 
 $errors  = [];
 $success = false;
@@ -59,6 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $ip = $_SERVER['REMOTE_ADDR'] ?? null;
             (new Contact())->create($nom, $email, $sujet, $message, $ip);
+            mail_contact_recu($nom, $email, $sujets[$sujet], $message);
 
             $success = true;
             $old = ['nom' => '', 'email' => '', 'sujet' => '', 'message' => ''];
@@ -70,6 +72,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+$e = static fn (string $v): string => htmlspecialchars($v, ENT_QUOTES, 'UTF-8');
+
 $pageTitle = 'Contact — CREAI-VBG';
 $pageCss   = 'contact.css';
 $widePage  = true;
@@ -77,16 +81,33 @@ $widePage  = true;
 require __DIR__ . '/partials/header.php';
 ?>
 
-<div class="contact-page">
+<div class="pilier-detail-page">
 
     <!-- ============================================================
          HERO
          ============================================================ -->
-    <section class="contact-hero">
-        <div class="contact-hero-content">
-            <span class="contact-badge">Contact</span>
+    <section class="pilier-detail-hero pilier-detail-hero--purple">
+        <div class="pilier-detail-hero-content">
+
+            <nav class="pilier-detail-breadcrumb">
+                <a href="/">Accueil</a>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"/>
+                </svg>
+                <span>Contact</span>
+            </nav>
+
+            <span class="pilier-detail-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                Contact
+            </span>
+
             <h1>Parlons de votre projet, de vos questions</h1>
-            <p class="contact-lead">
+
+            <p class="pilier-detail-lead">
                 Que vous souhaitiez en savoir plus sur notre travail, explorer les
                 possibilités de partenariat, vous impliquer ou nous faire part de vos
                 commentaires, nous sommes à votre écoute.
@@ -97,79 +118,74 @@ require __DIR__ . '/partials/header.php';
     </section>
 
     <!-- ============================================================
-         CONTENU — coordonnées + formulaire
+         COORDONNÉES + FORMULAIRE
          ============================================================ -->
-    <section class="contact-section">
-        <div class="contact-container">
-            <div class="contact-layout">
+    <section class="pilier-detail-section" id="message">
+        <div class="pilier-detail-container">
+            <div class="solen-layout">
 
-                <!-- --- Colonne info (gauche) --- -->
-                <aside class="contact-info">
+                <aside class="solen-aside">
+                    <span class="eyebrow eyebrow--purple">Nos coordonnées</span>
 
-                    <span class="eyebrow eyebrow--teal">Nos coordonnées</span>
+                    <p class="solen-aside-intro">
+                        Une question, une idée, un projet&nbsp;? Écrivez-nous&nbsp;: une
+                        personne de l'équipe vous répond dans les plus brefs délais.
+                    </p>
 
-                    <div class="contact-info-list">
-
-                        <div class="contact-info-item">
-                            <div class="contact-info-icon" aria-hidden="true">
+                    <ul class="fact-list">
+                        <li class="fact-item">
+                            <span class="fact-icon" aria-hidden="true">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
                                     <circle cx="12" cy="10" r="3"/>
                                 </svg>
-                            </div>
+                            </span>
                             <div>
                                 <h3>Siège social</h3>
-                                <p>Dschang, Région de l'Ouest<br>Cameroun</p>
+                                <p>Dschang, Région de l'Ouest, Cameroun</p>
                             </div>
-                        </div>
+                        </li>
 
-                        <div class="contact-info-item">
-                            <div class="contact-info-icon" aria-hidden="true">
+                        <li class="fact-item">
+                            <span class="fact-icon" aria-hidden="true">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                                     <polyline points="22,6 12,13 2,6"/>
                                 </svg>
-                            </div>
+                            </span>
                             <div>
                                 <h3>Email</h3>
-                                <p>
-                                    <a href="mailto:contact@creai-vbg.org">contact@creai-vbg.org</a>
-                                </p>
+                                <p><a href="mailto:contact@creai-vbg.org">contact@creai-vbg.org</a></p>
                             </div>
-                        </div>
+                        </li>
 
                         <?php if (strlen(preg_replace('/\D/', '', $contactTel) ?? '') >= 6): ?>
-
-                        <div class="contact-info-item">
-                            <div class="contact-info-icon" aria-hidden="true">
+                        <li class="fact-item">
+                            <span class="fact-icon" aria-hidden="true">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
                                 </svg>
-                            </div>
+                            </span>
                             <div>
                                 <h3>Téléphone</h3>
-                                <p>
-                                    <a href="tel:<?= htmlspecialchars($contactTelHref) ?>"><?= htmlspecialchars($contactTel) ?></a>
-                                </p>
+                                <p><a href="tel:<?= $e($contactTelHref) ?>"><?= $e($contactTel) ?></a></p>
                             </div>
-                        </div>
-
+                        </li>
                         <?php endif; ?>
 
-                        <div class="contact-info-item">
-                            <div class="contact-info-icon" aria-hidden="true">
+                        <li class="fact-item">
+                            <span class="fact-icon" aria-hidden="true">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                                     <circle cx="12" cy="12" r="10"/>
                                     <polyline points="12 6 12 12 16 14"/>
                                 </svg>
-                            </div>
+                            </span>
                             <div>
                                 <h3>Horaires</h3>
-                                <p>Lundi au vendredi<br>9h00 – 17h00</p>
+                                <p>Lundi au vendredi, 9h00 – 17h00</p>
                             </div>
-                        </div>
-
-                    </div>
+                        </li>
+                    </ul>
 
                     <!-- Réseaux sociaux -->
                     <div class="contact-socials">
@@ -194,15 +210,13 @@ require __DIR__ . '/partials/header.php';
                             </a>
                         </div>
                     </div>
-
                 </aside>
 
-                <!-- --- Colonne formulaire (droite) --- -->
-                <div class="contact-form-wrapper">
+                <div class="solen-form-card">
 
                     <?php if ($success): ?>
-                        <div class="contact-success">
-                            <div class="contact-success-icon" aria-hidden="true">
+                        <div class="solen-success">
+                            <div class="solen-success-icon" aria-hidden="true">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                     <polyline points="20 6 9 17 4 12"/>
                                 </svg>
@@ -212,94 +226,79 @@ require __DIR__ . '/partials/header.php';
                                 Nous avons bien reçu votre demande et vous répondrons
                                 dans les plus brefs délais.
                             </p>
-                            <a href="/" class="btn btn--outline-teal">Retour à l'accueil</a>
+                            <a href="/" class="btn btn--outline">Retour à l'accueil</a>
                         </div>
                     <?php else: ?>
 
-                        <span class="eyebrow eyebrow--teal">Envoyez-nous un message</span>
+                        <p class="solen-form-intro">
+                            Les champs marqués d'un <span class="req">*</span> sont obligatoires.
+                        </p>
 
                         <?php if ($errors): ?>
-                            <div class="contact-alert contact-alert--error">
+                            <div class="solen-alert solen-alert--error" role="alert">
                                 <strong>Veuillez corriger les erreurs suivantes :</strong>
                                 <ul>
-                                    <?php foreach ($errors as $e): ?>
-                                        <li><?= htmlspecialchars($e) ?></li>
+                                    <?php foreach ($errors as $err): ?>
+                                        <li><?= $e($err) ?></li>
                                     <?php endforeach; ?>
                                 </ul>
                             </div>
                         <?php endif; ?>
 
-                        <form method="post" class="contact-form">
+                        <form method="post" action="#message" class="solen-form">
+                            <input type="hidden" name="csrf" value="<?= $e($_SESSION['csrf']) ?>">
 
-                            <input type="hidden" name="csrf" value="<?= htmlspecialchars($_SESSION['csrf']) ?>">
+                            <div class="solen-grid">
 
-                            <div class="contact-form-grid">
-
-                                <div class="contact-form-row">
+                                <div class="solen-row">
                                     <label for="nom">Nom complet <span class="req">*</span></label>
-                                    <input type="text"
-                                           id="nom"
-                                           name="nom"
-                                           required
-                                           maxlength="100"
-                                           value="<?= htmlspecialchars($old['nom']) ?>"
-                                           placeholder="Ex : Marie Ngo Bassong">
+                                    <input type="text" id="nom" name="nom" required maxlength="100"
+                                           value="<?= $e($old['nom']) ?>" placeholder="Ex : Marie Ngo Bassong">
                                 </div>
 
-                                <div class="contact-form-row">
+                                <div class="solen-row">
                                     <label for="email">Email <span class="req">*</span></label>
-                                    <input type="email"
-                                           id="email"
-                                           name="email"
-                                           required
-                                           value="<?= htmlspecialchars($old['email']) ?>"
-                                           placeholder="vous@exemple.com">
+                                    <input type="email" id="email" name="email" required
+                                           value="<?= $e($old['email']) ?>" placeholder="vous@exemple.com">
                                 </div>
 
-                                <div class="contact-form-row contact-form-row--full">
+                                <div class="solen-row solen-row--full">
                                     <label for="sujet">Sujet <span class="req">*</span></label>
                                     <select id="sujet" name="sujet" required>
                                         <option value="">— Choisir un sujet —</option>
                                         <?php foreach ($sujets as $value => $label): ?>
-                                            <option value="<?= htmlspecialchars($value) ?>"
-                                                <?= $old['sujet'] === $value ? 'selected' : '' ?>>
-                                                <?= htmlspecialchars($label) ?>
+                                            <option value="<?= $e($value) ?>" <?= $old['sujet'] === $value ? 'selected' : '' ?>>
+                                                <?= $e($label) ?>
                                             </option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
 
-                                <div class="contact-form-row contact-form-row--full">
-                                    <label for="message">Message <span class="req">*</span></label>
-                                    <textarea id="message"
-                                              name="message"
-                                              rows="7"
-                                              required
-                                              minlength="10"
-                                              maxlength="5000"
-                                              placeholder="Décrivez votre demande..."><?= htmlspecialchars($old['message']) ?></textarea>
+                                <div class="solen-row solen-row--full">
+                                    <label for="message-texte">Message <span class="req">*</span></label>
+                                    <textarea id="message-texte" name="message" rows="7" required minlength="10" maxlength="5000"
+                                              placeholder="Décrivez votre demande..."><?= $e($old['message']) ?></textarea>
                                     <small>10 à 5000 caractères</small>
                                 </div>
 
                             </div>
 
-                            <div class="contact-form-footer">
-                                <p class="contact-form-note">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <div class="solen-form-footer">
+                                <p class="solen-form-note">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
                                         <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
                                     </svg>
                                     Vos informations restent confidentielles.
                                 </p>
                                 <button type="submit" class="btn btn--primary">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    Envoyer le message
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                         <line x1="22" y1="2" x2="11" y2="13"/>
                                         <polygon points="22 2 15 22 11 13 2 9 22 2"/>
                                     </svg>
-                                    Envoyer le message
                                 </button>
                             </div>
-
                         </form>
                     <?php endif; ?>
 
@@ -310,26 +309,18 @@ require __DIR__ . '/partials/header.php';
     </section>
 
     <!-- ============================================================
-         URGENCE — renvoi
+         URGENCE
          ============================================================ -->
-    <section class="contact-emergency">
-        <div class="contact-container">
-            <div class="contact-emergency-box">
-                <div class="contact-emergency-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                        <path d="M12 8v4"/>
-                        <circle cx="12" cy="16" r="0.75" fill="currentColor" stroke="none"/>
-                    </svg>
-                </div>
-                <div class="contact-emergency-content">
-                    <h3>Vous êtes en situation d'urgence ?</h3>
-                    <p>
-                        Si vous êtes en danger immédiat, ne passez pas par ce formulaire.
-                        Utilisez nos canaux d'urgence dédiés.
-                    </p>
-                </div>
-                <a href="/besoin-aide.php" class="btn btn--coral">Besoin d'aide</a>
+    <section class="pilier-detail-cta">
+        <div class="pilier-detail-container">
+            <h2>Vous êtes en situation d'urgence&nbsp;?</h2>
+            <p>
+                Si vous êtes en danger immédiat, ne passez pas par ce formulaire :
+                utilisez nos canaux d'urgence dédiés.
+            </p>
+            <div class="pilier-detail-cta-buttons">
+                <a href="/besoin-aide.php" class="btn btn--primary">Besoin d'aide</a>
+                <a href="/solen.php" class="btn btn--outline">Découvrir Solen</a>
             </div>
         </div>
     </section>
