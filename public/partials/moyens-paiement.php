@@ -14,7 +14,7 @@ $moyensVideMessage = $moyensVideMessage ?? "Nos moyens de paiement en ligne sont
             <li>
                 <strong><?= htmlspecialchars($m['titre']) ?></strong>
                 <?php if ($m['url'] !== ''): ?>
-                    <a href="<?= htmlspecialchars($m['url']) ?>" target="_blank" rel="noopener noreferrer">Payer en ligne ↗</a>
+                    <a href="<?= htmlspecialchars($m['url']) ?>" class="paiement-cta" target="_blank" rel="noopener noreferrer"><?= htmlspecialchars($m['cta'] !== '' ? $m['cta'] : 'Payer en ligne') ?> ↗</a>
                 <?php endif; ?>
                 <?php foreach ($m['lignes'] as $label => $valeur): ?>
                     <span><?= htmlspecialchars((string) $label) ?> : <b><?= htmlspecialchars($valeur) ?></b></span>

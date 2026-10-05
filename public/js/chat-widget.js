@@ -47,13 +47,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // ---------- Ajout de messages ----------
 
-    function addMessage(text, type) {
+    function addMessage(text, type, sources) {
         const wrapper = document.createElement('div');
         wrapper.className = 'chat-message chat-message--' + (type === 'urgent' ? 'urgent' : type);
 
         const bubble = document.createElement('div');
         bubble.className = 'chat-bubble';
         bubble.textContent = text;
+
+        // Pages du site qui ont servi à répondre (liens internes uniquement)
+        if (Array.isArray(sources) && sources.length) {
+            const box = document.createElement('div');
+            box.className = 'chat-sources';
+            box.appendChild(document.createTextNode('Pour en savoir plus : '));
+            sources.forEach(function (s, i) {
+                if (!s || typeof s.url !== 'string' || s.url.charAt(0) !== '/' || s.url.indexOf('//') === 0) return;
+                if (i > 0) box.appendChild(document.createTextNode(' · '));
+                const a = document.createElement('a');
+                a.href = s.url;
+                a.textContent = s.titre;
+                box.appendChild(a);
+            });
+            if (box.querySelector('a')) bubble.appendChild(box);
+        }
 
         wrapper.appendChild(bubble);
         messages.appendChild(wrapper);
@@ -109,13 +125,14 @@ document.addEventListener('DOMContentLoaded', function () {
             return {
                 reply:  data.reply  || "Je n'ai pas de réponse pour l'instant.",
                 urgent: !!data.urgent,
+                sources: data.sources || [],
             };
 
         } catch (error) {
             console.error('[chat] Erreur :', error);
             return {
                 reply:  "Je n'arrive pas à contacter l'assistant pour le moment. "
-                      + "En cas d'urgence, appelez le 112 ou le 3919.",
+                      + "En cas d'urgence, rendez-vous sur la page « Besoin d'aide » du site.",
                 urgent: true,
             };
         }
@@ -139,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const result = await sendToApi(text);
 
         hideTyping();
-        addMessage(result.reply, result.urgent ? 'urgent' : 'bot');
+        addMessage(result.reply, result.urgent ? 'urgent' : 'bot', result.sources);
         history.push({ role: 'assistant', content: result.reply });
 
         sending = false;

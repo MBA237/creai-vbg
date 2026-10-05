@@ -67,6 +67,7 @@ try {
     echo json_encode([
         'reply'  => $result['reply'],
         'urgent' => $result['urgent'],
+        'sources' => $result['sources'] ?? [],
     ], JSON_UNESCAPED_UNICODE);
 
 } catch (Throwable $e) {
@@ -75,7 +76,7 @@ try {
     http_response_code(500);
     echo json_encode([
         'error'  => 'Erreur interne.',
-        'reply'  => "Une erreur est survenue. En cas d'urgence, appelez le 112.",
+        'reply'  => "Une erreur est survenue. En cas d'urgence, rendez-vous sur la page « Besoin d'aide » du site.",
         'urgent' => true,
     ], JSON_UNESCAPED_UNICODE);
 }

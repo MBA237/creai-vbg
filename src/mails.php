@@ -51,7 +51,8 @@ function mail_moyens_html(array $moyens): string
     foreach ($moyens as $m) {
         $html .= '<li style="margin-bottom:10px;"><strong>' . mail_h($m['titre']) . '</strong>';
         if ($m['url'] !== '') {
-            $html .= '<br><a href="' . mail_h($m['url']) . '" style="color:#4c4494;">Payer en ligne</a>';
+            $html .= '<br><a href="' . mail_h($m['url']) . '" style="display:inline-block;margin-top:6px;padding:9px 16px;background:#4c4494;color:#ffffff;text-decoration:none;border-radius:6px;font-weight:bold;">'
+                . mail_h(($m['cta'] ?? '') !== '' ? $m['cta'] : 'Payer en ligne') . '</a>';
         }
         foreach ($m['lignes'] as $label => $valeur) {
             $html .= '<br>' . mail_h($label) . ' : <strong>' . mail_h($valeur) . '</strong>';

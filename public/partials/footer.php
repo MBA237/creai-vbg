@@ -7,7 +7,7 @@
     <div class="footer-inner">
 
         <div class="footer-brand">
-            <p class="footer-name">CREAI-VBG</p>
+            <p class="footer-name" translate="no">CREAI-VBG</p>
             <p>Centre de Recherche, d'Éducation et d'Action Intégrée contre les VBG</p>
             <p class="footer-tagline">« Recherche, innovation et accompagnement holistique »</p>
         </div>

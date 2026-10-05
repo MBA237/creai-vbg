@@ -256,6 +256,64 @@ body {
     border-left: 1px solid #ece6ef;
 }
 
+/* --- Sélecteur de langue FR / EN --- */
+.lang-switch {
+    display: inline-flex;
+    border: 1.5px solid #ece6ef;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.lang-switch button {
+    padding: 7px 12px;
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #6a2c74;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.lang-switch button:hover {
+    background-color: #f4eef6;
+}
+
+.lang-switch button.is-active {
+    color: #ffffff;
+    background-color: #6a2c74;
+}
+
+.lang-switch button:focus-visible {
+    outline: 2px solid #6a2c74;
+    outline-offset: -2px;
+}
+
+/* Masque l'interface native de Google Traduction (bandeau, infobulles) */
+.skiptranslate iframe.skiptranslate,
+iframe.goog-te-banner-frame,
+.goog-te-banner-frame,
+#goog-gt-tt,
+.goog-tooltip,
+.goog-te-balloon-frame {
+    display: none !important;
+}
+
+body {
+    top: 0 !important;
+}
+
+.goog-text-highlight {
+    background: none !important;
+    box-shadow: none !important;
+}
+
+@media (max-width: 1100px) {
+    .lang-switch {
+        align-self: center;
+    }
+}
+
 .nav-links a.nav-help {
     padding: 8px 16px;
     color: #c24a22;

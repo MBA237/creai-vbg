@@ -49,25 +49,63 @@ require __DIR__ . '/partials/header.php';
     </section>
 
     <section class="pilier-detail-section">
-        <div class="pilier-detail-container pilier-detail-container--narrow">
-            <span class="eyebrow eyebrow--purple">Une approche à 360°</span>
+        <div class="pilier-detail-container">
+            <div class="intro-split">
 
-            <p class="pilier-detail-text pilier-detail-text--lead">
-                Nous assurons la prise en charge psychosociale, médicale, juridique
-                et économique des survivant(e)s, ainsi que leur orientation vers les
-                structures compétentes.
-            </p>
+                <div class="intro-split-main">
+                    <span class="eyebrow eyebrow--purple">Une approche à 360°</span>
 
-            <p class="pilier-detail-text">
-                En parallèle — et c'est ce qui distingue notre approche — nous mettons
-                en œuvre des <strong>parcours de responsabilisation</strong> destinés
-                aux auteur(e)s de VBG, dans une logique assumée de prévention de la
-                récidive.
-            </p>
+                    <p class="intro-split-lead">
+                        Nous assurons la prise en charge <strong>psychosociale, médicale, juridique et économique</strong> des survivant(e)s, ainsi que leur orientation vers les structures compétentes.
+                    </p>
+                    <p class="pilier-detail-text pilier-detail-note-text">
+                        En parallèle — et c'est ce qui distingue notre approche — nous mettons en œuvre des <strong>parcours de responsabilisation</strong> destinés aux auteur(e)s de VBG, dans une logique assumée de prévention de la récidive.
+                    </p>
+
+                    <div class="intro-split-actions">
+                        <a href="/besoin-aide.php" class="btn btn--primary">Demander de l'aide <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+                        <a href="#services" class="btn btn--outline">Voir nos services</a>
+                    </div>
+                </div>
+
+                <aside class="fact-card" aria-label="En un coup d'œil">
+                    <ul class="fact-list">
+                        <li class="fact-item fact-item--main">
+                            <span class="fact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-1.04z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-1.04z"/></svg></span>
+                            <div>
+                                <h3>Psychosocial</h3>
+                                <p>Soutien psychologique individuel et collectif.</p>
+                            </div>
+                        </li>
+                        <li class="fact-item">
+                            <span class="fact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
+                            <div>
+                                <h3>Médical</h3>
+                                <p>Prise en charge médicale des survivant(e)s.</p>
+                            </div>
+                        </li>
+                        <li class="fact-item">
+                            <span class="fact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M5 8h14"/><path d="M5 8l-2 7a3 3 0 0 0 6 0l-2-7"/><path d="M19 8l-2 7a3 3 0 0 0 6 0l-2-7"/></svg></span>
+                            <div>
+                                <h3>Juridique</h3>
+                                <p>Information, plainte et accompagnement au procès.</p>
+                            </div>
+                        </li>
+                        <li class="fact-item">
+                            <span class="fact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9.5a3 3 0 0 0-3-1.5c-1.7 0-3 1-3 2.3 0 3 6 1.7 6 4.7 0 1.3-1.3 2.5-3 2.5a3.2 3.2 0 0 1-3-1.8"/><line x1="12" y1="6" x2="12" y2="18"/></svg></span>
+                            <div>
+                                <h3>Économique</h3>
+                                <p>Prise en charge économique des survivant(e)s.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </aside>
+
+            </div>
         </div>
     </section>
 
-    <section class="pilier-detail-section pilier-detail-section--alt">
+    <section class="pilier-detail-section pilier-detail-section--alt" id="services">
         <div class="pilier-detail-container">
             <span class="eyebrow eyebrow--purple">Services offerts aux victimes</span>
 

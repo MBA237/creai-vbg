@@ -46,19 +46,56 @@ require __DIR__ . '/partials/header.php';
         </div>
     </section>
 
-    <!-- ============================================================
-         PRÉSENTATION
-         ============================================================ -->
     <section class="pilier-detail-section">
         <div class="pilier-detail-container">
-            <span class="eyebrow eyebrow--purple">Plusieurs formules, un même esprit</span>
+            <div class="intro-split">
 
-            <p class="pilier-detail-text pilier-detail-text--lead" style="max-width: 68ch;">
-                Dans un cadre bienveillant et confidentiel, chaque personne
-                partage son expérience et se reconstruit aux côtés d'autres
-                survivant(e)s. Aucune démarche individuelle préalable n'est
-                nécessaire.
-            </p>
+                <div class="intro-split-main">
+                    <span class="eyebrow eyebrow--purple">Plusieurs formules, un même esprit</span>
+
+                    <p class="intro-split-lead">
+                        Dans un <strong>cadre bienveillant et confidentiel</strong>, chaque personne partage son expérience et se reconstruit aux côtés d'autres survivant(e)s. Aucune démarche individuelle préalable n'est nécessaire.
+                    </p>
+
+                    <div class="intro-split-actions">
+                        <a href="#calendrier" class="btn btn--primary">Voir le calendrier <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+                        <a href="/solen.php" class="btn btn--outline">Découvrir Solen</a>
+                    </div>
+                </div>
+
+                <aside class="fact-card" aria-label="En un coup d'œil">
+                    <ul class="fact-list">
+                        <li class="fact-item fact-item--main">
+                            <span class="fact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+                            <div>
+                                <h3>Entre survivant(e)s</h3>
+                                <p>Se réunir avec des personnes qui ont vécu une situation semblable à la vôtre.</p>
+                            </div>
+                        </li>
+                        <li class="fact-item">
+                            <span class="fact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+                            <div>
+                                <h3>Bienveillant et confidentiel</h3>
+                                <p>Pair-aidance et reconnaissance entre pairs.</p>
+                            </div>
+                        </li>
+                        <li class="fact-item">
+                            <span class="fact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>
+                            <div>
+                                <h3>Sans démarche préalable</h3>
+                                <p>Aucune démarche individuelle n'est nécessaire pour participer.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </aside>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="pilier-detail-section pilier-detail-section--alt">
+        <div class="pilier-detail-container">
+            <span class="eyebrow eyebrow--purple">Ce que vous y trouverez</span>
 
             <div class="programmes-grid">
                 <article class="programme-card">
@@ -97,7 +134,7 @@ require __DIR__ . '/partials/header.php';
             </div>
 
             <!-- Calendrier : mis en évidence, avec un accès direct à la plateforme -->
-            <div class="info-highlight" style="margin-top: 36px; margin-bottom: 0;">
+            <div class="info-highlight info-highlight--spaced" id="calendrier">
                 <div class="info-highlight-row">
                     <div class="info-highlight-icon" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
@@ -131,7 +168,7 @@ require __DIR__ . '/partials/header.php';
     <!-- ============================================================
          SOLEN — carte liée
          ============================================================ -->
-    <section class="pilier-detail-section pilier-detail-section--alt">
+    <section class="pilier-detail-section">
         <div class="pilier-detail-container pilier-detail-container--narrow">
             <span class="eyebrow eyebrow--purple">Envie d'une présence continue ?</span>
 

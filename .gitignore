@@ -1,2 +1,5 @@
 .env
 vendor/
+
+# Index de la base de connaissances de l assistant (genere par src/Rag.php)
+/storage/

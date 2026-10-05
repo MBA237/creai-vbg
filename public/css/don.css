@@ -784,6 +784,20 @@ body {
     font-weight: 700;
 }
 
+.paiement-liste a.paiement-cta {
+    align-self: flex-start;
+    margin-top: 6px;
+    padding: 10px 18px;
+    background: var(--don-red-dark);
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.paiement-liste a.paiement-cta:hover {
+    opacity: 0.9;
+}
+
 .paiement-vide {
     padding: 14px 16px;
     background: #f4f5f1;

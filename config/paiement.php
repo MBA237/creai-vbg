@@ -11,10 +11,14 @@ declare(strict_types=1);
  */
 return [
 
-    // Lien de paiement par carte bancaire chez votre prestataire (https://...)
+    // Lien de paiement par carte bancaire chez votre prestataire (https://...).
+    // Marqueurs remplacés par les valeurs du don : {montant} {reference} {mode} {email}
+    // ex. https://prestataire.example/pay?amount={montant}&ref={reference}&email={email}
+    // Sans marqueur, le lien est utilisé tel quel (le donateur saisit alors le montant chez le prestataire).
     'carte_url'  => '',
 
-    // Lien PayPal (https://www.paypal.com/... ou paypal.me/...)
+    // Lien PayPal (https://www.paypal.com/... ou paypal.me/...). Mêmes marqueurs :
+    // ex. https://www.paypal.me/creaivbg/{montant}EUR
     'paypal_url' => '',
 
     // Mobile Money : un bloc par opérateur

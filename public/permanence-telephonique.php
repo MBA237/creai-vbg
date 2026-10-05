@@ -158,7 +158,7 @@ require __DIR__ . '/partials/header.php';
             </div>
 
             <!-- Avertissement : ce n'est pas une ligne d'urgence -->
-            <div class="info-highlight" style="margin-top: 44px; margin-bottom: 0;">
+            <div class="info-highlight info-highlight--spaced">
                 <div class="info-highlight-row info-highlight-row--alert">
                     <div class="info-highlight-icon info-highlight-icon--alert" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
@@ -246,7 +246,7 @@ require __DIR__ . '/partials/header.php';
 
             </div>
 
-            <div class="info-highlight" style="margin-top: 32px; margin-bottom: 0;">
+            <div class="info-highlight info-highlight--spaced">
                 <div class="info-highlight-row">
                     <div class="info-highlight-icon" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">

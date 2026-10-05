@@ -167,7 +167,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'reference' => $reference,
                 'montant'   => $montant,
                 'moyen'    => $mode === 'cagnotte' ? null : $old['moyen'],
-                'moyens'   => $mode === 'cagnotte' ? [] : paiement_moyens($old['moyen'], $old['mobile_operateur']),
+                'moyens'   => $mode === 'cagnotte' ? [] : paiement_moyens($old['moyen'], $old['mobile_operateur'], [
+                        'montant' => $montant, 'reference' => $reference ?? '', 'mode' => $mode, 'email' => $old['email'],
+                    ]),
             ];
             // E-mails (donateur + équipe) : un échec d'envoi n'annule jamais le don.
             if ($mode === 'cagnotte') {
@@ -523,7 +525,7 @@ require __DIR__ . '/partials/header.php';
                     </div>
 
                     <div class="payment-panel <?= $old['moyen'] === 'carte' ? 'is-open' : '' ?>" id="payment-panel-carte" data-panel="carte">
-                        <p class="payment-note">Nous vous envoyons le lien de paiement sécurisé de notre prestataire dès la validation de votre demande. Ne saisissez jamais votre numéro de carte par e-mail.</p>
+                        <p class="payment-note">Après validation, un bouton vous mène à la page de paiement sécurisée de notre prestataire, avec votre montant déjà renseigné (le lien vous est aussi envoyé par e-mail). Ne saisissez jamais votre numéro de carte par e-mail.</p>
                     </div>
 
                     <div class="payment-panel <?= $old['moyen'] === 'mobile' ? 'is-open' : '' ?>" id="payment-panel-mobile" data-panel="mobile">

@@ -36,6 +36,7 @@ $widePage  = $widePage  ?? false;
     <script src="<?= v('/js/don.js') ?>" defer></script>
     <script src="<?= v('/js/wizard.js') ?>" defer></script>
     <script src="<?= v('/js/quick-exit.js') ?>" defer></script>
+    <script src="<?= v('/js/lang-switch.js') ?>" defer></script>
     <?php if ($pageCss): ?>
         <?php foreach (css_chain($pageCss) as $cssFile): ?>
         <link rel="stylesheet" href="<?= htmlspecialchars(v('/css/' . $cssFile)) ?>">
@@ -44,11 +45,14 @@ $widePage  = $widePage  ?? false;
 </head>
 <body>
 
+<!-- Conteneur du widget Google Traduction (invisible, piloté par lang-switch.js) -->
+<div id="google_translate_element" hidden></div>
+
 <nav class="nav">
     <a href="/" class="logo" aria-label="Retour à l'accueil CREAI-VBG">
         <img src="/images/logo.png" alt="Logo CREAI-VBG">
         <span class="logo-text">
-            <span class="logo-name">CREAI-VBG</span>
+            <span class="logo-name" translate="no">CREAI-VBG</span>
             <span class="logo-tagline">Centre de Recherche, d'Éducation et d'Action </br> Intégrée contre les Violences Base sur le Genre</span>
         </span>
     </a>
@@ -120,6 +124,10 @@ $widePage  = $widePage  ?? false;
         <a href="/soutenir.php#don"<?= $navAttr($navOn['soutenir']) ?>>Nous soutenir</a>
         <a href="/contact.php"<?= $navAttr($navOn['contact']) ?>>Contact</a>
         <div class="nav-actions">
+            <div class="lang-switch notranslate" translate="no" role="group" aria-label="Langue / Language">
+                <button type="button" data-lang="fr" lang="fr" aria-pressed="true">FR</button>
+                <button type="button" data-lang="en" lang="en" aria-pressed="false">EN</button>
+            </div>
             <a href="/besoin-aide.php"<?= $navAttr($navOn['aide'], 'nav-help') ?>>Besoin d'aide ?</a>
             <a href="/don.php" class="nav-don" aria-label="Faire un don">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>

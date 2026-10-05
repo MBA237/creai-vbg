@@ -1048,3 +1048,314 @@
         padding: 26px 22px;
     }
 }
+
+/* ============================================================
+   ACCOMPAGNEMENT PSYCHO-SOCIAL — volets, cartes enrichies, parcours
+   ============================================================ */
+
+/* Les ancres (#soutien-juridique…) ne doivent pas passer sous l'en-tête fixe */
+.pilier-detail-section[id] {
+    scroll-margin-top: 90px;
+}
+
+.duo-card {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.duo-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-600), var(--accent-200));
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.duo-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--accent-200);
+}
+
+.duo-card:hover::before {
+    opacity: 1;
+}
+
+.duo-card .programme-icon {
+    margin-bottom: 16px;
+}
+
+/* Carte-volet cliquable (introduction) */
+.duo-card--link {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+}
+
+.duo-card--link > p {
+    flex: 1;
+}
+
+.duo-card-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: auto;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent-600);
+}
+
+.duo-card-more svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s;
+}
+
+.duo-card--link:hover .duo-card-more svg {
+    transform: translateX(4px);
+}
+
+/* Étiquettes avec coche */
+.tag-list--check .tag::before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    margin-right: 7px;
+    background: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.pilier-detail-text--wide {
+    max-width: 68ch;
+}
+
+/* Parcours en 3 temps : avant / pendant / après */
+.parcours {
+    list-style: none;
+    margin: 28px 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+    position: relative;
+    counter-reset: parcours;
+}
+
+.parcours::before {
+    content: "";
+    position: absolute;
+    top: 23px;
+    left: 8%;
+    right: 8%;
+    height: 2px;
+    background: repeating-linear-gradient(90deg, var(--accent-200) 0 8px, transparent 8px 16px);
+}
+
+.parcours-step {
+    position: relative;
+    text-align: center;
+    padding: 0 8px;
+    counter-increment: parcours;
+}
+
+.parcours-step::before {
+    content: counter(parcours);
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    background: var(--accent-600);
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+    box-shadow: 0 0 0 6px var(--surface);
+}
+
+.pilier-detail-section--alt .parcours-step::before {
+    box-shadow: 0 0 0 6px var(--surface-alt);
+}
+
+.parcours-step h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 8px;
+}
+
+.parcours-step p {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    margin: 0 auto;
+    max-width: 30ch;
+}
+
+@media (max-width: 720px) {
+    .parcours {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .parcours::before {
+        top: 0;
+        bottom: 0;
+        left: 22px;
+        right: auto;
+        width: 2px;
+        height: auto;
+        background: repeating-linear-gradient(180deg, var(--accent-200) 0 8px, transparent 8px 16px);
+    }
+
+    .parcours-step {
+        text-align: left;
+        padding: 0 0 0 66px;
+    }
+
+    .parcours-step::before {
+        position: absolute;
+        left: 0;
+        top: 0;
+        margin: 0;
+    }
+
+    .parcours-step p {
+        margin: 0;
+        max-width: none;
+    }
+}
+
+/* Espacements utilitaires (remplacent des styles écrits dans les pages) */
+.info-highlight--spaced { margin-top: 32px; margin-bottom: 0; }
+.pilier-detail-note {
+    margin-top: 16px;
+    font-size: 13.5px;
+    color: var(--text-muted);
+}
+.pilier-detail-note::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 8px;
+    border-radius: 50%;
+    background: var(--accent-200);
+}
+.duo-card .tag-list { margin-top: 8px; }
+
+/* Paragraphe secondaire sous le texte d'introduction (intro-split) */
+.pilier-detail-note-text {
+    margin: -12px 0 28px;
+    max-width: 58ch;
+}
+
+/* ------------------------------------------------------------
+   Carte « Qu'est-ce que c'est ? » — en-tête, texte, formats
+   ------------------------------------------------------------ */
+.duo-grid--feature {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    align-items: stretch;
+}
+
+.duo-card-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.duo-card-head .programme-icon {
+    width: 46px;
+    height: 46px;
+    margin: 0;
+}
+
+.duo-card-head .duo-card-tag {
+    margin: 0;
+}
+
+.duo-card--feature-text,
+.duo-grid--feature .duo-card > p {
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--text-primary);
+}
+
+.duo-grid--feature .duo-card > p strong {
+    color: var(--accent-800);
+}
+
+.duo-card-label {
+    margin: 22px 0 12px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+/* Tuiles compactes à l'intérieur d'une carte : plus de bordure double ni de saut au survol */
+.tile-grid--compact {
+    gap: 10px;
+}
+
+.tile-grid--compact .tile {
+    padding: 12px 14px;
+    gap: 12px;
+    font-size: 14px;
+    background: var(--surface-alt);
+    border-color: transparent;
+    min-width: 0;
+}
+
+.tile-grid--compact .tile:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: var(--accent-200);
+    background: var(--accent-50);
+}
+
+.tile-grid--compact .tile-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    background: var(--surface);
+}
+
+.tile-grid--compact .tile-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+@media (max-width: 820px) {
+    .duo-grid--feature {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 440px) {
+    .tile-grid--compact.tile-grid--2 {
+        grid-template-columns: 1fr;
+    }
+}
+
+.duo-grid--feature .duo-card > .duo-card-label {
+    margin: 22px 0 12px;
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--text-muted);
+}
